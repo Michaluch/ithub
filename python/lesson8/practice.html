@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Практика 8: Списки та Кортежі | IT School Hub</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- ВИКОРИСТОВУЄМО ТІ Ж ФАЙЛИ, ЩО Й РАНІШЕ -->
+  <link rel="stylesheet" href="../../css/styles.css" />
+  <script src="../../js/main.js" defer></script>
+</head>
+
+<body class="bg-[#f8fafc] text-slate-900 font-sans leading-relaxed">
+
+  <nav class="nav-sticky">
+    <div class="container mx-auto flex justify-between items-center">
+      <a href="../../index.html" class="hover:opacity-80 transition-opacity">
+        <h1 class="text-2xl font-bold text-gray-700">
+          <span class="logo-box text-gray-900">IT</span> School Hub
+        </h1>
+      </a>
+      <div class="flex items-center gap-4">
+        <a href="../index.html" class="hidden md:block text-sm font-medium text-gray-500 hover:text-black transition-colors">
+          ← Повернутися до курсу
+        </a>
+        <span class="bg-[#e2f0d9] px-5 py-1.5 rounded-full text-sm font-black uppercase tracking-wider text-[#1f2937] shadow-sm">
+          Практика №8
+        </span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Контейнер як у теорії -->
+  <main class="container mx-auto max-w-5xl px-8 py-16 bg-white mt-10 shadow-2xl rounded-[3rem] border border-slate-100">
+
+    <header class="mb-20 border-b border-slate-100 pb-12">
+      <h1 class="text-5xl font-black mb-6 tracking-tight leading-[1.1]">Практика: Списки та Кортежі</h1>
+      <p class="text-xl text-slate-600 max-w-3xl leading-relaxed">
+        Сьогодні ти прокачаєш навички роботи зі списками: індекси, зрізи, методи, цикли, list comprehension, матриці,
+        а також кортежі та unpacking.
+      </p>
+
+      <div class="mt-8 p-6 rounded-3xl bg-[#e2f0d9]/30 border-l-8 border-[#e2f0d9] italic text-gray-700">
+        Порада: у браузерних завданнях перевірка йде по шаблону. Пиши синтаксис акуратно, як у Python.
+      </div>
+    </header>
+
+    <div class="space-y-10">
+
+      <!-- 1: append -->
+      <section class="bg-white p-10 rounded-[2.5rem] shadow-xl border border-gray-100">
+        <h2 class="text-2xl font-bold mb-4 text-gray-900 flex items-center gap-2">
+          <span class="logo-box">1</span> Додавання в список
+        </h2>
+
+        <p class="text-slate-600 mb-6">
+          Є список <code>inventory = []</code>. Який рядок коду коректно додасть <code>"gold"</code> в кінець?
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <button
+            type="button"
+            onclick="showFeedback('feedback8_1', false, '❌ Ні. У списків немає методу add(). Використовуй append().')"
+            class="bg-white border-2 border-slate-100 p-4 rounded-2xl font-mono hover:border-[#e2f0d9] transition-all text-left"
+          >
+            inventory.add("gold")
+          </button>
+
+          <button
+            type="button"
+            onclick="showFeedback('feedback8_1', true, '✅ Вірно! append(val) додає елемент у хвіст списку.')"
+            class="bg-white border-2 border-slate-100 p-4 rounded-2xl font-mono hover:border-[#e2f0d9] transition-all text-left"
+          >
+            inventory.append("gold")
+          </button>
+        </div>
+
+        <div id="feedback8_1" class="mt-4 p-4 rounded-xl text-sm font-medium hidden"></div>
+      </section>
+
+      <!-- 2: negative index -->
+      <section class="bg-white p-10 rounded-[2.5rem] shadow-xl border border-gray-100">
+        <h2 class="text-2xl font-bold mb-4 text-gray-900 flex items-center gap-2">
+          <span class="logo-box">2</span> Негативна індексація
+        </h2>
+
+        <p class="text-slate-600 mb-6">
+          Є список <code>colors = ["red", "green", "blue", "yellow"]</code>.
+          Напиши вираз, який поверне <b>передостанній</b> елемент.
+        </p>
+
+        <input
+          type="text"
+          id="ans8_2"
+          class="w-full p-4 border-2 border-slate-100 rounded-2xl outline-none focus:ring-2 focus:ring-[#e2f0d9]/40 focus:border-[#e2f0d9] font-mono mb-4"
+          placeholder='Напр.: colors[-3]'
+        />
+
+        <button
+          type="button"
+          onclick="validateExercise('ans8_2', 'feedback8_2', '[-2]')"
+          class="btn-action px-10 py-4"
+        >
+          Перевірити
+        </button>
+
+        <div id="feedback8_2" class="mt-4 p-4 rounded-xl text-sm font-medium hidden"></div>
+
+      </section>
+
+      <!-- 3: slices with step -->
+      <section class="bg-white p-10 rounded-[2.5rem] shadow-xl border border-gray-100">
+        <h2 class="text-2xl font-bold mb-4 text-gray-900 flex items-center gap-2">
+          <span class="logo-box">3</span> Зрізи із кроком
+        </h2>
+
+        <p class="text-slate-600 mb-6">
+          Є список <code>colors = ["red", "green", "blue", "yellow"]</code>.
+          Напиши зріз, який візьме елементи <code>["red", "blue"]</code> (тобто з 0 по 3 через один).
+        </p>
+
+        <input
+          type="text"
+          id="ans8_3"
+          class="w-full p-4 border-2 border-slate-100 rounded-2xl outline-none focus:ring-2 focus:ring-[#e2f0d9]/40 focus:border-[#e2f0d9] font-mono mb-4"
+          placeholder="Напр.: colors[0:1:3]"
+        />
+
+        <button
+          type="button"
+          onclick="validateExercise('ans8_3', 'feedback8_3', '[0:3:2]')"
+          class="btn-action px-10 py-4"
+        >
+          Перевірити
+        </button>
+
+        <div id="feedback8_3" class="mt-4 p-4 rounded-xl text-sm font-medium hidden"></div>
+      </section>
+
+      <!-- 4: insert + extend -->
+      <section class="bg-white p-10 rounded-[2.5rem] shadow-xl border border-gray-100">
+        <h2 class="text-2xl font-bold mb-4 text-gray-900 flex items-center gap-2">
+          <span class="logo-box">4</span> Вставка та розширення
+        </h2>
+
+        <p class="text-slate-600 mb-6">
+          Обери правильні варіанти:
+          <br />
+          <b>A)</b> вставити <code>"yellow"</code> на позицію 1 у списку <code>colors</code>
+          <br />
+          <b>B)</b> додати одразу список <code>["cyan", "black"]</code> у кінець <code>colors</code> як окремі елементи
+        </p>
+
+        <div class="grid grid-cols-1 gap-4">
+          <div class="p-6 rounded-2xl border-2 border-slate-100">
+            <p class="text-xs font-black text-gray-400 mb-3 uppercase tracking-widest">A)</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <button
+                type="button"
+                onclick="showFeedback('feedback8_4a', true, '✅ Так! insert(index, val) вставляє у конкретне місце.')"
+                class="bg-white border-2 border-slate-100 p-4 rounded-2xl font-mono hover:border-[#e2f0d9] transition-all text-left"
+              >
+                colors.insert(1, "yellow")
+              </button>
+
+              <button
+                type="button"
+                onclick="showFeedback('feedback8_4a', false, '❌ append() додає в кінець, а не в середину.')"
+                class="bg-white border-2 border-slate-100 p-4 rounded-2xl font-mono hover:border-[#e2f0d9] transition-all text-left"
+              >
+                colors.append(1, "yellow")
+              </button>
+            </div>
+            <div id="feedback8_4a" class="mt-4 p-4 rounded-xl text-sm font-medium hidden"></div>
+          </div>
+
+          <div class="p-6 rounded-2xl border-2 border-slate-100">
+            <p class="text-xs font-black text-gray-400 mb-3 uppercase tracking-widest">B)</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <button
+                type="button"
+                onclick="showFeedback('feedback8_4b', true, '✅ Так! extend(list) додає елементи іншого списку по одному.')"
+                class="bg-white border-2 border-slate-100 p-4 rounded-2xl font-mono hover:border-[#e2f0d9] transition-all text-left"
+              >
+                colors.extend(["cyan", "black"])
+              </button>
+
+              <button
+                type="button"
+                onclick="showFeedback('feedback8_4b', false, '⚠️ append([...]) додасть вкладений список як ОДИН елемент. Це не те, що треба.')"
+                class="bg-white border-2 border-slate-100 p-4 rounded-2xl font-mono hover:border-[#e2f0d9] transition-all text-left"
+              >
+                colors.append(["cyan", "black"])
+              </button>
+            </div>
+            <div id="feedback8_4b" class="mt-4 p-4 rounded-xl text-sm font-medium hidden"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5: pop vs remove vs clear -->
+      <section class="bg-white p-10 rounded-[2.5rem] shadow-xl border border-gray-100">
+        <h2 class="text-2xl font-bold mb-4 text-gray-900 flex items-center gap-2">
+          <span class="logo-box">5</span> Видалення: pop / remove / clear
+        </h2>
+
+        <p class="text-slate-600 mb-6">
+          Який метод <b>видаляє елемент і повертає його значення</b>?
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <button
+            type="button"
+            onclick="showFeedback('feedback8_5', true, '✅ Вірно! pop(index) видаляє і ПОВЕРТАЄ значення.')"
+            class="bg-white border-2 border-slate-100 p-4 rounded-2xl font-mono hover:border-[#e2f0d9] transition-all text-left"
+          >
+            pop()
+          </button>
+
+          <button
+            type="button"
+            onclick="showFeedback('feedback8_5', false, '❌ remove(val) видаляє за значенням, але не використовується як “поверни мені видалене”.')"
+            class="bg-white border-2 border-slate-100 p-4 rounded-2xl font-mono hover:border-[#e2f0d9] transition-all text-left"
+          >
+            remove()
+          </button>
+
+          <button
+            type="button"
+            onclick="showFeedback('feedback8_5', false, '❌ clear() очищує весь список повністю.')"
+            class="bg-white border-2 border-slate-100 p-4 rounded-2xl font-mono hover:border-[#e2f0d9] transition-all text-left"
+          >
+            clear()
+          </button>
+        </div>
+
+        <div id="feedback8_5" class="mt-4 p-4 rounded-xl text-sm font-medium hidden"></div>
+
+      </section>
+
+      <!-- 6: loops + list comprehension -->
+      <section class="bg-white p-10 rounded-[2.5rem] shadow-xl border border-gray-100">
+        <h2 class="text-2xl font-bold mb-4 text-gray-900 flex items-center gap-2">
+          <span class="logo-box">6</span> Фільтрація оцінок (for → list comprehension)
+        </h2>
+
+        <p class="text-slate-600 mb-6">
+          Є список: <code>grades = [10, 5, 12, 8, 4, 11]</code>.
+          Напиши <b>list comprehension</b>, який створить список лише з оцінок <code>&gt;= 10</code>.
+        </p>
+
+        <input
+          type="text"
+          id="ans8_6"
+          class="w-full p-4 border-2 border-slate-100 rounded-2xl outline-none focus:ring-2 focus:ring-[#e2f0d9]/40 focus:border-[#e2f0d9] font-mono mb-4"
+        />
+
+        <button
+          type="button"
+          onclick="validateExercise('ans8_6', 'feedback8_6', 'for g in grades')"
+          class="btn-action px-10 py-4"
+        >
+          Перевірити
+        </button>
+
+        <div id="feedback8_6" class="mt-4 p-4 rounded-xl text-sm font-medium hidden"></div>
+
+        <p class="mt-4 text-sm text-slate-500">
+          Мінімум для проходження — щоб у відповіді було <code>for g in grades</code>.
+          Але постарайся написати повний правильний вираз.
+        </p>
+      </section>
+
+      <!-- 7: matrix -->
+      <section class="bg-white p-10 rounded-[2.5rem] shadow-xl border border-gray-100">
+        <h2 class="text-2xl font-bold mb-4 text-gray-900 flex items-center gap-2">
+          <span class="logo-box">7</span> Матриці (список списків)
+        </h2>
+
+        <p class="text-slate-600 mb-6">
+          Є поле:
+          <code><pre class="text-slate-600">board = [
+    ["X"," ","O"],
+    [" ","X"," "],
+    ["O"," ","X"]
+]</pre></code>
+          Напиши вираз доступу, який поверне <code>"O"</code> з першого рядка і третього стовпчика.
+        </p>
+
+        <input
+          type="text"
+          id="ans8_7"
+          class="w-full p-4 border-2 border-slate-100 rounded-2xl outline-none focus:ring-2 focus:ring-[#e2f0d9]/40 focus:border-[#e2f0d9] font-mono mb-4"
+          placeholder="Напр.: board[1][1]"
+        />
+
+        <button
+          type="button"
+          onclick="validateExercise('ans8_7', 'feedback8_7', '[0][2]')"
+          class="btn-action px-10 py-4"
+        >
+          Перевірити
+        </button>
+
+        <div id="feedback8_7" class="mt-4 p-4 rounded-xl text-sm font-medium hidden"></div>
+      </section>
+
+      <!-- 8: tuples + unpacking -->
+      <section class="bg-white p-10 rounded-[2.5rem] shadow-xl border border-gray-100">
+        <h2 class="text-2xl font-bold mb-4 text-gray-900 flex items-center gap-2">
+          <span class="logo-box">8</span> Кортежі: незмінність + unpacking
+        </h2>
+
+        <p class="text-slate-600 mb-6">
+          Є кортеж: <code>coordinates = (50.4501, 30.5234)</code>.
+          Який рядок правильно “розпакує” значення у змінні <code>lat</code> і <code>lon</code>?
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <button
+            type="button"
+            onclick="showFeedback('feedback8_8', true, '✅ Вірно! Це tuple unpacking: lat, lon = coordinates')"
+            class="bg-white border-2 border-slate-100 p-4 rounded-2xl font-mono hover:border-[#e2f0d9] transition-all text-left"
+          >
+            lat, lon = coordinates
+          </button>
+
+          <button
+            type="button"
+            onclick="showFeedback('feedback8_8', false, '❌ Ні. Так ти створиш вкладений кортеж або отримаєш іншу структуру, не дві змінні.')"
+            class="bg-white border-2 border-slate-100 p-4 rounded-2xl font-mono hover:border-[#e2f0d9] transition-all text-left"
+          >
+            (lat, lon) = (coordinates)
+          </button>
+        </div>
+
+        <div id="feedback8_8" class="mt-4 p-4 rounded-xl text-sm font-medium hidden"></div>
+
+        <div class="mt-8 p-6 rounded-3xl bg-[#e2f0d9]/30 border-l-8 border-[#e2f0d9] text-gray-800">
+          ⭐ Бонус-питання: чому <code>coordinates[0] = 51.0</code> викликає <code>TypeError</code>?
+        </div>
+      </section>
+
+      <!-- VS Code / IDLE block (harder) -->
+      <section class="mt-16 p-12 bg-slate-900 text-white rounded-[3rem] shadow-2xl overflow-hidden relative">
+        <div class="absolute top-0 right-0 p-10 opacity-10 text-9xl">⌨️</div>
+
+        <h2 class="text-3xl font-black mb-8 text-[#e2f0d9] italic underline decoration-[#e2f0d9]/30">
+          Завдання для VS Code / IDLE
+        </h2>
+
+        <p class="text-slate-300 mb-10 text-sm max-w-3xl">
+          Це вже “майже проєкт”: попрактикуєш методи списків, перевірки, цикли, comprehension, роботу з матрицею та кортежами.
+          Роби акуратно: кожне підзавдання — окрема функція або блок коду з тестовими прикладами.
+        </p>
+
+        <div class="space-y-6 relative z-10">
+          <div class="p-8 bg-slate-800 rounded-[2rem] border border-slate-700">
+            <h3 class="text-[#e2f0d9] font-bold text-xl mb-3">🧰 1) Менеджер інвентарю (CRUD)</h3>
+            <ul class="text-slate-300 text-sm space-y-2 list-disc pl-5">
+              <li>Створи <code>items = ["sword", "map", "shield"]</code>.</li>
+              <li>Зроби меню в циклі <code>while True</code>: <b>add / insert / remove / pop / show / clear / exit</b>.</li>
+              <li><b>add</b>: додає предмет у кінець (append).</li>
+              <li><b>insert</b>: питає індекс і предмет (insert).</li>
+              <li><b>remove</b>: видаляє за значенням (remove), якщо немає — виводь повідомлення без падіння програми.</li>
+              <li><b>pop</b>: видаляє за індексом і друкує “випав предмет: ...”.</li>
+              <li><b>show</b>: показує список і кількість через <code>len()</code>.</li>
+            </ul>
+          </div>
+
+          <div class="p-8 bg-slate-800 rounded-[2rem] border border-slate-700">
+            <h3 class="text-[#e2f0d9] font-bold text-xl mb-3">🔎 2) Фільтрація та статистика оцінок</h3>
+            <ul class="text-slate-300 text-sm space-y-2 list-disc pl-5">
+              <li>Згенеруй список з 10 чисел (можна вручну або через <code>random</code>).</li>
+              <li>Побудуй <code>best = [g for g in grades if g &gt;= 10]</code>.</li>
+              <li>Виведи: кількість “кращих”, мінімум/максимум у вихідному списку, і середнє (через <code>sum()/len()</code>).</li>
+              <li>Відсортуй список через <code>.sort()</code> і покажи перший та останній елементи.</li>
+            </ul>
+          </div>
+
+          <div class="p-8 bg-slate-800 rounded-[2rem] border border-slate-700">
+            <h3 class="text-[#e2f0d9] font-bold text-xl mb-3">🎮 3) Матриця 3×3: редагування клітинки</h3>
+            <ul class="text-slate-300 text-sm space-y-2 list-disc pl-5">
+              <li>Створи поле <code>board</code> як 3×3 список списків (порожні клітинки — пробіл).</li>
+              <li>Запитай у користувача рядок і стовпчик (0–2) та символ (<code>"X"</code> або <code>"O"</code>).</li>
+              <li>Онови клітинку <code>board[row][col] = symbol</code> і виведи поле красиво (рядок за рядком).</li>
+              <li>Додай перевірку: якщо клітинка зайнята — не перезаписуй.</li>
+            </ul>
+          </div>
+
+          <div class="p-8 bg-slate-800 rounded-[2rem] border border-slate-700">
+            <h3 class="text-[#e2f0d9] font-bold text-xl mb-3">📍 4) Кортежі: маршрут без змін</h3>
+            <ul class="text-slate-300 text-sm space-y-2 list-disc pl-5">
+              <li>Створи кортеж <code>start = (50.45, 30.52)</code> і <code>finish = (49.84, 24.03)</code>.</li>
+              <li>Розпакуй координати у змінні та надрукуй їх форматовано.</li>
+              <li>Спробуй змінити <code>start[0]</code>, злови помилку через <code>try/except</code> і поясни її в коментарі.</li>
+            </ul>
+          </div>
+          <div class="p-8 bg-slate-800 rounded-[2rem] border border-slate-700">
+  <h3 class="text-[#e2f0d9] font-bold text-xl mb-3">🧪 5) Зрізи як інструмент (start:stop:step)</h3>
+  <ul class="text-slate-300 text-sm space-y-2 list-disc pl-5">
+    <li>Створи список <code>nums = list(range(1, 21))</code> (1..20).</li>
+    <li>Зроби 4 нові списки зрізами:
+      <ul class="list-disc pl-5 mt-2 space-y-1">
+        <li><code>first5</code> — перші 5 елементів.</li>
+        <li><code>last5</code> — останні 5 елементів.</li>
+        <li><code>evens</code> — кожен 2-й елемент зі списку (через step).</li>
+        <li><code>reversed_nums</code> — список у зворотному порядку (через step <code>-1</code>).</li>
+      </ul>
+    </li>
+    <li>Виведи всі 4 результати і коротко поясни в коментарях, як працює кожен зріз.</li>
+  </ul>
+</div>
+
+<div class="p-8 bg-slate-800 rounded-[2rem] border border-slate-700">
+  <h3 class="text-[#e2f0d9] font-bold text-xl mb-3">🧹 6) Очищення даних: remove / pop / clear</h3>
+  <ul class="text-slate-300 text-sm space-y-2 list-disc pl-5">
+    <li>Є список: <code>items = ["map", "torch", "map", "rope", "map", "food"]</code>.</li>
+    <li>Видали <b>лише перший</b> <code>"map"</code> через <code>remove()</code> і виведи список.</li>
+    <li>Потім видали <b>останній</b> елемент через <code>pop()</code>, збережи його в змінну <code>dropped</code> і надрукуй: <code>"Випало: ..."</code>.</li>
+    <li>Якщо у списку залишилися <code>"map"</code>, видали їх усі (цикл + <code>remove</code> або comprehension у новий список).</li>
+    <li>Наприкінці очисти список повністю через <code>clear()</code> і перевір через <code>len()</code>, що він порожній.</li>
+  </ul>
+</div>
+
+<div class="p-8 bg-slate-800 rounded-[2rem] border border-slate-700">
+  <h3 class="text-[#e2f0d9] font-bold text-xl mb-3">📦 7) extend vs append (вкладені структури)</h3>
+  <ul class="text-slate-300 text-sm space-y-2 list-disc pl-5">
+    <li>Створи список <code>bag = ["water", "bread"]</code> і список <code>loot = ["gold", "potion"]</code>.</li>
+    <li>Додай <code>loot</code> у <code>bag</code> двома способами:
+      <ul class="list-disc pl-5 mt-2 space-y-1">
+        <li><code>bag.append(loot)</code></li>
+        <li><code>bag.extend(loot)</code></li>
+      </ul>
+    </li>
+    <li>Після кожного способу виведи список і поясни в коментарі, чим відрізняється результат (особливо зверни увагу на вкладений список).</li>
+    <li>Додатково: дістань елемент <code>"pot
+
+        </div>
+
+      </section>
+
+    </div>
+
+    <footer class="mt-16 pt-8 border-t flex justify-between gap-4">
+      <a href="../lesson7/theory.html" class="text-gray-400 hover:text-black font-medium transition-colors">← Минулий урок</a>
+      <a href="./practice.html" class="btn-action px-12 py-4">Оновити сторінку</a>
+    </footer>
+
+  </main>
+
+  <footer class="text-center py-10 text-gray-400 text-xs">
+    <p>© 2026 IT School Hub | Списки та Кортежі</p>
+  </footer>
+</body>
+</html>

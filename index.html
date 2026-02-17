@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Навчальний портал з інформатики | IT School Hub</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="stylesheet" href="./css/styles.css">
+    <script src="./js/main.js" defer></script>
+</head>
+<body class="font-sans text-gray-800">
+
+    <nav class="nav-sticky">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="./index.html" class="hover:opacity-90 transition-opacity">
+                <h1 class="text-2xl font-bold text-gray-700">
+                    <span class="logo-box">IT</span> School Hub
+                </h1>
+            </a>
+            <div class="hidden md:block text-sm font-medium text-gray-500">
+                Твій шлях від 0 до Junior Developer
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 pb-20">
+        <header class="text-center mb-16">
+            <h2 class="text-5xl font-extrabold mb-6 tracking-tight">Каталог навчальних курсів</h2>
+            <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                Обирай напрямок, який тобі до вподоби, та починай вчитися безкоштовно.
+            </p>
+        </header>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-8">
+            
+            <div class="card-base card-main">
+                <div class="p-8">
+                    <div class="w-14 h-14 bg-brand rounded-2xl mb-6 flex items-center justify-center text-3xl shadow-sm">🐍</div>
+                    <h3 class="text-2xl font-bold mb-3">Основи Python</h3>
+                    <p class="text-gray-500 mb-8 leading-relaxed">Синтаксис, алгоритми та перші кроки у штучному інтелекті.</p>
+                    <a href="./python/index.html" class="btn-action">
+                        Почати вчити ➔
+                    </a>
+                </div>
+            </div>
+
+            <div class="card-base card-developing flex flex-col">
+                <div class="p-8 flex-grow">
+                    <div class="flex justify-between items-start mb-6">
+                        <div class="w-14 h-14 bg-blue-100 rounded-2xl flex items-center justify-center text-3xl">🌐</div>
+                        <span class="badge badge-soon">Скоро</span>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">Веб-розробка</h3>
+                    <p class="text-gray-500 text-sm mb-4 italic">HTML5, CSS3 (Flexbox/Grid) та основи дизайну.</p>
+                </div>
+                <div class="px-8 pb-8">
+                    <button disabled class="w-full btn-action btn-disabled text-sm">В розробці</button>
+                </div>
+            </div>
+
+            <div class="card-base card-developing flex flex-col">
+                <div class="p-8 flex-grow">
+                    <div class="flex justify-between items-start mb-6">
+                        <div class="w-14 h-14 bg-purple-100 rounded-2xl flex items-center justify-center text-3xl">🎮</div>
+                        <span class="badge badge-soon">Скоро</span>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">Розробка на C#</h3>
+                    <p class="text-gray-500 text-sm mb-4 italic">Від консольних програм до створення ігор на Unity.</p>
+                </div>
+                <div class="px-8 pb-8">
+                    <button disabled class="w-full btn-action btn-disabled text-sm">В розробці</button>
+                </div>
+            </div>
+
+            <div class="card-base card-developing flex flex-col">
+                <div class="p-8 flex-grow">
+                    <div class="flex justify-between items-start mb-6">
+                        <div class="w-14 h-14 bg-emerald-100 rounded-2xl flex items-center justify-center text-3xl">🗄️</div>
+                        <span class="badge badge-soon">Скоро</span>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">Бази даних</h3>
+                    <p class="text-gray-500 text-sm mb-4 italic">Проєктування БД, мова SQL та робота з даними.</p>
+                </div>
+                <div class="px-8 pb-8">
+                    <button disabled class="w-full btn-action btn-disabled text-sm">В розробці</button>
+                </div>
+            </div>
+
+        </div>
+
+        <section class="mt-24 bg-brand/20 p-12 rounded-[3rem] border-2 border-dashed border-brand/50 text-center">
+            <h3 class="text-3xl font-black mb-4 italic text-gray-700">Навчайся у власному темпі</h3>
+            <p class="text-gray-600 max-w-xl mx-auto">Всі матеріали курсу відкриті та доступні 24/7. Починай з основ Python і рухайся до професійних технологій!</p>
+        </section>
+    </main>
+
+    <footer class="text-center py-10 text-gray-400 text-xs">
+        <p>© 2026 Твій GitHub Навчальний Центр</p>
+    </footer>
+
+</body>
+</html>

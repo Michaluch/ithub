@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Практика 3: Перетворення типів | IT School Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../../css/styles.css">
+    <script src="../../js/main.js" defer></script>
+</head>
+<body class="bg-slate-50 min-h-screen font-sans text-gray-800">
+
+    <nav class="nav-sticky">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="../../index.html" class="hover:opacity-80 transition-opacity">
+                <h1 class="text-2xl font-bold text-gray-700">
+                    <span class="logo-box">IT</span> School Hub
+                </h1>
+            </a>
+            <div class="flex items-center gap-4">
+                <a href="../index.html" class="hidden md:block text-sm font-medium text-gray-500 hover:text-black transition-colors">
+                    ← Повернутися до курсу
+                </a>
+                <span class="bg-[#e2f0d9] px-5 py-1.5 rounded-full text-sm font-black uppercase tracking-wider text-[#1f2937] shadow-sm">
+                    Практика №3
+                </span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto max-w-4xl px-6 py-12">
+        
+        <header class="mb-12">
+            <h1 class="text-4xl font-extrabold mb-4 text-gray-900 tracking-tight">Завдання: "Керування даними"</h1>
+            <p class="text-lg text-gray-600 leading-relaxed">
+                Твоє завдання — застосувати знання про перетворення змінних для вирішення реальних задач розробника. Використовуй браузерний тренажер або своє середовище розробки.
+            </p>
+        </header>
+        <!--    Користувач хоче купити <b>смартфон</b>. Він ввів ціну (15000.50) та кількість (2) у форму. Програма отримала їх як <b>рядки</b>.-->
+        
+        <div class="space-y-10">
+
+            <div class="bg-white p-8 rounded-[2.5rem] shadow-xl border border-gray-100 overflow-hidden">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-10 h-10 bg-slate-800 text-white rounded-xl flex items-center justify-center font-bold">1</div>
+                    <h3 class="font-bold text-xl">Каса магазину</h3>
+                </div>
+                <p class="text-gray-600 mb-6 text-sm">Користувач хоче купити <b>смартфон</b>. Він ввів ціну (15000.50) та кількість (2) у форму. Програма отримала їх як <b>рядки</b>. Напиши код, який перетворить змінну <code>price = "15000.50"</code> на дробове число.</p>
+                <div class="rounded-2xl overflow-hidden bg-[#282c34] mb-4">
+                    <div class="bg-[#21252b] px-4 py-2 text-[10px] text-gray-500 font-mono uppercase">converter.py</div>
+                    <textarea id="ans1" class="w-full h-24 p-6 bg-transparent text-[#98c379] font-mono text-sm outline-none resize-none" placeholder="price = ..."></textarea>
+                </div>
+                <button onclick="check3_1()" class="btn-action px-10 py-4">Перевірити код</button>
+                <div id="feedback1" class="mt-4 p-4 rounded-xl text-sm font-medium hidden"></div>
+            </div>
+
+            <div class="bg-white p-8 rounded-[2.5rem] shadow-xl border border-gray-100">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-10 h-10 bg-slate-800 text-white rounded-xl flex items-center justify-center font-bold">2</div>
+                    <h3 class="font-bold text-xl">Рядок чи Число?</h3>
+                </div>
+                <p class="text-gray-600 mb-6">Що виведе команда <code>print(str(10) + str(10))</code>?</p>
+                <div class="flex gap-4">
+                    <button onclick="check3_2('20')" class="bg-white border-2 border-slate-100 px-8 py-3 rounded-2xl font-bold hover:border-red-400 transition-all">20</button>
+                    <button onclick="check3_2('1010')" class="bg-white border-2 border-slate-100 px-8 py-3 rounded-2xl font-bold hover:border-brand transition-all">1010</button>
+                </div>
+                <div id="feedback2" class="mt-4 p-4 rounded-xl text-sm font-medium hidden"></div>
+            </div>
+
+            <div class="bg-white p-8 rounded-[2.5rem] shadow-xl border border-gray-100">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-10 h-10 bg-slate-800 text-white rounded-xl flex items-center justify-center font-bold">3</div>
+                    <h3 class="font-bold text-xl">Комбіноване перетворення</h3>
+                </div>
+                <p class="text-gray-600 mb-6">Яку функцію треба використати, щоб перетворити результат <code>5 + 5</code> у текст <code>"10"</code>?</p>
+                <div class="flex flex-col md:flex-row gap-4">
+                    <input type="text" id="ans3" class="flex-grow p-4 border-2 border-slate-100 rounded-2xl focus:border-brand outline-none transition-all font-mono" placeholder="Назва функції...">
+                    <button onclick="check3_3()" class="btn-action px-10 py-4">Відповісти</button>
+                </div>
+                <div id="feedback3" class="mt-4 p-4 rounded-xl text-sm font-medium hidden"></div>
+            </div>
+
+            <section class="mt-20 p-8 bg-slate-900 text-white rounded-[3rem] shadow-2xl overflow-hidden relative">
+                <div class="absolute top-0 right-0 p-10 opacity-10 text-9xl">💻</div>
+                
+                <h2 class="text-3xl font-black mb-6 text-brand italic underline decoration-brand/30">Завдання для VS Code / IDLE</h2>
+                <p class="text-slate-400 mb-8 italic">Скопіюйте ці умови та реалізуйте їх у повноцінному файлі `.py` на своєму комп'ютері.</p>
+    
+                <div class="space-y-6 relative z-10">
+                    <div class="p-8 bg-slate-800 rounded-[2rem] border border-slate-700 hover:border-brand/50 transition-colors">
+                        <h4 class="text-brand font-bold text-xl mb-3">📟 Задача "Калькулятор віку"</h4>
+                        <p class="text-slate-300">Запитайте рік народження через <code>input()</code>. Перетворіть на <code>int</code>, відніміть від 2026. Виведіть результат.</p>
+                    </div>
+
+                    <div class="p-8 bg-slate-800 rounded-[2rem] border border-slate-700 hover:border-brand/50 transition-colors">
+                        <h4 class="text-brand font-bold text-xl mb-3">🍕 Задача "Піцерія"</h4>
+                        <p class="text-slate-300">Запитайте кількість піц та ціну. Обчисліть суму. Перед виведенням перетворіть результат на <code>str</code>.</p>
+                    </div>
+
+                    <div class="p-8 bg-slate-800 rounded-[2rem] border border-slate-700 hover:border-brand/50 transition-colors">
+                        <h4 class="text-brand font-bold text-xl mb-3">⚖️ Задача "Конвертація ваги"</h4>
+                        <p class="text-slate-300">Отримайте вагу в кг (float). Перетворіть у грами (*1000). Виведіть як ціле число (int).</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div class="mt-16 text-center p-10 bg-[#e2f0d9]/20 rounded-[3rem] border-2 border-dashed border-[#e2f0d9]">
+            <p class="text-gray-600 max-w-lg mx-auto leading-relaxed">
+                Коли виконаєш всі завдання, зроби скріншот результатів браузерних тестів та кодів з VS Code і надішли вчителю в Classroom.
+            </p>
+        </div>
+    </main>
+
+    <footer class="text-center py-10 text-gray-400 text-xs">
+        <p>© 2026 IT School Hub | Навчання без кордонів</p>
+    </footer>
+
+</body>
+</html>
