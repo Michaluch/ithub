@@ -1,0 +1,641 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Практичні завдання: інформаційна модель у табличному процесорі</title>
+
+  <!-- Materialize (Material Design) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+
+  <style>
+    :root { --accent: #1e88e5; }
+    body { background: #fafafa; }
+    .hero {
+      background: linear-gradient(135deg, #15c09e 0%, #1e88e5 50%, #42a5f5 100%);
+      color: white;
+      padding: 38px 0 24px;
+    }
+    .hero .chip { background: rgba(255,255,255,.18); color: #fff; border: 1px solid rgba(255,255,255,.25); }
+    .hero h1 { font-size: 2.2rem; margin: 0 0 10px; }
+    .hero p { margin: 0; opacity: .95; }
+    .section-title { display:flex; align-items:center; gap:10px; }
+    .section-title i { color: var(--accent); }
+    .card .card-title { font-weight: 600; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
+    .dataset { background:#f5f7fb; border:1px solid #e6e9f2; border-radius:10px; padding:14px; overflow:auto; }
+    .dataset table { font-size: 0.95rem; }
+    .badge-soft { display:inline-block; padding:4px 10px; border-radius: 999px; background:#e3f2fd; color:#0d47a1; font-weight:600; margin-right:6px; }
+    .steps li { margin: 8px 0; }
+    .hint { font-size:.95rem; color:#546e7a; }
+    .footer { padding: 18px 0 30px; color:#607d8b; }
+    .tab-content { display:none; }
+    .tab-content.active { display:block; }
+    .tabs .tab a { color:#1565c0; font-weight:600; }
+    .tabs .tab a.active { color:#0d47a1; }
+    .tabs .indicator { background-color:#0d47a1; }
+    .rubric-grid { display:grid; grid-template-columns: 1fr; gap: 12px; }
+    @media (min-width: 992px){
+      .rubric-grid { grid-template-columns: 1fr 1fr; }
+    }
+    .rubric-item { border:1px solid #e6e9f2; border-radius:14px; padding:14px; background:#fff; }
+    .level { display:flex; gap:8px; flex-wrap:wrap; margin-top:10px; }
+    .level span { border-radius:999px; padding:4px 10px; font-weight:600; }
+    .l1 { background:#ffebee; color:#b71c1c; }
+    .l2 { background:#fff8e1; color:#e65100; }
+    .l3 { background:#e8f5e9; color:#1b5e20; }
+    .l4 { background:#e3f2fd; color:#0d47a1; }
+  </style>
+</head>
+
+<body>
+  <header class="hero">
+    <div class="container">
+      <div class="row" style="margin-bottom:0">
+        <div class="col s12">
+          <div class="section-title" style="margin-bottom:8px">
+            <i class="material-icons" style="color:#fff">grid_on</i>
+            <h1>Практичні завдання (7 клас): інформаційна модель у табличному процесорі</h1>
+          </div>
+
+          <p>
+            Створи <b>інформаційну модель</b> (таблиці + формули + аналіз + діаграми) у Excel або Google Sheets.
+            Обери тему та виконай кроки як у прикладі.
+          </p>
+
+          <div style="margin-top:14px">
+            <span class="chip">Excel / Google Sheets</span>
+            <span class="chip">Формули: SUM, MAX, AVERAGE</span>
+            <span class="chip">Діаграми</span>
+            <span class="chip">3 аркуші</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container" style="margin-top:18px">
+
+    <!-- Quick guide -->
+    <div class="card">
+      <div class="card-content">
+        <span class="card-title">Як виконувати (коротко)</span>
+        <div class="row" style="margin-bottom:0">
+          <div class="col s12 m6">
+            <ul class="collection">
+              <li class="collection-item"><b>1.</b> Створи файл і 3 аркуші: <span class="mono">Довідники</span>, <span class="mono">Дані</span>, <span class="mono">Аналіз</span></li>
+              <li class="collection-item"><b>2.</b> Внеси дані з блоку “Набір даних”</li>
+              <li class="collection-item"><b>3.</b> Додай формули та підсумки</li>
+              <li class="collection-item"><b>4.</b> Побудуй діаграми</li>
+              <li class="collection-item"><b>5.</b> Зроби висновки (2–4 речення)</li>
+            </ul>
+          </div>
+          <div class="col s12 m6">
+            <div class="dataset">
+              <div class="badge-soft">Порада</div>
+              <p class="hint" style="margin-top:10px; margin-bottom:0">
+                Для цін зручно робити абсолютні посилання (наприклад <span class="mono">$B$2</span>),
+                а для кількостей — відносні. Так можна швидко копіювати формули.
+              </p>
+              <p class="hint" style="margin-top:10px; margin-bottom:0">
+                Назви діаграми та підпиши осі. Це частина “зрозумілої інформаційної моделі”.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tabs -->
+    <div class="card">
+      <div class="card-content">
+        <span class="card-title">Обери тему</span>
+        <ul class="tabs">
+          <li class="tab col s2"><a class="active" href="#cafe">Мінікафе</a></li>
+          <li class="tab col s2"><a href="#shop">Інтернет-магазин</a></li>
+          <li class="tab col s2"><a href="#blogger">Блогер</a></li>
+          <li class="tab col s2"><a href="#startup">Стартап</a></li>
+          <li class="tab col s2"><a href="#esports">Кіберспорт</a></li>
+        </ul>
+
+        <!-- TEMPLATE SECTION (like cafe) -->
+        <!-- CAFE -->
+        <div id="cafe" class="tab-content active" style="margin-top:18px">
+          <h5 class="section-title"><i class="material-icons">restaurant</i> Практичне завдання 1: Мінікафе «Smart Snack»</h5>
+
+          <p>
+            У школі працює учнівське мінікафе. Побудуй модель, яка показує:
+            <b>дохід</b>, <b>витрати</b>, <b>прибуток</b>, <b>найкращий товар</b> і <b>найкращий день</b>.
+          </p>
+
+          <div class="row">
+            <div class="col s12 m6">
+              <div class="dataset">
+                <div class="badge-soft">Набір даних: Товари</div>
+                <table class="striped responsive-table">
+                  <thead>
+                    <tr><th>Товар</th><th>Закупівля (грн)</th><th>Продаж (грн)</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr><td>Сендвіч</td><td>18</td><td>30</td></tr>
+                    <tr><td>Сік</td><td>12</td><td>20</td></tr>
+                    <tr><td>Булочка</td><td>10</td><td>18</td></tr>
+                    <tr><td>Батончик мюслі</td><td>15</td><td>25</td></tr>
+                    <tr><td>Вода</td><td>8</td><td>15</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="col s12 m6">
+              <div class="dataset">
+                <div class="badge-soft">Набір даних: Продажі за тиждень (кількість)</div>
+                <table class="striped responsive-table">
+                  <thead>
+                    <tr><th>День</th><th>Сендвіч</th><th>Сік</th><th>Булочка</th><th>Мюслі</th><th>Вода</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr><td>Понеділок</td><td>15</td><td>20</td><td>18</td><td>12</td><td>25</td></tr>
+                    <tr><td>Вівторок</td><td>18</td><td>22</td><td>20</td><td>14</td><td>30</td></tr>
+                    <tr><td>Середа</td><td>20</td><td>25</td><td>22</td><td>15</td><td>28</td></tr>
+                    <tr><td>Четвер</td><td>17</td><td>19</td><td>16</td><td>13</td><td>26</td></tr>
+                    <tr><td>П’ятниця</td><td>25</td><td>30</td><td>24</td><td>18</td><td>35</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-panel">
+            <div class="badge-soft">Що треба зробити (в Sheets/Excel)</div>
+            <ol class="steps">
+              <li><b>Аркуш “Довідники”</b>: створи таблицю товарів + стовпець <span class="mono">Прибуток_з_1шт</span> = <span class="mono">Ціна_продажу − Закупівля</span>.</li>
+              <li><b>Аркуш “Дані”</b>: внеси таблицю продажів. Додай стовпці:
+                <span class="mono">Дохід_дня</span>, <span class="mono">Витрати_дня</span>, <span class="mono">Прибуток_дня</span>.
+              </li>
+              <li><b>Формули</b>:
+                <ul>
+                  <li><span class="mono">Дохід_дня</span> = сума(кількість × ціну продажу для кожного товару)</li>
+                  <li><span class="mono">Витрати_дня</span> = сума(кількість × закупівельну ціну)</li>
+                  <li><span class="mono">Прибуток_дня</span> = <span class="mono">Дохід_дня − Витрати_дня</span></li>
+                </ul>
+              </li>
+              <li><b>Аркуш “Аналіз”</b>:
+                <ul>
+                  <li>Загальний дохід і прибуток за тиждень (SUM).</li>
+                  <li>Найприбутковіший день (MAX).</li>
+                  <li>Найпопулярніший товар за тиждень (сума кількості по товару + MAX).</li>
+                  <li>Середній прибуток за день (AVERAGE).</li>
+                </ul>
+              </li>
+              <li><b>Діаграми</b>:
+                <ul>
+                  <li>Стовпчаста: прибуток по днях.</li>
+                  <li>Кругова: частка продажів товарів за тиждень.</li>
+                  <li>Лінійна: дохід по днях.</li>
+                </ul>
+              </li>
+              <li><b>Висновок</b>: 2–4 речення (що продавати більше, у які дні готуватися).</li>
+            </ol>
+
+            <p class="hint" style="margin:0">
+              Додатково (за бажанням): зроби колонку <span class="mono">Знижка 10%</span> та порівняй прибуток “до/після”.
+            </p>
+          </div>
+        </div>
+
+        <!-- SHOP (formatted like cafe) -->
+        <div id="shop" class="tab-content" style="margin-top:18px">
+          <h5 class="section-title"><i class="material-icons">shopping_cart</i> Практичне завдання 2: Інтернет-магазин «TechBox»</h5>
+
+          <p>
+            Ти — аналітик інтернет-магазину. Побудуй модель, яка показує:
+            <b>виручку</b>, <b>витрати</b>, <b>комісію</b>, <b>чистий прибуток</b> і <b>топ-товари</b>.
+          </p>
+
+          <div class="row">
+            <div class="col s12 m6">
+              <div class="dataset">
+                <div class="badge-soft">Набір даних: Товари</div>
+                <table class="striped responsive-table">
+                  <thead><tr><th>Товар</th><th>Собівартість (грн)</th><th>Ціна (грн)</th><th>Комісія (%)</th></tr></thead>
+                  <tbody>
+                    <tr><td>Навушники</td><td>450</td><td>699</td><td>8</td></tr>
+                    <tr><td>Миша</td><td>220</td><td>349</td><td>8</td></tr>
+                    <tr><td>Клавіатура</td><td>520</td><td>799</td><td>8</td></tr>
+                    <tr><td>Павербанк</td><td>380</td><td>599</td><td>10</td></tr>
+                    <tr><td>USB-кабель</td><td>45</td><td>99</td><td>12</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="col s12 m6">
+              <div class="dataset">
+                <div class="badge-soft">Набір даних: Замовлення за 5 днів (кількість)</div>
+                <table class="striped responsive-table">
+                  <thead><tr><th>День</th><th>Навушники</th><th>Миша</th><th>Клавіатура</th><th>Павербанк</th><th>Кабель</th></tr></thead>
+                  <tbody>
+                    <tr><td>Понеділок</td><td>6</td><td>9</td><td>4</td><td>5</td><td>18</td></tr>
+                    <tr><td>Вівторок</td><td>7</td><td>8</td><td>5</td><td>6</td><td>20</td></tr>
+                    <tr><td>Середа</td><td>5</td><td>10</td><td>6</td><td>7</td><td>22</td></tr>
+                    <tr><td>Четвер</td><td>8</td><td>11</td><td>5</td><td>6</td><td>25</td></tr>
+                    <tr><td>П’ятниця</td><td>9</td><td>12</td><td>7</td><td>8</td><td>30</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-panel">
+            <div class="badge-soft">Що треба зробити (в Sheets/Excel)</div>
+            <ol class="steps">
+              <li><b>Аркуш “Довідники”</b>: таблиця товарів + стовпці:
+                <span class="mono">Комісія_з_1шт</span> = <span class="mono">Ціна × (Комісія%/100)</span>,
+                <span class="mono">Чистий_прибуток_з_1шт</span> = <span class="mono">Ціна − Собівартість − Комісія_з_1шт</span>.
+              </li>
+              <li><b>Аркуш “Дані”</b>: внеси замовлення. Додай стовпці:
+                <span class="mono">Виручка_дня</span>, <span class="mono">Комісія_дня</span>, <span class="mono">Чистий_прибуток_дня</span>.
+              </li>
+              <li><b>Формули</b>:
+                <ul>
+                  <li><span class="mono">Виручка_дня</span> = сума(кількість × ціну)</li>
+                  <li><span class="mono">Комісія_дня</span> = сума(кількість × комісія_з_1шт)</li>
+                  <li><span class="mono">Чистий_прибуток_дня</span> = сума(кількість × чистий_прибуток_з_1шт)</li>
+                </ul>
+              </li>
+              <li><b>Аркуш “Аналіз”</b>:
+                <ul>
+                  <li>Загальна виручка та чистий прибуток за 5 днів (SUM).</li>
+                  <li>Найкращий день за прибутком (MAX).</li>
+                  <li>Топ-товар за виручкою та топ-товар за прибутком (суми по товарах).</li>
+                  <li>Середній прибуток за день (AVERAGE).</li>
+                </ul>
+              </li>
+              <li><b>Діаграми</b>:
+                <ul>
+                  <li>Стовпчаста: прибуток по днях.</li>
+                  <li>Кругова: частка прибутку по товарах.</li>
+                  <li>Лінійна: виручка по днях.</li>
+                </ul>
+              </li>
+              <li><b>Висновок</b>: 2–4 речення (які товари вигідні, які “продаються багато, але заробляють мало”).</li>
+            </ol>
+
+            <p class="hint" style="margin:0">
+              Додатково: запропонуй 1 зміну (ціна/комісія/акція) і спрогнозуй, як зміниться прибуток.
+            </p>
+          </div>
+        </div>
+
+        <!-- BLOGGER (formatted like cafe) -->
+        <div id="blogger" class="tab-content" style="margin-top:18px">
+          <h5 class="section-title"><i class="material-icons">videocam</i> Практичне завдання 3: Блогер «MilaVlog»</h5>
+
+          <p>
+            Блогер заробляє з переглядів, реклами та донатів. Побудуй модель, яка покаже:
+            <b>дохід по тижнях</b>, <b>найвигідніше джерело</b> та <b>прогноз</b>.
+          </p>
+
+          <div class="row">
+            <div class="col s12 m6">
+              <div class="dataset">
+                <div class="badge-soft">Набір даних: Статистика за 4 тижні</div>
+                <table class="striped responsive-table">
+                  <thead><tr><th>Тиждень</th><th>Перегляди (тис.)</th><th>Нові підписники</th><th>Реклама (шт)</th><th>Донати (грн)</th></tr></thead>
+                  <tbody>
+                    <tr><td>1</td><td>120</td><td>+420</td><td>2</td><td>650</td></tr>
+                    <tr><td>2</td><td>150</td><td>+520</td><td>1</td><td>720</td></tr>
+                    <tr><td>3</td><td>180</td><td>+610</td><td>3</td><td>900</td></tr>
+                    <tr><td>4</td><td>210</td><td>+700</td><td>2</td><td>980</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="col s12 m6">
+              <div class="dataset">
+                <div class="badge-soft">Набір даних: Тарифи</div>
+                <table class="striped responsive-table">
+                  <thead><tr><th>Параметр</th><th>Значення</th></tr></thead>
+                  <tbody>
+                    <tr><td>Доход з 1000 переглядів (грн)</td><td>18</td></tr>
+                    <tr><td>Оплата за 1 рекламу (грн)</td><td>1200</td></tr>
+                  </tbody>
+                </table>
+                <p class="hint" style="margin:10px 0 0">
+                  Перегляди задані у тисячах — у формулі це можна використати напряму: <span class="mono">Перегляди_тис × 18</span>.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-panel">
+            <div class="badge-soft">Що треба зробити (в Sheets/Excel)</div>
+            <ol class="steps">
+              <li><b>Аркуш “Довідники”</b>: внеси тарифи та назви їх зрозуміло.</li>
+              <li><b>Аркуш “Дані”</b>: внеси статистику та додай стовпці:
+                <span class="mono">Доход_з_переглядів</span>, <span class="mono">Доход_з_реклами</span>, <span class="mono">Загальний_дохід</span>.
+              </li>
+              <li><b>Формули</b>:
+                <ul>
+                  <li><span class="mono">Доход_з_переглядів</span> = <span class="mono">Перегляди_тис × Тариф_за_1000</span></li>
+                  <li><span class="mono">Доход_з_реклами</span> = <span class="mono">Реклама × Оплата_за_1</span></li>
+                  <li><span class="mono">Загальний_дохід</span> = <span class="mono">Перегляди + Реклама + Донати</span></li>
+                </ul>
+              </li>
+              <li><b>Аркуш “Аналіз”</b>:
+                <ul>
+                  <li>Загальний дохід за 4 тижні (SUM).</li>
+                  <li>Найкращий тиждень (MAX).</li>
+                  <li>Яке джерело доходу найбільше (сума по кожному джерелу).</li>
+                  <li>Середній дохід за тиждень (AVERAGE).</li>
+                </ul>
+              </li>
+              <li><b>Діаграми</b>:
+                <ul>
+                  <li>Лінійна: загальний дохід по тижнях.</li>
+                  <li>Стовпчаста: доходи по джерелах (сума за 4 тижні).</li>
+                  <li>Кругова: частка джерел доходу.</li>
+                </ul>
+              </li>
+              <li><b>Висновок</b>: 2–4 речення (на чому блогеру вигідніше зосередитись).</li>
+            </ol>
+
+            <p class="hint" style="margin:0">
+              Додатково: спрогнозуй 5-й тиждень, якщо перегляди зростуть на 10%, а реклами буде на 1 більше.
+            </p>
+          </div>
+        </div>
+
+        <!-- STARTUP (formatted like cafe) -->
+        <div id="startup" class="tab-content" style="margin-top:18px">
+          <h5 class="section-title"><i class="material-icons">rocket_launch</i> Практичне завдання 4: Стартап «StudyApp»</h5>
+
+          <p>
+            Стартап має доходи від підписок і витрати на розвиток. Побудуй модель, яка покаже:
+            <b>дохід</b>, <b>витрати</b>, <b>прибуток</b> та <b>коли проєкт стає “в плюс”</b>.
+          </p>
+
+          <div class="row">
+            <div class="col s12 m6">
+              <div class="dataset">
+                <div class="badge-soft">Набір даних: Підписки</div>
+                <table class="striped responsive-table">
+                  <thead><tr><th>Тип</th><th>Ціна/міс (грн)</th></tr></thead>
+                  <tbody>
+                    <tr><td>Basic</td><td>79</td></tr>
+                    <tr><td>Pro</td><td>149</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="col s12 m6">
+              <div class="dataset">
+                <div class="badge-soft">Набір даних: План на 4 місяці</div>
+                <table class="striped responsive-table">
+                  <thead><tr><th>Місяць</th><th>Basic (корист.)</th><th>Pro (корист.)</th><th>Реклама</th><th>Сервер</th><th>Дизайн</th></tr></thead>
+                  <tbody>
+                    <tr><td>1</td><td>120</td><td>35</td><td>2500</td><td>800</td><td>1500</td></tr>
+                    <tr><td>2</td><td>160</td><td>45</td><td>3000</td><td>900</td><td>800</td></tr>
+                    <tr><td>3</td><td>210</td><td>55</td><td>3500</td><td>950</td><td>600</td></tr>
+                    <tr><td>4</td><td>260</td><td>70</td><td>4000</td><td>1050</td><td>400</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-panel">
+            <div class="badge-soft">Що треба зробити (в Sheets/Excel)</div>
+            <ol class="steps">
+              <li><b>Аркуш “Довідники”</b>: внеси ціни підписок (Basic, Pro).</li>
+              <li><b>Аркуш “Дані”</b>: внеси план на 4 місяці та додай стовпці:
+                <span class="mono">Дохід</span>, <span class="mono">Витрати</span>, <span class="mono">Прибуток</span>, <span class="mono">Накопичений_результат</span>.
+              </li>
+              <li><b>Формули</b>:
+                <ul>
+                  <li><span class="mono">Дохід</span> = <span class="mono">Basic×79 + Pro×149</span></li>
+                  <li><span class="mono">Витрати</span> = <span class="mono">Реклама + Сервер + Дизайн</span></li>
+                  <li><span class="mono">Прибуток</span> = <span class="mono">Дохід − Витрати</span></li>
+                  <li><span class="mono">Накопичений_результат</span> = попередній накопичений + поточний прибуток</li>
+                </ul>
+              </li>
+              <li><b>Аркуш “Аналіз”</b>:
+                <ul>
+                  <li>Загальний прибуток за 4 місяці (SUM).</li>
+                  <li>Найкращий місяць (MAX).</li>
+                  <li>У який місяць накопичений результат стане &gt; 0.</li>
+                  <li>Середній прибуток (AVERAGE).</li>
+                </ul>
+              </li>
+              <li><b>Діаграми</b>:
+                <ul>
+                  <li>Стовпчаста: прибуток по місяцях.</li>
+                  <li>Лінійна: накопичений результат.</li>
+                  <li>Стовпці: дохід vs витрати.</li>
+                </ul>
+              </li>
+              <li><b>Висновок</b>: 2–4 речення (що треба покращити, щоб швидше вийти “в плюс”).</li>
+            </ol>
+
+            <p class="hint" style="margin:0">
+              Додатково: зроби сценарій “Pro +20%” у 4-му місяці та порівняй прибуток.
+            </p>
+          </div>
+        </div>
+
+        <!-- ESPORTS (formatted like cafe) -->
+        <div id="esports" class="tab-content" style="margin-top:18px">
+          <h5 class="section-title"><i class="material-icons">sports_esports</i> Практичне завдання 5: Кіберспорт «NovaTeam»</h5>
+
+          <p>
+            Команда грає матчі. Побудуй модель, яка покаже:
+            <b>очки</b>, <b>призові</b>, <b>витрати</b>, <b>прибуток</b> і <b>найкращий матч</b>.
+          </p>
+
+          <div class="row">
+            <div class="col s12 m6">
+              <div class="dataset">
+                <div class="badge-soft">Набір даних: Матчі</div>
+                <table class="striped responsive-table">
+                  <thead><tr><th>Матч</th><th>Суперник</th><th>Результат</th><th>Кілли</th><th>Дізи</th><th>Асисти</th></tr></thead>
+                  <tbody>
+                    <tr><td>1</td><td>Orion</td><td>Win</td><td>22</td><td>14</td><td>30</td></tr>
+                    <tr><td>2</td><td>Vortex</td><td>Lose</td><td>18</td><td>20</td><td>24</td></tr>
+                    <tr><td>3</td><td>Falcon</td><td>Win</td><td>25</td><td>16</td><td>28</td></tr>
+                    <tr><td>4</td><td>Pulse</td><td>Win</td><td>21</td><td>15</td><td>26</td></tr>
+                    <tr><td>5</td><td>Zenith</td><td>Lose</td><td>17</td><td>22</td><td>20</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="col s12 m6">
+              <div class="dataset">
+                <div class="badge-soft">Набір даних: Правила та витрати</div>
+                <table class="striped responsive-table">
+                  <thead><tr><th>Параметр</th><th>Значення</th></tr></thead>
+                  <tbody>
+                    <tr><td>Очки за Win</td><td>3</td></tr>
+                    <tr><td>Очки за Lose</td><td>0</td></tr>
+                    <tr><td>Призові за 1 Win (грн)</td><td>700</td></tr>
+                    <tr><td>Витрати на 1 матч (грн)</td><td>250</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-panel">
+            <div class="badge-soft">Що треба зробити (в Sheets/Excel)</div>
+            <ol class="steps">
+              <li><b>Аркуш “Довідники”</b>: внеси правила (очки, призові, витрати).</li>
+              <li><b>Аркуш “Дані”</b>: внеси матчі та додай стовпці:
+                <span class="mono">Очки</span>, <span class="mono">Призові</span>, <span class="mono">Витрати</span>, <span class="mono">Прибуток</span>, <span class="mono">KDA</span>.
+              </li>
+              <li><b>Формули</b>:
+                <ul>
+                  <li><span class="mono">Очки</span>: якщо результат Win → 3, інакше 0.</li>
+                  <li><span class="mono">Призові</span>: якщо Win → 700, інакше 0.</li>
+                  <li><span class="mono">Витрати</span> = 250 для кожного матчу.</li>
+                  <li><span class="mono">Прибуток</span> = <span class="mono">Призові − Витрати</span>.</li>
+                  <li><span class="mono">KDA</span> = <span class="mono">(Кілли + Асисти) / Дізи</span>.</li>
+                </ul>
+              </li>
+              <li><b>Аркуш “Аналіз”</b>:
+                <ul>
+                  <li>Загальні очки (SUM) та Win-rate (перемоги/всі матчі).</li>
+                  <li>Середній KDA (AVERAGE).</li>
+                  <li>Найкращий матч за KDA (MAX).</li>
+                  <li>Загальний прибуток за сезон (SUM).</li>
+                </ul>
+              </li>
+              <li><b>Діаграми</b>:
+                <ul>
+                  <li>Стовпчаста: очки по матчах.</li>
+                  <li>Лінійна: KDA по матчах.</li>
+                  <li>Стовпці: призові vs витрати.</li>
+                </ul>
+              </li>
+              <li><b>Висновок</b>: 2–4 речення (що покращити команді: стабільність/виживання/командна гра).</li>
+            </ol>
+
+            <p class="hint" style="margin:0">
+              Додатково: запропонуй правило бонусу (наприклад +100 грн за KDA &gt; 3) і перерахуйте прибуток.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Assessment (NUSH) -->
+    <div class="card">
+      <div class="card-content">
+        <span class="card-title">Критерії оцінювання (НУШ)</span>
+        <p class="hint" style="margin-top:0">
+          Оцінювання компетентнісне: важливо не лише “порахувати”, а й <b>пояснити висновки</b> та показати охайну, логічну модель.
+          Рівні можна використати як 12-бальну шкалу (1–3 / 4–6 / 7–9 / 10–12).
+        </p>
+
+        <div class="rubric-grid">
+          <div class="rubric-item">
+            <div class="section-title"><i class="material-icons">account_tree</i><b>1) Структура моделі</b></div>
+            <div class="hint">Аркуші, назви, логіка “довідники → дані → аналіз”.</div>
+            <div class="level">
+              <span class="l1">Початковий</span><span class="l2">Середній</span><span class="l3">Достатній</span><span class="l4">Високий</span>
+            </div>
+            <ul class="hint" style="margin:10px 0 0">
+              <li><b>Початковий:</b> частково створені таблиці, плутанина з аркушами.</li>
+              <li><b>Середній:</b> 3 аркуші є, але структура або назви не дуже зрозумілі.</li>
+              <li><b>Достатній:</b> чітко розділено довідники/дані/аналіз, охайні заголовки.</li>
+              <li><b>Високий:</b> додано форматування, фільтри, логічні блоки, зручність читання.</li>
+            </ul>
+          </div>
+
+          <div class="rubric-item">
+            <div class="section-title"><i class="material-icons">functions</i><b>2) Формули й обчислення</b></div>
+            <div class="hint">Правильність формул, копіювання, посилання на довідники.</div>
+            <div class="level">
+              <span class="l1">Початковий</span><span class="l2">Середній</span><span class="l3">Достатній</span><span class="l4">Високий</span>
+            </div>
+            <ul class="hint" style="margin:10px 0 0">
+              <li><b>Початковий:</b> є помилки у формулах або багато ручних підрахунків.</li>
+              <li><b>Середній:</b> базові формули працюють, але не всюди/є неточності.</li>
+              <li><b>Достатній:</b> коректні SUM/MAX/AVERAGE, логічні підсумки.</li>
+              <li><b>Високий:</b> акуратні посилання (у т.ч. абсолютні), мінімум дублювання, модель легко масштабувати.</li>
+            </ul>
+          </div>
+
+          <div class="rubric-item">
+            <div class="section-title"><i class="material-icons">query_stats</i><b>3) Аналіз даних</b></div>
+            <div class="hint">Відповіді на питання: найкращий день/товар, підсумки, середні значення.</div>
+            <div class="level">
+              <span class="l1">Початковий</span><span class="l2">Середній</span><span class="l3">Достатній</span><span class="l4">Високий</span>
+            </div>
+            <ul class="hint" style="margin:10px 0 0">
+              <li><b>Початковий:</b> аналіз відсутній або без підрахунків.</li>
+              <li><b>Середній:</b> є підсумки, але не всі ключові висновки.</li>
+              <li><b>Достатній:</b> знайдено топ-показники, підсумки за період, середнє.</li>
+              <li><b>Високий:</b> є порівняння/пояснення “чому так”, додатковий сценарій “що як”.</li>
+            </ul>
+          </div>
+
+          <div class="rubric-item">
+            <div class="section-title"><i class="material-icons">insert_chart</i><b>4) Візуалізація й висновок</b></div>
+            <div class="hint">Діаграми + короткий текстовий висновок (2–4 речення).</div>
+            <div class="level">
+              <span class="l1">Початковий</span><span class="l2">Середній</span><span class="l3">Достатній</span><span class="l4">Високий</span>
+            </div>
+            <ul class="hint" style="margin:10px 0 0">
+              <li><b>Початковий:</b> діаграм немає або вони без підписів.</li>
+              <li><b>Середній:</b> 1–2 діаграми, але не дуже читабельні.</li>
+              <li><b>Достатній:</b> 3 діаграми з назвами й осями + висновок.</li>
+              <li><b>Високий:</b> діаграми доречні, охайні, висновок аргументований (спирається на числа).</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card-panel" style="margin-top:14px">
+          <div class="badge-soft">Продукт діяльності учня</div>
+          <p class="hint" style="margin:8px 0 0">
+            Файл таблиці з 3 аркушами + 3 діаграми + короткий висновок. За бажанням — “що як” сценарій (знижка/зростання/комісія тощо).
+          </p>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="footer center">
+      <span class="mono">©</span> Практикум з табличного моделювання • Material Design • 7 клас
+    </div>
+  </main>
+
+  <!-- Materialize JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      M.Tabs.init(document.querySelectorAll('.tabs'), { swipeable: false });
+
+      // Toggle tab-content blocks (extra compatibility)
+      const anchors = document.querySelectorAll('.tabs a');
+      const panels = document.querySelectorAll('.tab-content');
+
+      function activate(hash) {
+        panels.forEach(p => p.classList.remove('active'));
+        const el = document.querySelector(hash);
+        if (el) el.classList.add('active');
+      }
+
+      anchors.forEach(a => {
+        a.addEventListener('click', () => activate(a.getAttribute('href')));
+      });
+
+      activate('#cafe');
+    });
+  </script>
+</body>
+</html>
