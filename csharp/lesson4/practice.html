@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Урок 4: Практика (C#) | IT School Hub</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="../../css/styles.css">
+  <script src="../../js/main.js" defer></script>
+</head>
+
+<body class="bg-slate-50 text-gray-900 font-sans leading-relaxed">
+
+  <nav class="nav-sticky">
+    <div class="container mx-auto flex justify-between items-center">
+      <a href="../../index.html" class="hover:opacity-80 transition-opacity">
+        <h1 class="text-2xl font-bold text-gray-700">
+          <span class="logo-box">IT</span> School Hub
+        </h1>
+      </a>
+
+      <div class="flex items-center gap-4">
+        <a class="hidden md:block text-sm font-medium text-gray-500 hover:text-black transition-colors" href="../index.html">
+          ← Програма курсу
+        </a>
+        <span class="bg-[#e2f0d9] px-5 py-1.5 rounded-full text-sm font-black uppercase tracking-wider text-[#1f2937] shadow-sm">
+          Практика 4
+        </span>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container mx-auto max-w-4xl px-6 py-12 bg-white mt-8 shadow-xl rounded-[2.5rem] border border-gray-100">
+
+    <header class="mb-10">
+      <h1 class="text-4xl md:text-5xl font-extrabold mb-4 tracking-tight">
+        Практичне заняття: Умовні конструкції (C#)
+      </h1>
+      <p class="text-gray-600 text-lg leading-relaxed">
+        Закріплюємо роботу з <code>if</code>, <code>else if</code>, <code>else</code> та <code>switch</code>.
+      </p>
+      <div class="h-2 w-24 bg-brand rounded-full mt-4"></div>
+    </header>
+
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-4 flex items-center gap-2">
+        <span class="logo-box">1</span> Базовий рівень
+      </h2>
+
+      <div class="space-y-8">
+
+        <div class="p-6 rounded-3xl border border-slate-100 bg-slate-50">
+          <h3 class="font-bold text-lg mb-3">1.1 Перевірка віку</h3>
+          <p class="mb-3 text-gray-700">
+            Запитай у користувача його вік. Якщо вік ≥ 18 — виведи
+            <b>"Доступ дозволено"</b>, інакше — <b>"Доступ заборонено"</b>.
+          </p>
+          <div class="bg-[#e2f0d9]/30 border-l-8 border-[#b7d7a8] p-4 rounded-lg text-sm">
+            Підказка: використовуй <code>int.TryParse</code>, щоб не падати на неправильному вводі.
+          </div>
+        </div>
+
+        <div class="p-6 rounded-3xl border border-slate-100 bg-slate-50">
+          <h3 class="font-bold text-lg mb-3">1.2 Парне чи непарне?</h3>
+          <p class="mb-3 text-gray-700">
+            Користувач вводить число. Визнач, чи воно парне.
+          </p>
+          <div class="bg-amber-50 border-l-8 border-amber-400 p-4 rounded-lg text-sm">
+            Використай оператор остачі <code>%</code>: якщо <code>n % 2 == 0</code> — парне.
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-4 flex items-center gap-2">
+        <span class="logo-box">2</span> Середній рівень
+      </h2>
+
+      <div class="space-y-8">
+
+        <div class="p-6 rounded-3xl border border-slate-100">
+          <h3 class="font-bold text-lg mb-3">2.1 Оцінювання</h3>
+          <p class="mb-3 text-gray-700">
+            Користувач вводить кількість балів (0–100). Виведи:
+          </p>
+          <ul class="list-disc pl-6 text-gray-700 mb-3">
+            <li>90–100 → "Відмінно"</li>
+            <li>70–89 → "Добре"</li>
+            <li>50–69 → "Задовільно"</li>
+            <li>менше 50 → "Незадовільно"</li>
+          </ul>
+          <div class="bg-red-50 border-l-8 border-red-400 p-4 rounded-lg text-sm">
+            Важливо: умови пиши від більш специфічних до більш загальних.
+          </div>
+        </div>
+
+        <div class="p-6 rounded-3xl border border-slate-100">
+          <h3 class="font-bold text-lg mb-3">2.2 Світлофор (switch)</h3>
+          <p class="mb-3 text-gray-700">
+            Користувач вводить колір світлофора (<code>red</code>, <code>yellow</code>, <code>green</code>).
+            Виведи відповідну дію:
+          </p>
+          <ul class="list-disc pl-6 text-gray-700">
+            <li>red → "Стоп"</li>
+            <li>yellow → "Приготуйся"</li>
+            <li>green → "Рухайся"</li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-4 flex items-center gap-2">
+        <span class="logo-box">3</span> Просунутий рівень
+      </h2>
+
+      <div class="space-y-8">
+        <div class="p-6 rounded-3xl border border-slate-100 bg-slate-50">
+          <h3 class="font-bold text-lg mb-3">3.1 Калькулятор з вибором дії</h3>
+          <p class="mb-3 text-gray-700">
+            Запитай два числа та операцію (<code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>).
+            Через <code>switch</code> виконай обчислення. Якщо ділення на нуль — виведи помилку.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <footer class="mt-16 pt-8 border-t border-gray-100 flex flex-col md:flex-row justify-between items-center gap-6">
+      <a href="../lesson4/theory.html" class="text-gray-400 hover:text-black transition-colors font-medium">
+        ← Повернутися до теорії
+      </a>
+      <a href="../lesson8/theory.html" class="btn-action px-12 py-4 shadow-brand/20 shadow-lg bg-[#0f172a] text-white rounded-xl font-bold hover:bg-black transition-all">
+        До наступного уроку ➔
+      </a>
+    </footer>
+
+  </main>
+
+  <footer class="text-center py-10 text-gray-400 text-xs">
+    <p>© 2026 IT School Hub | Навчайся без кордонів</p>
+  </footer>
+
+</body>
+</html>
+

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Урок 8: Масиви та списки (C#) | IT School Hub</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+
+    <link rel="stylesheet" href="../../css/styles.css">
+    <script src="../../js/main.js" defer></script>
+</head>
+<body class="bg-[#f8fafc] text-slate-900 font-sans leading-relaxed">
+
+    <nav class="nav-sticky">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="../../index.html" class="hover:opacity-80 transition-opacity">
+                <h1 class="text-2xl font-bold text-gray-700">
+                    <span class="logo-box text-gray-900">IT</span> School Hub
+                </h1>
+            </a>
+            <div class="flex items-center gap-4">
+                <a href="../index.html" class="hidden md:block text-sm font-medium text-gray-500 hover:text-black transition-colors">
+                    ← Повернутися до курсу
+                </a>
+                <span class="bg-[#e2f0d9] px-5 py-1.5 rounded-full text-sm font-black uppercase tracking-wider text-[#1f2937] shadow-sm">Урок 8</span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto max-w-5xl px-8 py-16 bg-white mt-10 shadow-2xl rounded-[3rem] border border-slate-100">
+
+        <header class="mb-20 border-b border-slate-100 pb-12">
+            <h1 class="text-5xl font-black mb-8 tracking-tight leading-[1.1]">Масиви та списки</h1>
+            <p class="text-xl text-slate-600 max-w-3xl leading-relaxed">
+                Уявіть, що ви робите інтернет-магазин. Вам потрібно зберігати не один товар, а сотні.
+                Створювати <code>item1</code>, <code>item2</code>... — незручно. У C# для цього є <b>колекції</b>:
+                <b>масиви</b> (<code>T[]</code>) і <b>списки</b> (<code>List&lt;T&gt;</code>).
+            </p>
+        </header>
+
+        <section class="mb-24">
+            <div class="flex flex-col md:flex-row gap-12 items-start">
+                <div class="md:w-1/2">
+                    <h2 class="text-2xl font-bold mb-4 text-gray-900 flex items-center gap-2">
+                        <span class="logo-box">1</span> Масиви (T[])
+                    </h2>
+                    <p class="mb-4 text-lg">
+                        <b>Масив</b> — це послідовність елементів <b>фіксованого розміру</b>. Розмір задається під час створення і надалі не змінюється.
+                    </p>
+                    <div class="p-6 rounded-3xl bg-[#e2f0d9]/30 border-l-8 border-[#e2f0d9] italic text-gray-700">
+                        <p class="text-sm font-medium leading-relaxed">
+                            <b>Важливо:</b> масив у C# завжди <b>одного типу</b>. Не можна змішувати <code>int</code> і <code>string</code> в одному масиві.
+                        </p>
+                    </div>
+                </div>
+                <div class="md:w-1/2 w-full">
+                    <div class="rounded-2xl overflow-hidden shadow-2xl bg-[#282c34] mb-6">
+                        <div class="bg-[#21252b] px-4 py-3 flex items-center gap-2">
+                            <div class="w-3 h-3 rounded-full bg-[#ff5f56]"></div>
+                            <div class="w-3 h-3 rounded-full bg-[#ffbd2e]"></div>
+                            <div class="w-3 h-3 rounded-full bg-[#27c93f]"></div>
+                            <span class="text-gray-400 text-[10px] ml-4 font-mono uppercase tracking-widest">Program.cs</span>
+                        </div>
+                        <pre class="m-0"><code class="language-csharp">int[] scores = new int[] { 10, 20, 30, 40 };
+Console.WriteLine(scores[0]); // 10
+Console.WriteLine(scores.Length);</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-24">
+            <h2 class="text-2xl font-bold mb-4 text-gray-900 flex items-center gap-2">
+                <span class="logo-box">2</span> Індекси та доступ
+            </h2>
+            <p class="text-slate-600 mb-6 text-lg">
+                Індексування в C# починається з <b>0</b>. Є також “індекс з кінця” через <code>^</code>.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="p-6 bg-slate-50 rounded-2xl border border-slate-100">
+                    <p class="text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">З початку</p>
+                    <pre class="bg-white p-4 rounded-2xl border border-slate-100 font-mono text-sm overflow-auto"><code>scores[0]   // перший
+scores[1]   // другий</code></pre>
+                </div>
+                <div class="p-6 bg-slate-50 rounded-2xl border border-slate-100">
+                    <p class="text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">З кінця</p>
+                    <pre class="bg-white p-4 rounded-2xl border border-slate-100 font-mono text-sm overflow-auto"><code>scores[^1]  // останній
+scores[^2]  // передостанній</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-24">
+            <div class="flex flex-col md:flex-row gap-12 items-start">
+                <div class="md:w-1/2">
+                    <h2 class="text-2xl font-bold mb-4 text-gray-900 flex items-center gap-2">
+                        <span class="logo-box">3</span> Списки (List&lt;T&gt;)
+                    </h2>
+                    <p class="mb-4 text-lg">
+                        <b>List&lt;T&gt;</b> — це динамічна колекція. Ви можете додавати і видаляти елементи, а список сам керує своїм розміром.
+                    </p>
+                    <div class="p-6 rounded-3xl bg-slate-900 text-white shadow-2xl">
+                        <p class="font-bold mb-2 text-brand uppercase text-xs tracking-widest">Коли List зручніший</p>
+                        <ul class="space-y-2 text-sm text-slate-300">
+                            <li>- коли не знаєте наперед кількість елементів</li>
+                            <li>- коли треба часто додавати/видаляти</li>
+                            <li>- коли потрібні методи: <code>Add</code>, <code>Remove</code>, <code>Contains</code>...</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="md:w-1/2 w-full">
+                    <div class="rounded-2xl overflow-hidden shadow-2xl bg-[#282c34] mb-6">
+                        <div class="bg-[#21252b] px-4 py-3 flex items-center gap-2">
+                            <div class="w-3 h-3 rounded-full bg-[#ff5f56]"></div>
+                            <div class="w-3 h-3 rounded-full bg-[#ffbd2e]"></div>
+                            <div class="w-3 h-3 rounded-full bg-[#27c93f]"></div>
+                            <span class="text-gray-400 text-[10px] ml-4 font-mono uppercase tracking-widest">Program.cs</span>
+                        </div>
+                        <pre class="m-0"><code class="language-csharp">var inventory = new List&lt;string&gt;();
+inventory.Add("gold");
+inventory.Add("potion");
+
+Console.WriteLine(inventory.Count); // 2
+Console.WriteLine(inventory[0]);    // gold</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-24">
+            <h2 class="text-2xl font-bold mb-4 text-gray-900 flex items-center gap-2">
+                <span class="logo-box">4</span> Перебір: foreach
+            </h2>
+            <p class="text-slate-600 mb-6 text-lg">
+                Найчитабельніший спосіб пройтись по колекції — <code>foreach</code>.
+            </p>
+            <div class="rounded-2xl overflow-hidden shadow-2xl bg-[#282c34] mb-6">
+                <div class="bg-[#21252b] px-4 py-3 flex items-center gap-2">
+                    <div class="w-3 h-3 rounded-full bg-[#ff5f56]"></div>
+                    <div class="w-3 h-3 rounded-full bg-[#ffbd2e]"></div>
+                    <div class="w-3 h-3 rounded-full bg-[#27c93f]"></div>
+                    <span class="text-gray-400 text-[10px] ml-4 font-mono uppercase tracking-widest">Program.cs</span>
+                </div>
+                <pre class="m-0"><code class="language-csharp">var numbers = new List&lt;int&gt; { 2, 4, 6 };
+foreach (int n in numbers)
+{
+    Console.WriteLine(n);
+}</code></pre>
+            </div>
+        </section>
+
+        <footer class="mt-16 pt-8 border-t border-gray-100 flex flex-col md:flex-row justify-between items-center gap-6">
+            <a href="../lesson4/theory.html" class="text-gray-400 hover:text-black transition-colors font-medium">← Повернутися до Уроку 4</a>
+            <a href="./practice.html" class="btn-action px-12 py-4 shadow-brand/20 shadow-lg bg-[#0f172a] text-white rounded-xl font-bold hover:bg-black transition-all">
+                До практики ➔
+            </a>
+        </footer>
+
+    </main>
+
+    <footer class="text-center py-10 text-gray-400 text-xs">
+        <p>© 2026 IT School Hub | Навчання без кордонів</p>
+    </footer>
+
+    <script>hljs.highlightAll();</script>
+</body>
+</html>
+

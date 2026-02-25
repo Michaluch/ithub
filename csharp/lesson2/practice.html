@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Практика: Змінні та типи (C#) | IT School Hub</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <link rel="stylesheet" href="../../css/styles.css" />
+  <script src="../../js/main.js" defer></script>
+</head>
+
+<body class="font-sans text-gray-800">
+  <nav class="nav-sticky">
+    <div class="container mx-auto flex justify-between items-center">
+      <a href="../../index.html" class="hover:opacity-80 transition-opacity">
+        <h1 class="text-2xl font-bold text-gray-700">
+          <span class="logo-box">IT</span> School Hub
+        </h1>
+      </a>
+      <div class="flex items-center gap-4">
+        <a
+          href="../index.html"
+          class="hidden md:block text-sm font-medium text-gray-500 hover:text-black transition-colors"
+        >
+          ← Повернутися до курсу
+        </a>
+        <span
+          class="bg-[#e2f0d9] px-5 py-1.5 rounded-full text-sm font-black uppercase tracking-wider text-[#1f2937] shadow-sm"
+        >
+          Практика №2
+        </span>
+      </div>
+    </div>
+  </nav>
+
+  <main
+    class="container mx-auto max-w-4xl px-6 py-12 bg-white mt-8 shadow-xl rounded-[2.5rem] border border-gray-100"
+  >
+    <header class="mb-12 text-center md:text-left">
+      <h1 class="text-4xl md:text-5xl font-extrabold mb-4 text-gray-900 tracking-tight">
+        Завдання: "Керування даними" (C#)
+      </h1>
+      <div class="h-2 w-24 bg-[#e2f0d9] rounded-full mx-auto md:mx-0"></div>
+      <p class="text-lg mt-6 text-gray-600 leading-relaxed">
+        Тут немає повноцінного компілятора в браузері, тому перевірка — за шаблоном. Пиши синтаксис акуратно.
+      </p>
+    </header>
+
+    <div class="space-y-10">
+      <!-- Task 1 -->
+      <section class="bg-white p-8 rounded-[2.5rem] shadow-xl border border-gray-100 overflow-hidden">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-10 h-10 bg-slate-800 text-white rounded-xl flex items-center justify-center font-bold">
+            1
+          </div>
+          <h2 class="font-bold text-xl text-gray-900">Профіль гравця</h2>
+        </div>
+
+        <p class="text-gray-600 mb-6 leading-relaxed">
+          Напиши оголошення змінних: <code>nickname</code> (рядок "Cyber_Kid"), <code>level</code> (число 10),
+          <code>isOnline</code> (логічне <code>true</code>) та виведи їх через <code>Console.WriteLine</code>.
+        </p>
+
+        <div class="rounded-2xl overflow-hidden bg-[#282c34] mb-4">
+          <div class="bg-[#21252b] px-4 py-2 text-[10px] text-gray-500 font-mono tracking-widest uppercase">
+            Program.cs
+          </div>
+          <textarea
+            id="cs2_task1"
+            class="w-full h-44 p-6 bg-transparent text-[#98c379] font-mono text-sm outline-none focus:ring-2 focus:ring-[#e2f0d9]/50 transition-all resize-none"
+            placeholder='string nickname = "Cyber_Kid";'
+          ></textarea>
+        </div>
+
+        <button
+          type="button"
+          onclick="checkCs2Task1()"
+          class="btn-action w-full md:w-auto px-10 py-4 shadow-lg shadow-gray-200"
+        >
+          Перевірити код ➔
+        </button>
+        <div id="cs2_feedback1" class="mt-4 p-4 rounded-xl text-sm font-medium hidden"></div>
+      </section>
+
+      <!-- Task 2 -->
+      <section class="bg-white p-8 rounded-[2.5rem] shadow-xl border border-gray-100">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-10 h-10 bg-slate-800 text-white rounded-xl flex items-center justify-center font-bold">
+            2
+          </div>
+          <h2 class="font-bold text-xl text-gray-900">Обчислення площі</h2>
+        </div>
+
+        <p class="text-gray-600 mb-6 leading-relaxed">
+          Створи дві змінні <code>a</code> та <code>b</code> зі значеннями 5 та 8. Створи <code>area</code> як їх добуток.
+          Виведи результат.
+        </p>
+
+        <div class="rounded-2xl overflow-hidden bg-[#282c34] mb-4">
+          <div class="bg-[#21252b] px-4 py-2 text-[10px] text-gray-500 font-mono tracking-widest uppercase">
+            area.cs
+          </div>
+          <textarea
+            id="cs2_task2"
+            class="w-full h-36 p-6 bg-transparent text-[#61afef] font-mono text-sm outline-none focus:ring-2 focus:ring-[#e2f0d9]/50 transition-all resize-none"
+            placeholder="int a = 5; int b = 8; ..."
+          ></textarea>
+        </div>
+
+        <button
+          type="button"
+          onclick="checkCs2Task2()"
+          class="btn-action w-full md:w-auto px-10 py-4 shadow-lg shadow-gray-200"
+        >
+          Перевірити результат
+        </button>
+        <div id="cs2_feedback2" class="mt-4 p-4 rounded-xl text-sm font-medium hidden"></div>
+      </section>
+
+      <!-- Task 3 -->
+      <section class="bg-white p-8 rounded-[2.5rem] shadow-xl border border-gray-100">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-10 h-10 bg-slate-800 text-white rounded-xl flex items-center justify-center font-bold">
+            3
+          </div>
+          <h2 class="font-bold text-xl text-gray-900">Магія імен (Case Sensitivity)</h2>
+        </div>
+
+        <p class="text-gray-600 mb-4">Виправ помилку в коді, враховуючи регістр літер:</p>
+
+        <div class="bg-slate-50 p-6 rounded-2xl border border-dashed border-gray-200 font-mono text-sm mb-6 leading-loose">
+          int myScore = 100; <br />
+          Console.WriteLine(<span class="bg-red-100 text-red-600 px-1 rounded">MyScore</span>);
+        </div>
+
+        <div class="flex flex-col md:flex-row gap-4">
+          <input
+            type="text"
+            id="cs2_task3"
+            class="flex-grow p-4 border-2 border-gray-100 rounded-xl outline-none transition-all focus:border-[#e2f0d9] focus:ring-2 focus:ring-[#e2f0d9]/40"
+            placeholder="Напиши правильну назву змінної..."
+          />
+          <button type="button" onclick="checkCs2Task3()" class="btn-action px-10 py-4">
+            Відповісти
+          </button>
+        </div>
+
+        <div id="cs2_feedback3" class="mt-4 p-4 rounded-xl text-sm font-medium hidden"></div>
+      </section>
+
+      <!-- VS Code tasks -->
+      <section class="mt-10 p-8 bg-slate-900 text-white rounded-[2.5rem] shadow-2xl overflow-hidden relative">
+        <div class="absolute top-0 right-0 p-10 opacity-10 text-9xl">💻</div>
+
+        <h2 class="text-3xl font-black mb-6 text-[#e2f0d9] italic underline decoration-[#e2f0d9]/30">
+          Завдання для VS Code
+        </h2>
+        <p class="text-slate-400 mb-8 italic">
+          Скопіюйте ці умови та реалізуйте їх у проєкті <code>dotnet new console</code>.
+        </p>
+
+        <div class="space-y-6 relative z-10">
+          <div class="p-6 bg-slate-800 rounded-2xl border border-slate-700">
+            <h3 class="text-[#e2f0d9] font-bold mb-2">🚀 Задача "Баланс"</h3>
+            <p class="text-sm text-slate-300">
+              Створіть <code>decimal balance = 5000m</code>. Опишіть покупку за 1200 та зарплату 2500 (через <code>+=</code>/<code>-=</code>). Виведіть фінальний баланс.
+            </p>
+          </div>
+
+          <div class="p-6 bg-slate-800 rounded-2xl border border-slate-700">
+            <h3 class="text-[#e2f0d9] font-bold mb-2">📦 Задача "Типи"</h3>
+            <p class="text-sm text-slate-300">
+              Створіть змінні різних типів (<code>int</code>, <code>double</code>, <code>string</code>, <code>bool</code>) і виведіть їх в одному рядку через інтерполяцію: <code>$"..."</code>.
+            </p>
+          </div>
+
+          <div class="p-6 bg-slate-800 rounded-2xl border border-slate-700">
+            <h3 class="text-[#e2f0d9] font-bold mb-2">🧮 Задача "Ділення"</h3>
+            <p class="text-sm text-slate-300">
+              Порівняйте результат <code>10 / 3</code> і <code>10.0 / 3</code>. Поясніть різницю у виводі.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Submission note -->
+      <section class="mt-10 text-center p-10 bg-[#e2f0d9]/20 rounded-[2.5rem] border-2 border-dashed border-[#e2f0d9]">
+        <p class="text-gray-600 max-w-lg mx-auto leading-relaxed">
+          Коли виконаєш всі завдання, зроби скріншот результатів та кодів з VS Code і надішли вчителю в Classroom.
+        </p>
+      </section>
+    </div>
+
+    <footer class="mt-16 pt-8 border-t border-gray-100 flex flex-col md:flex-row justify-between items-center gap-6">
+      <a href="../lesson2/theory.html" class="text-gray-400 hover:text-black transition-colors font-medium">
+        ← Повернутися до теорії
+      </a>
+      <a
+        href="../lesson3/theory.html"
+        class="btn-action px-12 py-4 shadow-brand/20 shadow-lg bg-[#0f172a] text-white rounded-xl font-bold hover:bg-black transition-all"
+      >
+        До наступного уроку ➔
+      </a>
+    </footer>
+  </main>
+
+  <footer class="text-center py-10 text-gray-400 text-xs">
+    <p>© 2026 IT School Hub | Твій шлях до коду</p>
+  </footer>
+
+  <script>
+    function checkCs2Task1() {
+      const code = document.getElementById('cs2_task1').value;
+      const ok =
+        (code.includes('nickname') && (code.includes('string') || code.includes('var'))) &&
+        code.includes('level') &&
+        code.includes('isOnline') &&
+        code.includes('Console.WriteLine');
+
+      showFeedback(
+        'cs2_feedback1',
+        ok,
+        ok
+          ? '✅ Супер! Змінні оголошені та виведені. Так і працює базовий C#.'
+          : '❌ Перевір, що є nickname/level/isOnline і хоча б один Console.WriteLine().'
+      );
+    }
+
+    function checkCs2Task2() {
+      const code = document.getElementById('cs2_task2').value.replace(/\s+/g, '');
+      const ok =
+        code.includes('a=5') &&
+        code.includes('b=8') &&
+        (code.includes('area=a*b') || code.includes('area=5*8')) &&
+        code.toLowerCase().includes('console.writeline');
+
+      showFeedback(
+        'cs2_feedback2',
+        ok,
+        ok ? '✅ Вірно! Площа порахована як добуток.' : '❌ Потрібно: a=5, b=8, area=a*b і вивести area.'
+      );
+    }
+
+    function checkCs2Task3() {
+      const val = document.getElementById('cs2_task3').value.trim();
+      const ok = val === 'myScore';
+      showFeedback(
+        'cs2_feedback3',
+        ok,
+        ok
+          ? '✅ Саме так! C# чутливий до регістру: myScore ≠ MyScore.'
+          : "❌ Спробуй ще раз. Потрібно рівно 'myScore'."
+      );
+    }
+  </script>
+</body>
+</html>
+

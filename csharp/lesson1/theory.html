@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Урок 1: Вступ до C# та .NET | IT School Hub</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+
+    <link rel="stylesheet" href="../../css/styles.css">
+    <script src="../../js/main.js" defer></script>
+</head>
+<body class="font-sans">
+
+    <nav class="nav-sticky">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="../../index.html" class="hover:opacity-80 transition-opacity">
+                <h1 class="text-2xl font-bold text-gray-700">
+                    <span class="logo-box">IT</span> School Hub
+                </h1>
+            </a>
+            <div class="flex items-center gap-4">
+                <a href="../index.html" class="hidden md:block text-sm font-medium text-gray-500 hover:text-black transition-colors">
+                    ← Повернутися до курсу
+                </a>
+                <span class="bg-[#e2f0d9] px-5 py-1.5 rounded-full text-sm font-black uppercase tracking-wider text-[#1f2937] shadow-sm">Урок 1</span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto max-w-4xl px-6 py-12 bg-white mt-8 shadow-xl rounded-[2rem] border border-gray-100">
+
+        <header class="mb-12">
+            <h1 class="text-4xl md:text-5xl font-extrabold mb-4 text-gray-900 tracking-tight">Знайомство з C# та .NET</h1>
+            <div class="h-2 w-24 bg-brand rounded-full"></div>
+            <p class="text-lg mt-6 text-gray-600 leading-relaxed">
+                C# — одна з найпопулярніших мов у світі для розробки застосунків під Windows, вебсервісів, ігор (Unity) та кросплатформених програм у .NET.
+            </p>
+        </header>
+
+        <section class="mb-10">
+            <h2 class="text-2xl font-bold mb-4 text-gray-900">Що таке C#?</h2>
+            <p class="text-lg mb-6 text-gray-700 leading-relaxed">
+                <strong>C#</strong> (читається «Сі-Шарп») — сучасна об’єктно-орієнтована мова програмування від Microsoft.
+                Її головні переваги для навчання: <strong>строга типізація</strong>, зрозумілий синтаксис та велика екосистема бібліотек.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-8">
+                <div class="p-6 rounded-3xl bg-brand/30 border border-brand/50 shadow-sm">
+                    <h4 class="font-bold mb-3 flex items-center gap-2">🚀 Де використовують C#:</h4>
+                    <ul class="list-disc list-inside text-sm space-y-2 text-gray-700 font-medium">
+                        <li>Веб-розробка на ASP.NET Core</li>
+                        <li>Ігри на Unity</li>
+                        <li>Desktop застосунки (WinForms/WPF)</li>
+                        <li>Мікросервіси та бекенд</li>
+                        <li>Автоматизація та інструменти</li>
+                    </ul>
+                </div>
+                <div class="p-6 rounded-3xl bg-slate-50 border border-gray-100 flex flex-col justify-center">
+                    <p class="text-sm italic text-gray-600 leading-relaxed">
+                        У цьому курсі ми почнемо з консолі (найпростіший формат), навчимося працювати з типами, умовами та колекціями — і підготуємо базу для більш серйозних проєктів.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-10 text-gray-700">
+            <h2 class="text-2xl font-bold mb-4 text-gray-900">Що таке .NET?</h2>
+            <p class="mb-4">
+                <strong>.NET</strong> — це платформа для запуску програм. Вона складається з:
+            </p>
+            <ul class="space-y-3">
+                <li class="flex items-start gap-3">
+                    <span class="text-brand font-bold">✔</span>
+                    <span><strong>SDK</strong> (набір інструментів): створення проєктів, компіляція, запуск.</span>
+                </li>
+                <li class="flex items-start gap-3">
+                    <span class="text-brand font-bold">✔</span>
+                    <span><strong>Runtime</strong> (середовище виконання): те, що запускає ваші програми.</span>
+                </li>
+                <li class="flex items-start gap-3">
+                    <span class="text-brand font-bold">✔</span>
+                    <span><strong>Бібліотеки</strong>: готові класи для файлів, мережі, колекцій, JSON тощо.</span>
+                </li>
+            </ul>
+
+            <div class="accent-block shadow-sm mt-6">
+                Для навчання найзручніше ставити саме <strong>.NET SDK</strong>. Тоді ви зможете писати код у будь-якому редакторі й запускати через команду <code>dotnet</code>.
+            </div>
+        </section>
+
+        <section class="mb-10">
+            <h2 class="text-2xl font-bold mb-4 italic text-gray-900">Твій перший крок: "Hello, World!"</h2>
+            <p class="mb-4 text-gray-700">
+                У C# традиційна перша програма виглядає так. У сучасних версіях .NET дозволені «top-level statements» — можна писати код без явного <code>Main</code>.
+            </p>
+
+            <div class="rounded-2xl overflow-hidden shadow-2xl">
+                <div class="bg-slate-800 px-4 py-3 flex items-center gap-2">
+                    <div class="w-3 h-3 rounded-full bg-red-400"></div>
+                    <div class="w-3 h-3 rounded-full bg-yellow-400"></div>
+                    <div class="w-3 h-3 rounded-full bg-green-400"></div>
+                    <span class="text-slate-400 text-xs ml-4 font-mono">Program.cs</span>
+                </div>
+                <pre class="m-0"><code class="language-csharp">// Мій перший код на C#
+Console.WriteLine("Hello, World!");</code></pre>
+            </div>
+        </section>
+
+        <section class="mb-10">
+            <h2 class="text-2xl font-bold mb-4 text-gray-900">Як запустити програму</h2>
+            <p class="mb-4 text-gray-700 leading-relaxed">
+                Найпростіший спосіб — створити консольний проєкт і запустити його через <code>dotnet</code>.
+            </p>
+
+            <div class="rounded-2xl overflow-hidden shadow-2xl my-8 bg-[#282c34]">
+                <div class="bg-[#21252b] px-4 py-3 flex items-center gap-2">
+                    <div class="w-3 h-3 rounded-full bg-[#ff5f56]"></div>
+                    <div class="w-3 h-3 rounded-full bg-[#ffbd2e]"></div>
+                    <div class="w-3 h-3 rounded-full bg-[#27c93f]"></div>
+                    <span class="text-gray-400 text-[10px] ml-4 font-mono uppercase tracking-widest">terminal</span>
+                </div>
+                <pre class="m-0"><code class="language-bash">dotnet new console -n MyFirstApp
+cd MyFirstApp
+dotnet run</code></pre>
+            </div>
+
+            <div class="p-6 rounded-3xl bg-[#e2f0d9]/30 border-l-8 border-[#e2f0d9] italic text-gray-700">
+                Якщо у вас Windows — можна додатково встановити Visual Studio. Якщо macOS/Linux — чудово працює Visual Studio Code + .NET SDK.
+            </div>
+        </section>
+
+        <section class="mb-10 p-8 rounded-[2.5rem] bg-slate-900 text-white shadow-2xl">
+            <h2 class="text-2xl font-bold mb-6 text-brand italic underline decoration-brand/30">Чому C# — це “мова кар’єри”</h2>
+            <p class="mb-6 text-slate-300 leading-relaxed">
+                C# і .NET — це великий ринок: корпоративні системи, банки, стартапи, хмарні сервіси, Unity-ігри.
+                Якщо ви добре знаєте базу (типи, умовні оператори, цикли, колекції) — ви зможете швидко рости до реальних проєктів.
+            </p>
+            <p class="font-bold mb-4 text-brand uppercase text-xs tracking-widest">Технології поруч із C#:</p>
+            <div class="flex flex-wrap gap-3 mb-8">
+                <span class="px-3 py-1 bg-slate-800 rounded-lg border border-slate-700 text-xs hover:border-brand transition-all">ASP.NET Core</span>
+                <span class="px-3 py-1 bg-slate-800 rounded-lg border border-slate-700 text-xs hover:border-brand transition-all">Entity Framework</span>
+                <span class="px-3 py-1 bg-slate-800 rounded-lg border border-slate-700 text-xs hover:border-brand transition-all">Unity</span>
+                <span class="px-3 py-1 bg-slate-800 rounded-lg border border-slate-700 text-xs hover:border-brand transition-all">Azure</span>
+                <span class="px-3 py-1 bg-slate-800 rounded-lg border border-slate-700 text-xs hover:border-brand transition-all">Blazor</span>
+            </div>
+            <div class="p-6 bg-brand/10 rounded-2xl border border-brand/20">
+                <p class="text-sm italic text-slate-200">
+                    Головне: не “вивчити все одразу”, а стабільно робити маленькі кроки. У наступному уроці — змінні та типи даних.
+                </p>
+            </div>
+        </section>
+
+        <footer class="mt-16 pt-8 border-t border-gray-100 flex flex-col md:flex-row justify-between items-center gap-6">
+            <p class="text-gray-400 text-sm italic text-center md:text-left">Навчайтеся безкоштовно, будь-де та будь-коли у власному темпі.</p>
+        </footer>
+
+    </main>
+
+    <footer class="text-center py-10 text-gray-400 text-xs">
+        <p>© 2026 IT School Hub | Твій шлях в IT</p>
+    </footer>
+
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

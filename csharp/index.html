@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Програма курсу C# | IT School Hub</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="stylesheet" href="../css/styles.css">
+    <script src="../js/main.js" defer></script>
+</head>
+<body class="font-sans">
+
+    <nav class="nav-sticky">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="../index.html" class="hover:opacity-80 transition-opacity">
+                <h1 class="text-2xl font-bold text-gray-700">
+                    <span class="logo-box">IT</span> School Hub
+                </h1>
+            </a>
+            <div class="hidden md:block text-sm font-medium text-gray-500">
+                Курс C#: Від 0 до Junior
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 pb-20">
+        <header class="text-center my-16">
+            <h2 class="text-5xl font-extrabold mb-6 tracking-tight text-gray-900">Програма навчання</h2>
+            <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                12 практичних кроків: від першої програми до алгоритмів і колекцій у .NET.
+            </p>
+        </header>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+
+            <div class="card-base card-main p-8 flex flex-col">
+                <div class="flex justify-between items-start mb-6">
+                    <div class="w-12 h-12 bg-brand rounded-2xl flex items-center justify-center text-xl font-bold">01</div>
+                    <span class="badge badge-available">Доступно</span>
+                </div>
+                <h3 class="text-xl font-bold mb-2">Знайомство з C# та .NET</h3>
+                <p class="text-gray-500 text-sm mb-8 italic flex-grow">SDK, `dotnet run` і перший Hello, World!</p>
+                <a href="./lesson1/theory.html" class="btn-action">Вивчати ➔</a>
+            </div>
+
+            <div class="card-base card-main p-8 flex flex-col">
+                <div class="flex justify-between items-start mb-6">
+                    <div class="w-12 h-12 bg-brand rounded-2xl flex items-center justify-center text-xl font-bold">02</div>
+                    <span class="badge badge-available">Доступно</span>
+                </div>
+                <h3 class="text-xl font-bold mb-2">Змінні та типи даних</h3>
+                <p class="text-gray-500 text-sm mb-8 italic flex-grow">`int`, `double`, `string`, `bool`, `var` і `const`.</p>
+                <a href="./lesson2/theory.html" class="btn-action">Вивчати ➔</a>
+            </div>
+
+            <div class="card-base card-main p-8 flex flex-col">
+                <div class="flex justify-between items-start mb-6">
+                    <div class="w-12 h-12 bg-brand rounded-2xl flex items-center justify-center text-xl font-bold">03</div>
+                    <span class="badge badge-available">Доступно</span>
+                </div>
+                <h3 class="text-xl font-bold mb-2">Ввід/вивід і перетворення типів</h3>
+                <p class="text-gray-500 text-sm mb-8 italic flex-grow">`Console.ReadLine()` та `int.Parse()` / `TryParse()`.</p>
+                <a href="./lesson3/theory.html" class="btn-action">Вивчати ➔</a>
+            </div>
+
+            <div class="card-base card-main p-8 flex flex-col">
+                <div class="flex justify-between items-start mb-6">
+                    <div class="w-12 h-12 bg-brand rounded-2xl flex items-center justify-center text-xl font-bold">04</div>
+                    <span class="badge badge-available">Доступно</span>
+                </div>
+                <h3 class="text-xl font-bold mb-2">Умовні оператори</h3>
+                <p class="text-gray-500 text-sm mb-8 italic flex-grow">Логіка вибору: `if/else`, `switch`, тернарний оператор.</p>
+                <a href="./lesson4/theory.html" class="btn-action">Вивчати ➔</a>
+            </div>
+
+            <div class="card-base card-developing p-8 flex flex-col">
+                <div class="flex justify-between items-start mb-6">
+                    <div class="w-12 h-12 bg-gray-100 rounded-2xl flex items-center justify-center text-xl font-bold">05</div>
+                    <span class="badge badge-soon">Скоро</span>
+                </div>
+                <h3 class="text-xl font-bold mb-2 text-gray-400">Цикли (while)</h3>
+                <p class="text-gray-400 text-sm mb-8 italic flex-grow">Повторення дій, умови зупинки, `break`/`continue`.</p>
+                <button disabled class="btn-action btn-disabled">В розробці</button>
+            </div>
+
+            <div class="card-base card-developing p-8 flex flex-col">
+                <div class="flex justify-between items-start mb-6">
+                    <div class="w-12 h-12 bg-gray-100 rounded-2xl flex items-center justify-center text-xl font-bold">06</div>
+                    <span class="badge badge-soon">Скоро</span>
+                </div>
+                <h3 class="text-xl font-bold mb-2 text-gray-400">Цикли (for/foreach)</h3>
+                <p class="text-gray-400 text-sm mb-8 italic flex-grow">Ітерації по діапазонах та колекціях.</p>
+                <button disabled class="btn-action btn-disabled">В розробці</button>
+            </div>
+
+            <div class="card-base card-developing p-8 flex flex-col text-gray-400">
+                <div class="flex justify-between items-start mb-6">
+                    <div class="w-12 h-12 bg-gray-100 rounded-2xl flex items-center justify-center text-xl font-bold">07</div>
+                    <span class="badge badge-soon">Скоро</span>
+                </div>
+                <h3 class="text-xl font-bold mb-2">Методи та параметри</h3>
+                <p class="text-gray-400 text-sm mb-8 italic flex-grow">Розбиття коду, `return`, `ref`/`out`.</p>
+                <button disabled class="btn-action btn-disabled">В розробці</button>
+            </div>
+
+            <div class="card-base card-main p-8 flex flex-col">
+                <div class="flex justify-between items-start mb-6">
+                    <div class="w-12 h-12 bg-brand rounded-2xl flex items-center justify-center text-xl font-bold">08</div>
+                    <span class="badge badge-available">Доступно</span>
+                </div>
+                <h3 class="text-xl font-bold mb-2">Масиви та списки</h3>
+                <p class="text-gray-500 text-sm mb-8 italic flex-grow">`T[]`, `List&lt;T&gt;`, індекси, додавання/видалення.</p>
+                <a href="./lesson8/theory.html" class="btn-action">Вивчати ➔</a>
+            </div>
+
+            <div class="card-base card-developing p-8 flex flex-col text-gray-400">
+                <div class="flex justify-between items-start mb-6">
+                    <div class="w-12 h-12 bg-gray-100 rounded-2xl flex items-center justify-center text-xl font-bold">09</div>
+                    <span class="badge badge-soon">Скоро</span>
+                </div>
+                <h3 class="text-xl font-bold mb-2">Рядки та форматування</h3>
+                <p class="text-gray-400 text-sm mb-8 italic flex-grow">Інтерполяція, методи рядків, `StringBuilder`.</p>
+                <button disabled class="btn-action btn-disabled">В розробці</button>
+            </div>
+
+            <div class="card-base card-developing p-8 flex flex-col text-gray-400">
+                <div class="flex justify-between items-start mb-6">
+                    <div class="w-12 h-12 bg-gray-100 rounded-2xl flex items-center justify-center text-xl font-bold">10</div>
+                    <span class="badge badge-soon">Скоро</span>
+                </div>
+                <h3 class="text-xl font-bold mb-2">Алгоритми пошуку</h3>
+                <p class="text-gray-400 text-sm mb-8 italic flex-grow">Лінійний і бінарний пошук у масивах.</p>
+                <button disabled class="btn-action btn-disabled">В розробці</button>
+            </div>
+
+            <div class="card-base card-developing p-8 flex flex-col text-gray-400">
+                <div class="flex justify-between items-start mb-6">
+                    <div class="w-12 h-12 bg-gray-100 rounded-2xl flex items-center justify-center text-xl font-bold">11</div>
+                    <span class="badge badge-soon">Скоро</span>
+                </div>
+                <h3 class="text-xl font-bold mb-2">Сортування</h3>
+                <p class="text-gray-400 text-sm mb-8 italic flex-grow">Вбудовані методи та базові алгоритми сортування.</p>
+                <button disabled class="btn-action btn-disabled">В розробці</button>
+            </div>
+
+            <div class="card-base p-8 flex flex-col bg-slate-900 border-2 border-brand text-white shadow-2xl scale-105 z-10">
+                <div class="flex justify-between items-start mb-6">
+                    <div class="w-12 h-12 bg-brand text-slate-900 rounded-2xl flex items-center justify-center text-xl font-black italic">!</div>
+                    <span class="badge bg-brand text-slate-900">Final</span>
+                </div>
+                <h3 class="text-xl font-bold mb-2 text-brand">Складність алгоритмів</h3>
+                <p class="text-slate-400 text-sm mb-8 italic flex-grow">Оцінка швидкості коду та поняття Big O.</p>
+                <button disabled class="btn-action bg-brand text-slate-900 hover:bg-white">Скоро</button>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="text-center py-10 text-gray-400 text-xs border-t bg-white">
+        <p>© 2026 IT School Hub | Навчайся без кордонів</p>
+    </footer>
+
+</body>
+</html>

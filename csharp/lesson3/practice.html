@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Практика 3: Ввід/вивід і перетворення типів (C#) | IT School Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../../css/styles.css">
+    <script src="../../js/main.js" defer></script>
+</head>
+<body class="bg-slate-50 min-h-screen font-sans text-gray-800">
+
+    <nav class="nav-sticky">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="../../index.html" class="hover:opacity-80 transition-opacity">
+                <h1 class="text-2xl font-bold text-gray-700">
+                    <span class="logo-box">IT</span> School Hub
+                </h1>
+            </a>
+            <div class="flex items-center gap-4">
+                <a href="../index.html" class="hidden md:block text-sm font-medium text-gray-500 hover:text-black transition-colors">
+                    ← Повернутися до курсу
+                </a>
+                <span class="bg-[#e2f0d9] px-5 py-1.5 rounded-full text-sm font-black uppercase tracking-wider text-[#1f2937] shadow-sm">
+                    Практика №3
+                </span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto max-w-4xl px-6 py-12">
+        <header class="mb-12">
+            <h1 class="text-4xl font-extrabold mb-4 text-gray-900 tracking-tight">Завдання: "Перетворення даних" (C#)</h1>
+            <p class="text-lg text-gray-600 leading-relaxed">
+                Відпрацюй роботу з <code>Console.ReadLine()</code> та перетвореннями <code>Parse/TryParse</code>. Перевірка — по шаблону.
+            </p>
+        </header>
+
+        <div class="space-y-10">
+
+            <div class="bg-white p-8 rounded-[2.5rem] shadow-xl border border-gray-100 overflow-hidden">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-10 h-10 bg-slate-800 text-white rounded-xl flex items-center justify-center font-bold">1</div>
+                    <h3 class="font-bold text-xl">Каса магазину</h3>
+                </div>
+                <p class="text-gray-600 mb-6 text-sm">
+                    Є змінна <code>priceText = "15000.50"</code>. Напиши код, який перетворить її на число <code>double</code> у змінну <code>price</code>.
+                </p>
+                <div class="rounded-2xl overflow-hidden bg-[#282c34] mb-4">
+                    <div class="bg-[#21252b] px-4 py-2 text-[10px] text-gray-500 font-mono uppercase">converter.cs</div>
+                    <textarea id="cs3_ans1" class="w-full h-28 p-6 bg-transparent text-[#98c379] font-mono text-sm outline-none resize-none" placeholder='double price = ...;'></textarea>
+                </div>
+                <button onclick="checkCs3_1()" class="btn-action px-10 py-4">Перевірити код</button>
+                <div id="cs3_feedback1" class="mt-4 p-4 rounded-xl text-sm font-medium hidden"></div>
+            </div>
+
+            <div class="bg-white p-8 rounded-[2.5rem] shadow-xl border border-gray-100">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-10 h-10 bg-slate-800 text-white rounded-xl flex items-center justify-center font-bold">2</div>
+                    <h3 class="font-bold text-xl">Рядок чи число?</h3>
+                </div>
+                <p class="text-gray-600 mb-6">
+                    Що виведе команда <code>Console.WriteLine("10" + "10");</code>?
+                </p>
+                <div class="flex gap-4">
+                    <button onclick="checkCs3_2('20')" class="bg-white border-2 border-slate-100 px-8 py-3 rounded-2xl font-bold hover:border-red-400 transition-all">20</button>
+                    <button onclick="checkCs3_2('1010')" class="bg-white border-2 border-slate-100 px-8 py-3 rounded-2xl font-bold hover:border-brand transition-all">1010</button>
+                </div>
+                <div id="cs3_feedback2" class="mt-4 p-4 rounded-xl text-sm font-medium hidden"></div>
+            </div>
+
+            <div class="bg-white p-8 rounded-[2.5rem] shadow-xl border border-gray-100">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-10 h-10 bg-slate-800 text-white rounded-xl flex items-center justify-center font-bold">3</div>
+                    <h3 class="font-bold text-xl">Комбіноване перетворення</h3>
+                </div>
+                <p class="text-gray-600 mb-6">
+                    Який метод/підхід перетворить число <code>10</code> у текст <code>"10"</code>?
+                    Напиши будь-який правильний варіант: <code>ToString()</code>, або інтерполяцію, або <code>Convert.ToString</code>.
+                </p>
+                <div class="flex flex-col md:flex-row gap-4">
+                    <input type="text" id="cs3_ans3" class="flex-grow p-4 border-2 border-slate-100 rounded-2xl focus:border-brand outline-none transition-all font-mono" placeholder="Напр.: ToString()">
+                    <button onclick="checkCs3_3()" class="btn-action px-10 py-4">Відповісти</button>
+                </div>
+                <div id="cs3_feedback3" class="mt-4 p-4 rounded-xl text-sm font-medium hidden"></div>
+            </div>
+
+            <section class="mt-20 p-8 bg-slate-900 text-white rounded-[3rem] shadow-2xl overflow-hidden relative">
+                <div class="absolute top-0 right-0 p-10 opacity-10 text-9xl">💻</div>
+
+                <h2 class="text-3xl font-black mb-6 text-brand italic underline decoration-brand/30">Завдання для VS Code</h2>
+                <p class="text-slate-400 mb-8 italic">
+                    Реалізуйте ці задачі у проєкті <code>dotnet new console</code>.
+                </p>
+
+                <div class="space-y-6 relative z-10">
+                    <div class="p-8 bg-slate-800 rounded-[2rem] border border-slate-700 hover:border-brand/50 transition-colors">
+                        <h4 class="text-brand font-bold text-xl mb-3">📟 Задача "Калькулятор віку"</h4>
+                        <p class="text-slate-300">
+                            Запитайте рік народження через <code>Console.ReadLine()</code>. Спробуйте перетворити на <code>int</code>. Якщо ввід некоректний — виведіть повідомлення. Якщо ок — порахуйте вік (2026 - рік).
+                        </p>
+                    </div>
+
+                    <div class="p-8 bg-slate-800 rounded-[2rem] border border-slate-700 hover:border-brand/50 transition-colors">
+                        <h4 class="text-brand font-bold text-xl mb-3">🍕 Задача "Піцерія"</h4>
+                        <p class="text-slate-300">
+                            Запитайте кількість піц (int) та ціну (decimal). Порахуйте суму. Виведіть красиво через інтерполяцію.
+                        </p>
+                    </div>
+
+                    <div class="p-8 bg-slate-800 rounded-[2rem] border border-slate-700 hover:border-brand/50 transition-colors">
+                        <h4 class="text-brand font-bold text-xl mb-3">⚖️ Задача "Конвертація ваги"</h4>
+                        <p class="text-slate-300">
+                            Отримайте вагу в кг (double). Перетворіть у грами (*1000) і виведіть як ціле число.
+                        </p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div class="mt-16 text-center p-10 bg-[#e2f0d9]/20 rounded-[3rem] border-2 border-dashed border-[#e2f0d9]">
+            <p class="text-gray-600 max-w-lg mx-auto leading-relaxed">
+                Коли виконаєш всі завдання, зроби скріншот результатів та кодів і надішли вчителю в Classroom.
+            </p>
+        </div>
+    </main>
+
+    <footer class="text-center py-10 text-gray-400 text-xs">
+        <p>© 2026 IT School Hub | Навчання без кордонів</p>
+    </footer>
+
+    <script>
+        function checkCs3_1() {
+            const val = document.getElementById('cs3_ans1').value.replace(/\s+/g, '').toLowerCase();
+            const ok =
+                val.includes('doubleprice') &&
+                (val.includes('double.parse("15000.50")') || val.includes('double.parse(pricetext)') || val.includes('convert.todouble('));
+
+            showFeedback(
+                'cs3_feedback1',
+                ok,
+                ok ? '✅ Вірно! Тепер price — число і з ним можна робити математику.' : '❌ Спробуй: double price = double.Parse(priceText);'
+            );
+        }
+
+        function checkCs3_2(ans) {
+            const ok = ans === '1010';
+            showFeedback(
+                'cs3_feedback2',
+                ok,
+                ok ? '✅ Правильно! Це конкатенація рядків: "10" + "10" → "1010".' : '❌ Ні, тут не математика — це рядки.'
+            );
+        }
+
+        function checkCs3_3() {
+            const val = document.getElementById('cs3_ans3').value.trim().toLowerCase();
+            const ok =
+                val.includes('tostring') ||
+                val.includes('convert.tostring') ||
+                val.includes('$"') ||
+                val.includes("string");
+
+            showFeedback(
+                'cs3_feedback3',
+                ok,
+                ok ? '✅ Так! ToString() / Convert.ToString / інтерполяція — все працює.' : '❌ Підказка: найчастіше використовують ToString().'
+            );
+        }
+    </script>
+
+</body>
+</html>
+

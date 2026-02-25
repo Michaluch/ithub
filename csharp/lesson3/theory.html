@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Урок 3: Ввід/вивід і перетворення типів (C#) | IT School Hub</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <link href="../../css/styles.css" rel="stylesheet" />
+  <script defer src="../../js/main.js"></script>
+</head>
+
+<body class="bg-slate-50 text-gray-900 font-sans">
+  <nav class="nav-sticky">
+    <div class="container mx-auto flex justify-between items-center">
+      <a class="hover:opacity-80 transition-opacity" href="../../index.html">
+        <h1 class="text-2xl font-bold text-gray-700">
+          <span class="logo-box">IT</span> School Hub
+        </h1>
+      </a>
+      <div class="flex items-center gap-4">
+        <a class="hidden md:block text-sm font-medium text-gray-500 hover:text-black transition-colors" href="../index.html">
+          ← Програма курсу
+        </a>
+        <span class="bg-[#e2f0d9] px-5 py-1.5 rounded-full text-sm font-black uppercase tracking-wider text-[#1f2937] shadow-sm">
+          Урок 3
+        </span>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container mx-auto max-w-4xl px-6 py-12 bg-white mt-8 shadow-xl rounded-[2.5rem] border border-gray-100">
+    <header class="mb-10">
+      <h1 class="text-4xl md:text-5xl font-extrabold mb-4 tracking-tight">Ввід/вивід і перетворення типів</h1>
+      <p class="text-gray-600 text-lg leading-relaxed">Як читати дані з консолі та безпечно перетворювати їх у числа.</p>
+      <div class="h-2 w-24 bg-brand rounded-full mt-4"></div>
+    </header>
+
+    <section class="mb-10">
+      <h2 class="text-2xl font-bold mb-4 text-gray-900 flex items-center gap-2 mt-12">
+        <span class="logo-box">1</span> Чому це важливо?
+      </h2>
+
+      <p class="mb-4 text-gray-700 leading-relaxed">
+        У C# <code>Console.ReadLine()</code> завжди повертає <b>рядок</b> (<code>string</code>).
+        Якщо користувач вводить <code>5</code>, це все одно текст <code>"5"</code>.
+      </p>
+      <div class="p-6 rounded-3xl bg-red-50 border-l-8 border-red-400 my-6">
+        <p class="font-bold text-red-800 mb-2">Типова пастка</p>
+        <p class="text-gray-800">
+          Якщо ви спробуєте додати рядок до числа або просто “склеїти” два рядки замість математичного додавання —
+          отримаєте не те, що очікували.
+        </p>
+      </div>
+    </section>
+
+    <section class="mb-10 p-8 bg-brand/10 rounded-[2rem] border-2 border-brand/30 relative overflow-hidden">
+      <div class="absolute -right-4 -bottom-4 text-8xl opacity-10">🧾</div>
+      <h2 class="text-2xl font-bold mt-12 mb-6 pb-2 border-b border-[#e2f0d9]">🧾 Приклад: каса магазину</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+        <div class="space-y-4">
+          <p class="text-gray-700 leading-relaxed">
+            Уявіть, що користувач ввів ціну та кількість у консоль. Спочатку це <b>рядки</b>, але нам треба
+            перемножити їх як числа.
+          </p>
+          <ul class="space-y-3 text-sm">
+            <li class="flex gap-2"><b>• string:</b> це текст. <code>"10" + "10"</code> дасть <code>"1010"</code>.</li>
+            <li class="flex gap-2"><b>• int/double:</b> це числа. <code>10 + 10</code> дасть <code>20</code>.</li>
+          </ul>
+        </div>
+        <div class="rounded-2xl overflow-hidden shadow-2xl bg-[#282c34] my-8">
+          <div class="bg-[#21252b] px-4 py-2 flex gap-2">
+            <div class="w-2 h-2 rounded-full bg-red-400"></div>
+            <div class="w-2 h-2 rounded-full bg-yellow-400"></div>
+            <div class="w-2 h-2 rounded-full bg-green-400"></div>
+          </div>
+          <pre class="m-0"><code class="language-csharp">Console.Write("Ціна: ");
+string priceText = Console.ReadLine()!;
+
+Console.Write("Кількість: ");
+string qtyText = Console.ReadLine()!;
+
+double price = double.Parse(priceText);
+int qty = int.Parse(qtyText);
+
+double total = price * qty;
+Console.WriteLine($"Сума: {total}");</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <section class="mb-10">
+      <h2 class="text-2xl font-bold mb-4 text-gray-900 flex items-center gap-2 mt-12">
+        <span class="logo-box">2</span> Перетворення: Parse та TryParse
+      </h2>
+
+      <p class="mb-4 text-gray-700 leading-relaxed">
+        <code>int.Parse()</code> і <code>double.Parse()</code> працюють швидко, але якщо введення неправильне — буде помилка.
+        Більш “безпечний” варіант — <code>TryParse</code>.
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="p-6 border-2 border-slate-100 rounded-2xl hover:border-brand transition-colors">
+          <h3 class="text-xl font-semibold mt-8 mb-4 text-gray-800">Parse()</h3>
+          <p class="text-xs text-gray-500 mb-3">Швидко перетворює, але може кинути помилку.</p>
+          <div class="rounded-2xl overflow-hidden shadow-2xl bg-[#282c34]">
+            <div class="bg-[#21252b] px-4 py-2 text-[10px] text-gray-500 font-mono uppercase">parse.cs</div>
+            <pre class="m-0"><code class="language-csharp">int age = int.Parse("12");</code></pre>
+          </div>
+        </div>
+        <div class="p-6 border-2 border-slate-100 rounded-2xl hover:border-brand transition-colors">
+          <h3 class="text-xl font-semibold mt-8 mb-4 text-gray-800">TryParse()</h3>
+          <p class="text-xs text-gray-500 mb-3">Не падає: повертає <code>true/false</code>.</p>
+          <div class="rounded-2xl overflow-hidden shadow-2xl bg-[#282c34]">
+            <div class="bg-[#21252b] px-4 py-2 text-[10px] text-gray-500 font-mono uppercase">tryparse.cs</div>
+            <pre class="m-0"><code class="language-csharp">string input = "12";
+if (int.TryParse(input, out int age))
+{
+    Console.WriteLine($"Вік: {age}");
+}
+else
+{
+    Console.WriteLine("Це не число!");
+}</code></pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="mb-10">
+      <h2 class="text-2xl font-bold mb-4 text-gray-900 flex items-center gap-2 mt-12">
+        <span class="logo-box">3</span> Рядки та форматування
+      </h2>
+      <p class="mb-4 text-gray-700 leading-relaxed">
+        Найзручніший спосіб виводити дані — <strong>інтерполяція</strong> рядків: <code>$"Привіт, {name}!"</code>.
+      </p>
+      <div class="rounded-2xl overflow-hidden shadow-2xl bg-[#282c34] mb-6">
+        <div class="bg-[#21252b] px-4 py-3 flex items-center gap-2">
+          <div class="w-3 h-3 rounded-full bg-[#ff5f56]"></div>
+          <div class="w-3 h-3 rounded-full bg-[#ffbd2e]"></div>
+          <div class="w-3 h-3 rounded-full bg-[#27c93f]"></div>
+          <span class="text-gray-400 text-[10px] ml-4 font-mono uppercase tracking-widest">Program.cs</span>
+        </div>
+        <pre class="m-0"><code class="language-csharp">string name = "May";
+int age = 18;
+Console.WriteLine($"Привіт, {name}! Тобі {age} років.");</code></pre>
+      </div>
+
+      <div class="p-6 rounded-3xl bg-[#e2f0d9]/30 border-l-8 border-[#b7d7a8] my-8 text-gray-800">
+        <p class="font-bold mb-2">⭐ Запам’ятай:</p>
+        <p class="text-gray-700 leading-relaxed">
+          <code>Console.ReadLine()</code> → <code>string</code>. Для математики — перетворюй у число. Для красивого виводу — використовуй <code>$"..."</code>.
+        </p>
+      </div>
+    </section>
+
+    <footer class="mt-16 pt-8 border-t border-gray-100 flex flex-col md:flex-row justify-between items-center gap-6">
+      <a href="../lesson2/theory.html" class="text-gray-400 hover:text-black transition-colors font-medium">← Повернутися до Уроку 2</a>
+      <a href="./practice.html" class="btn-action px-12 py-4 shadow-brand/20 shadow-lg bg-[#0f172a] text-white rounded-xl font-bold hover:bg-black transition-all">
+        До практики ➔
+      </a>
+    </footer>
+
+  </main>
+
+  <footer class="text-center py-10 text-gray-400 text-xs">
+    <p>© 2026 IT School Hub | Навчання без кордонів</p>
+  </footer>
+
+  <script>hljs.highlightAll();</script>
+</body>
+</html>
+

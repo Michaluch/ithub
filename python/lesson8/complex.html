@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Практика: Списки та Кортежі | IT School Hub</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="../../css/styles.css" />
+  <script src="../../js/main.js" defer></script>
+</head>
+
+<body class="bg-[#f8fafc] text-slate-900 font-sans leading-relaxed">
+  <nav class="nav-sticky">
+    <div class="container mx-auto flex justify-between items-center">
+      <a href="../../index.html" class="hover:opacity-80 transition-opacity">
+        <h1 class="text-2xl font-bold text-gray-700">
+          <span class="logo-box">IT</span> School Hub
+        </h1>
+      </a>
+      <div class="flex items-center gap-4">
+        <a href="../index.html" class="hidden md:block text-sm font-medium text-gray-500 hover:text-black transition-colors">
+          ← Повернутися до курсу
+        </a>
+        <a href="./practice.html" class="hidden md:block text-sm font-medium text-gray-500 hover:text-black transition-colors">
+          Практика
+        </a>
+        <span class="bg-[#e2f0d9] px-5 py-1.5 rounded-full text-sm font-black uppercase tracking-wider text-[#1f2937] shadow-sm">
+          Практика: Структури даних
+        </span>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container mx-auto max-w-5xl px-6 py-12">
+    <header class="mb-12 text-center">
+      <h1 class="text-4xl md:text-5xl font-extrabold mb-4 text-gray-900 tracking-tight">
+        Алгоритми обробки масивів
+      </h1>
+      <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+        Ти — розробник, і перед тобою 5 реальних кейсів. Використовуй списки та кортежі для керування потоками даних.
+      </p>
+    </header>
+
+    <div class="grid grid-cols-1 gap-10">
+      
+      <section class="bg-white p-8 rounded-[2.5rem] shadow-xl border border-gray-100">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-12 h-12 bg-[#e2f0d9] text-[#1f2937] rounded-2xl flex items-center justify-center font-bold shadow-lg">01</div>
+          <h2 class="font-bold text-2xl text-gray-900">📦 SmartDrop: Логістика обідів</h2>
+        </div>
+        <p class="text-gray-600 mb-6">
+          Кожне замовлення — це кортеж: <code>(id, назва, ціна)</code>. Реалізуй систему:
+        </p>
+        <ul class="list-disc pl-6 space-y-2 text-gray-700 mb-8">
+          <li>Сформуй початкову базу з 3-х замовлень.</li>
+          <li>Прийми нове замовлення від клієнта та додай його в кінець черги.</li>
+          <li>Приєднай до поточної черги пакет замовлень з сусіднього району.</li>
+          <li>Виокреми 3 перші замовлення як "пріоритетні" та 2 останні як "нові надходження".</li>
+          <li>Видали конкретне замовлення, якщо клієнт від нього відмовився.</li>
+          <li>Видали замовлення під номером 2 (його вже забрав кур'єр).</li>
+        </ul>
+        <div class="bg-slate-900 rounded-2xl p-6 font-mono text-sm text-green-400">
+          # Очікуваний результат: Список, де враховані всі зміни черги
+        </div>
+      </section>
+
+      <section class="bg-white p-8 rounded-[2.5rem] shadow-xl border border-gray-100">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-12 h-12 bg-[#e2f0d9] text-[#1f2937] rounded-2xl flex items-center justify-center font-bold shadow-lg">02</div>
+          <h2 class="font-bold text-2xl text-gray-900">❤️ BioTracker: Аналіз пульсу</h2>
+        </div>
+        <p class="text-gray-600 mb-6">Оброби дані з фітнес-браслета користувача:</p>
+        <ul class="list-disc pl-6 space-y-2 text-gray-700 mb-8">
+          <li>Зафіксуй 5 початкових вимірів пульсу.</li>
+          <li>Запиши новий показник після активного тренування.</li>
+          <li>Додай дані, отримані під час фази сну (список з 3-х значень).</li>
+          <li>Покажи статистику за перші 4 години та за останні 2 години запису.</li>
+          <li>Вияви та вилучи аномальний показник (помилку датчика) за його позицією.</li>
+          <li>Вилучи конкретне значення пульсу, яке користувач вважає помилковим.</li>
+        </ul>
+      </section>
+
+      <section class="bg-white p-8 rounded-[2.5rem] shadow-xl border border-gray-100">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-12 h-12 bg-[#e2f0d9] text-[#1f2937] rounded-2xl flex items-center justify-center font-bold shadow-lg">03</div>
+          <h2 class="font-bold text-2xl text-gray-900">🎮 E-Sport Arena: Турнірна сітка</h2>
+        </div>
+        <p class="text-gray-600 mb-6">Команди представлені кортежами: <code>(Назва, Країна)</code>.</p>
+        <ul class="list-disc pl-6 space-y-2 text-gray-700 mb-8">
+          <li>Зареєструй 4 команди-учасниці.</li>
+          <li>Додай команду, яка виграла "Wild Card" відбір.</li>
+          <li>Об'єднай список основних команд зі списком запрошених зірок.</li>
+          <li>Сформуй "Топ-3" претендентів на кубок.</li>
+          <li>Покажи дві команди, які наразі замикають таблицю.</li>
+          <li>Зніми з турніру команду, яка посідає 2-ге місце (дискваліфікація).</li>
+          <li>Викресли зі списку команду, яка самостійно відмовилася від участі.</li>
+        </ul>
+      </section>
+
+      <section class="bg-white p-8 rounded-[2.5rem] shadow-xl border border-gray-100">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-12 h-12 bg-[#e2f0d9] text-[#1f2937] rounded-2xl flex items-center justify-center font-bold shadow-lg">04</div>
+          <h2 class="font-bold text-2xl text-gray-900">📚 SmartLibrary: Цифровий архів</h2>
+        </div>
+        <p class="text-gray-600 mb-6">Керування фондом бібліотеки. Дані книги: <code>(Назва, Автор, Рік)</code>.</p>
+        <ul class="list-disc pl-6 space-y-2 text-gray-700 mb-8">
+          <li>Створи каталог із 3-х класичних творів.</li>
+          <li>Додай нову книгу, що щойно надійшла з друкарні.</li>
+          <li>Інтегруй у загальну базу подаровану колекцію з 5-ти книг.</li>
+          <li>Виведи список "новинок" (3 останні додані книги).</li>
+          <li>Виведи список "перших надходжень" (перші 2 книги каталогу).</li>
+          <li>Видали з реєстру найпершу книгу (її передано в музей).</li>
+          <li>Знайди та видали за назвою і автором книгу, яку було втрачено.</li>
+        </ul>
+      </section>
+
+      <section class="bg-white p-8 rounded-[2.5rem] shadow-xl border border-gray-100 relative overflow-hidden">
+        <div class="absolute -right-10 -top-10 opacity-5 text-[12rem]">🚀</div>
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-12 h-12 bg-[#e2f0d9] text-[#1f2937] rounded-2xl flex items-center justify-center font-bold shadow-lg">05</div>
+          <h2 class="font-bold text-2xl text-gray-900">🌌 SpaceRoute: Навігатор</h2>
+        </div>
+        <p class="text-gray-600 mb-6">Прокладання маршруту крізь зіркові системи:</p>
+        <ul class="list-disc pl-6 space-y-2 text-gray-700 mb-8">
+          <li>Встанови початковий курс через 5 зірок.</li>
+          <li>Проклади шлях до нової віддаленої галактики (додай зірку в кінець).</li>
+          <li>Синхронізуй свій шлях із картами іншого корабля (об'єднай маршрути).</li>
+          <li>Покажи 3 останні зірки, які корабель вже успішно пройшов.</li>
+          <li>Покажи наступні 2 зірки, які є найближчими цілями.</li>
+          <li>Викресли з маршруту четверту за рахунком зірку (там виявлено активність піратів).</li>
+          <li>Омини зірку "Sirius" — видали її з плану польоту за назвою.</li>
+        </ul>
+      </section>
+
+    </div>
+
+    <section class="mt-16 text-center p-12 bg-slate-900 text-white rounded-[3rem] shadow-2xl">
+      <h2 class="text-3xl font-bold mb-6 text-[#e2f0d9]">Готовий до деплою?</h2>
+      <p class="text-slate-400 mb-8 max-w-xl mx-auto">
+        Обери будь-які 3 задачі, напиши для них код у VS Code та надішли файл <code>project.py</code> на перевірку. 
+        Не забудь додавати коментарі до кожного кроку!
+      </p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="py-10 text-center text-gray-400 text-sm">
+    <p>© 2026 IT School Hub | Створено для майбутніх інженерів</p>
+  </footer>
+</body>
+</html>

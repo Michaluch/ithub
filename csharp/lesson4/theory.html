@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Урок 4: Умовні конструкції (C#) | IT School Hub</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+
+  <link rel="stylesheet" href="../../css/styles.css">
+  <script src="../../js/main.js" defer></script>
+</head>
+
+<body class="bg-slate-50 text-gray-900 font-sans leading-relaxed">
+
+  <nav class="nav-sticky">
+    <div class="container mx-auto flex justify-between items-center">
+      <a href="../../index.html" class="hover:opacity-80 transition-opacity">
+        <h1 class="text-2xl font-bold text-gray-700">
+          <span class="logo-box">IT</span> School Hub
+        </h1>
+      </a>
+
+      <div class="flex items-center gap-4">
+        <a class="hidden md:block text-sm font-medium text-gray-500 hover:text-black transition-colors" href="../index.html">
+          ← Програма курсу
+        </a>
+        <span class="bg-[#e2f0d9] px-5 py-1.5 rounded-full text-sm font-black uppercase tracking-wider text-[#1f2937] shadow-sm">
+          Урок 4
+        </span>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container mx-auto max-w-4xl px-6 py-12 bg-white mt-8 shadow-xl rounded-[2.5rem] border border-gray-100">
+
+    <header class="mb-10">
+      <h1 class="text-4xl md:text-5xl font-extrabold mb-4 tracking-tight">Умовні конструкції в C#</h1>
+      <p class="text-gray-600 text-lg leading-relaxed">
+        Керування потоком виконання: як програма “обирає шлях” залежно від умов.
+      </p>
+      <div class="h-2 w-24 bg-brand rounded-full mt-4"></div>
+    </header>
+
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-4 text-gray-900 flex items-center gap-2">
+        <span class="logo-box">1</span> Логічний фундамент
+      </h2>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+        <div class="space-y-4">
+          <p class="text-gray-700 leading-relaxed">
+            Умови в C# базуються на типі <code>bool</code>, який має два значення: <code>true</code> або <code>false</code>.
+            Щоб отримати <code>bool</code>, ми використовуємо оператори порівняння:
+          </p>
+
+          <ul class="grid grid-cols-2 gap-3 text-sm font-mono">
+            <li class="bg-slate-50 p-3 rounded-xl border border-slate-100">== (Рівність)</li>
+            <li class="bg-slate-50 p-3 rounded-xl border border-slate-100">!= (Нерівність)</li>
+            <li class="bg-slate-50 p-3 rounded-xl border border-slate-100">&gt; (Більше)</li>
+            <li class="bg-slate-50 p-3 rounded-xl border border-slate-100">&lt;= (Менше або =)</li>
+          </ul>
+        </div>
+
+        <div class="p-6 rounded-3xl bg-[#e2f0d9]/30 border-l-8 border-[#b7d7a8]">
+          <p class="font-bold mb-2">Порада:</p>
+          <p class="text-gray-700 text-sm leading-relaxed">
+            Умовний оператор чекає саме <code>bool</code>. У C# не можна написати <code>if (age)</code> як в деяких мовах — треба
+            <code>if (age &gt; 0)</code> або іншу явну перевірку.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-4 text-gray-900 flex items-center gap-2">
+        <span class="logo-box">2</span> if / else if / else
+      </h2>
+
+      <p class="text-gray-700 leading-relaxed mb-6">
+        Найпоширеніший спосіб зробити вибір у програмі — <code>if</code>.
+      </p>
+
+      <div class="rounded-2xl overflow-hidden shadow-2xl bg-[#282c34] mb-6">
+        <div class="bg-[#21252b] px-4 py-3 flex items-center gap-2">
+          <div class="w-3 h-3 rounded-full bg-[#ff5f56]"></div>
+          <div class="w-3 h-3 rounded-full bg-[#ffbd2e]"></div>
+          <div class="w-3 h-3 rounded-full bg-[#27c93f]"></div>
+          <span class="text-gray-400 text-[10px] ml-4 font-mono uppercase tracking-widest">Program.cs</span>
+        </div>
+        <pre class="m-0"><code class="language-csharp">int score = 78;
+
+if (score >= 90)
+{
+    Console.WriteLine("Відмінно");
+}
+else if (score >= 70)
+{
+    Console.WriteLine("Добре");
+}
+else if (score >= 50)
+{
+    Console.WriteLine("Задовільно");
+}
+else
+{
+    Console.WriteLine("Незадовільно");
+}</code></pre>
+      </div>
+
+      <div class="p-6 rounded-3xl bg-amber-50 border-l-8 border-amber-400 italic text-gray-700">
+        Умови потрібно писати від <strong>найсильнішої</strong> (90+) до <strong>найзагальнішої</strong>, інакше логіка “зламається”.
+      </div>
+    </section>
+
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-4 text-gray-900 flex items-center gap-2">
+        <span class="logo-box">3</span> switch
+      </h2>
+
+      <p class="text-gray-700 leading-relaxed mb-6">
+        Коли варіантів багато (наприклад, колір світлофора), зручніше використовувати <code>switch</code>.
+      </p>
+
+      <div class="rounded-2xl overflow-hidden shadow-2xl bg-[#282c34] mb-6">
+        <div class="bg-[#21252b] px-4 py-3 flex items-center gap-2">
+          <div class="w-3 h-3 rounded-full bg-[#ff5f56]"></div>
+          <div class="w-3 h-3 rounded-full bg-[#ffbd2e]"></div>
+          <div class="w-3 h-3 rounded-full bg-[#27c93f]"></div>
+          <span class="text-gray-400 text-[10px] ml-4 font-mono uppercase tracking-widest">Program.cs</span>
+        </div>
+        <pre class="m-0"><code class="language-csharp">string color = "green";
+
+switch (color)
+{
+    case "red":
+        Console.WriteLine("Стоп");
+        break;
+    case "yellow":
+        Console.WriteLine("Приготуйся");
+        break;
+    case "green":
+        Console.WriteLine("Рухайся");
+        break;
+    default:
+        Console.WriteLine("Невідомий сигнал");
+        break;
+}</code></pre>
+      </div>
+
+      <div class="p-6 rounded-3xl bg-slate-50 border border-slate-100 text-gray-700">
+        <p class="font-bold mb-2">Бонус: switch expression</p>
+        <p class="text-sm mb-4">
+          У сучасному C# можна писати коротше:
+        </p>
+        <pre class="bg-white p-4 rounded-2xl border border-slate-100 font-mono text-sm overflow-auto"><code>string action = color switch
+{
+    "red" => "Стоп",
+    "yellow" => "Приготуйся",
+    "green" => "Рухайся",
+    _ => "Невідомий сигнал"
+};</code></pre>
+      </div>
+    </section>
+
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-4 text-gray-900 flex items-center gap-2">
+        <span class="logo-box">4</span> Тернарний оператор
+      </h2>
+      <p class="text-gray-700 leading-relaxed mb-6">
+        Якщо треба вибрати між двома варіантами, можна використати <code>condition ? a : b</code>.
+      </p>
+      <div class="rounded-2xl overflow-hidden shadow-2xl bg-[#282c34] mb-6">
+        <div class="bg-[#21252b] px-4 py-3 flex items-center gap-2">
+          <div class="w-3 h-3 rounded-full bg-[#ff5f56]"></div>
+          <div class="w-3 h-3 rounded-full bg-[#ffbd2e]"></div>
+          <div class="w-3 h-3 rounded-full bg-[#27c93f]"></div>
+          <span class="text-gray-400 text-[10px] ml-4 font-mono uppercase tracking-widest">Program.cs</span>
+        </div>
+        <pre class="m-0"><code class="language-csharp">int age = 17;
+string access = age >= 18 ? "Доступ дозволено" : "Доступ заборонено";
+Console.WriteLine(access);</code></pre>
+      </div>
+    </section>
+
+    <footer class="mt-16 pt-8 border-t border-gray-100 flex flex-col md:flex-row justify-between items-center gap-6">
+      <a href="../lesson3/theory.html" class="text-gray-400 hover:text-black transition-colors font-medium">← Повернутися до Уроку 3</a>
+      <a href="./practice.html" class="btn-action px-12 py-4 shadow-brand/20 shadow-lg bg-[#0f172a] text-white rounded-xl font-bold hover:bg-black transition-all">
+        До практики ➔
+      </a>
+    </footer>
+
+  </main>
+
+  <footer class="text-center py-10 text-gray-400 text-xs">
+    <p>© 2026 IT School Hub | Навчання без кордонів</p>
+  </footer>
+
+  <script>hljs.highlightAll();</script>
+</body>
+</html>
+
