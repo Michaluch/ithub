@@ -1,0 +1,410 @@
+<!DOCTYPE html><html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Завдання Scratch для 5 класу</title>
+  <style>
+    :root {
+      --ivory: #fffdf0;
+      --ivory-dark: #f6f0dc;
+      --sand: #e8dcc0;
+      --text: #3a3228;
+      --muted: #6b6256;
+      --accent: #b8905f;
+      --card: rgba(255,255,255,0.72);
+      --shadow: 0 10px 30px rgba(80, 64, 39, 0.08);
+      --radius: 22px;
+    }* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background:
+    radial-gradient(circle at top right, #fff8e6 0%, transparent 24%),
+    linear-gradient(180deg, #fffef7 0%, var(--ivory) 100%);
+  color: var(--text);
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+.container {
+  width: min(1180px, calc(100% - 32px));
+  margin: 0 auto;
+}
+
+.hero {
+  padding: 48px 0 24px;
+}
+
+.hero-box {
+  background: linear-gradient(135deg, rgba(255,255,255,0.86), rgba(255,249,235,0.9));
+  border: 1px solid var(--sand);
+  border-radius: 30px;
+  box-shadow: var(--shadow);
+  padding: 34px;
+}
+
+.eyebrow {
+  display: inline-block;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: var(--ivory-dark);
+  border: 1px solid var(--sand);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .03em;
+  color: var(--accent);
+  margin-bottom: 14px;
+}
+
+h1 {
+  margin: 0 0 12px;
+  font-size: clamp(30px, 4.8vw, 52px);
+  line-height: 1.08;
+}
+
+.lead {
+  margin: 0;
+  max-width: 900px;
+  color: var(--muted);
+  font-size: 18px;
+  line-height: 1.7;
+}
+
+.nav-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+  margin-top: 24px;
+}
+
+.nav-grid a {
+  text-decoration: none;
+  color: var(--text);
+  background: rgba(255,255,255,0.78);
+  border: 1px solid var(--sand);
+  border-radius: 18px;
+  padding: 16px 18px;
+  font-weight: 700;
+  box-shadow: var(--shadow);
+  transition: transform .18s ease, border-color .18s ease;
+}
+
+.nav-grid a:hover {
+  transform: translateY(-3px);
+  border-color: var(--accent);
+}
+
+section {
+  padding: 14px 0;
+}
+
+.intro,
+.rules,
+.variant {
+  background: var(--card);
+  border: 1px solid var(--sand);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.intro,
+.rules {
+  padding: 26px;
+  margin-top: 12px;
+}
+
+h2 {
+  margin: 0 0 14px;
+  font-size: 28px;
+}
+
+p, li {
+  line-height: 1.7;
+}
+
+.variant {
+  overflow: hidden;
+  margin-top: 20px;
+}
+
+.variant-head {
+  padding: 22px 24px;
+  background: linear-gradient(90deg, #fff8ea, #fffdf6);
+  border-bottom: 1px solid var(--sand);
+}
+
+.variant-head h3 {
+  margin: 0 0 6px;
+  font-size: 24px;
+}
+
+.variant-head p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.levels {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 18px;
+  padding: 22px;
+}
+
+.level {
+  background: rgba(255,255,255,0.82);
+  border: 1px solid var(--sand);
+  border-radius: 18px;
+  padding: 20px;
+  min-height: 100%;
+}
+
+.tag {
+  display: inline-block;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: var(--ivory-dark);
+  border: 1px solid var(--sand);
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.level h4 {
+  margin: 0 0 12px;
+  font-size: 20px;
+}
+
+ul {
+  margin: 10px 0 0 18px;
+  padding: 0;
+}
+
+.tip {
+  margin-top: 14px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: #fff8eb;
+  border: 1px dashed #d4b58a;
+  color: #665742;
+  font-size: 15px;
+}
+
+.footer-note {
+  margin: 26px 0 42px;
+  padding: 22px;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+@media (max-width: 720px) {
+  .hero-box, .intro, .rules { padding: 22px; }
+  .variant-head, .levels { padding: 18px; }
+}
+
+@media print {
+  .nav-grid { display: none; }
+  .hero-box, .intro, .rules, .variant, .level { box-shadow: none; }
+  body { background: white; }
+}
+
+  </style>
+</head>
+<body oncopy="return false" oncut="return false" onpaste="return false" oncontextmenu="return false" ondragstart="return false" onselectstart="return false">
+  <div class="container">
+    <header class="hero">
+      <div class="hero-box">
+        <div class="eyebrow">Інформатика • 5 клас • Scratch</div>
+        <h1>Scratch: програми з розгалуженнями</h1>
+        <p class="lead">Тема добірки: <strong>програми з розгалуженнями</strong>. У кожному варіанті подано 3 групи складності: початковий, середній і достатній. Усі завдання орієнтовані на використання команд <strong>якщо</strong>, <strong>якщо ... інакше</strong>, перевірок умов та реакції програми на різні ситуації.</p>
+        <nav class="nav-grid">
+          <a href="#variant-1">Варіант 1</a>
+          <a href="#variant-2">Варіант 2</a>
+          <a href="#variant-3">Варіант 3</a>
+          <a href="#rules">Вимоги до роботи</a>
+        </nav>
+      </div>
+    </header><section>
+  <div class="intro">
+    <h2>Як працювати із завданнями</h2>
+    <p>Учень отримує свій варіант і виконує завдання у Scratch. Основна увага приділяється використанню <strong>розгалужень</strong>: програма повинна приймати рішення залежно від умови. Під час виконання потрібно продумати алгоритм, визначити, яка умова перевіряється, і передбачити різні результати дій персонажа або гри.</p>
+  </div>
+</section>
+
+<section id="variant-1">
+  <article class="variant">
+    <div class="variant-head">
+      <h3>Варіант 1. Просте розгалуження</h3>
+      <p>Завдання цього варіанта допомагають навчитися використовувати команди «якщо» та «якщо ... інакше» у простих життєвих і навчальних ситуаціях.</p>
+    </div>
+    <div class="levels">
+      <div class="level">
+        <div class="tag">Початковий рівень</div>
+        <h4>Чи торкнувся краю?</h4>
+        <p>Створи проєкт, у якому спрайт рухається по сцені, а коли торкається краю — змінює свою поведінку.</p>
+        <ul>
+          <li>Спрайт рухається вперед у циклі.</li>
+          <li>Якщо спрайт торкається краю, він говорить: «Я дійшов до межі!»</li>
+          <li>Після цього спрайт має повернутися в інший бік.</li>
+          <li>Додай яскравий фон і зрозумілу назву проєкту.</li>
+        </ul>
+        <div class="tip">Підказка: використай блок <strong>якщо</strong> для перевірки дотику до краю.</div>
+      </div>
+      <div class="level">
+        <div class="tag">Середній рівень</div>
+        <h4>Світлофор</h4>
+        <p>Створи модель світлофора, у якій персонаж або автомобіль реагує на колір сигналу.</p>
+        <ul>
+          <li>На сцені мають бути червоний, жовтий і зелений сигнали.</li>
+          <li>Якщо світить зелений сигнал, персонаж рухається.</li>
+          <li>Якщо світить червоний сигнал, персонаж зупиняється.</li>
+          <li>Можна додати повідомлення «Йди» або «Стій».</li>
+        </ul>
+        <div class="tip">Підказка: використай <strong>якщо ... інакше</strong>, щоб задати дві різні дії залежно від умови.</div>
+      </div>
+      <div class="level">
+        <div class="tag">Достатній рівень</div>
+        <h4>Розумний м’яч</h4>
+        <p>Створи гру, де м’яч падає вниз, а програма перевіряє, чи зловив його гравець.</p>
+        <ul>
+          <li>Кошик керується клавішами ліворуч і праворуч.</li>
+          <li>Якщо м’яч торкається кошика, додається 1 очко.</li>
+          <li>Інакше, якщо м’яч торкається нижнього краю, виводиться повідомлення «Не спіймав!»</li>
+          <li>Створи змінну «Рахунок».</li>
+        </ul>
+        <div class="tip">Підказка: продумай дві різні гілки алгоритму: успіх і невдача.</div>
+      </div>
+    </div>
+  </article>
+</section>
+
+<section id="variant-2">
+  <article class="variant">
+    <div class="variant-head">
+      <h3>Варіант 2. Розгалуження у діалозі та виборі</h3>
+      <p>У цьому варіанті учні створюють програми, які реагують на відповіді користувача або на вибір дії.</p>
+    </div>
+    <div class="levels">
+      <div class="level">
+        <div class="tag">Початковий рівень</div>
+        <h4>Правильна відповідь</h4>
+        <p>Створи програму, яка ставить одне запитання і перевіряє відповідь користувача.</p>
+        <ul>
+          <li>Спрайт ставить просте запитання, наприклад: «Скільки буде 2 + 2?»</li>
+          <li>Якщо відповідь правильна, спрайт говорить: «Молодець!»</li>
+          <li>Інакше спрайт говорить: «Спробуй ще раз».</li>
+          <li>Додай зміну костюма або емоції персонажа.</li>
+        </ul>
+        <div class="tip">Підказка: використай блоки <strong>запитати ... і чекати</strong> та <strong>якщо ... інакше</strong>.</div>
+      </div>
+      <div class="level">
+        <div class="tag">Середній рівень</div>
+        <h4>Чарівні двері</h4>
+        <p>Створи сцену, у якій герой обирає одні з двох дверей, а програма показує різний результат.</p>
+        <ul>
+          <li>Користувач вводить номер дверей: 1 або 2.</li>
+          <li>Якщо вибрано двері 1, герой потрапляє до скарбів.</li>
+          <li>Інакше герой потрапляє у пастку або на іншу сцену.</li>
+          <li>Додай зміну фону залежно від вибору.</li>
+        </ul>
+        <div class="tip">Підказка: це приклад програми, де результат повністю залежить від умови.</div>
+      </div>
+      <div class="level">
+        <div class="tag">Достатній рівень</div>
+        <h4>Міні-вікторина</h4>
+        <p>Створи вікторину з трьох запитань, у якій за правильні відповіді нараховуються бали.</p>
+        <ul>
+          <li>Після кожного запитання програма перевіряє відповідь.</li>
+          <li>Якщо відповідь правильна, рахунок збільшується на 1.</li>
+          <li>Інакше програма повідомляє правильний варіант.</li>
+          <li>Наприкінці виведи результат і коротку оцінку: «чудово», «добре» або «потрібно повторити».</li>
+        </ul>
+        <div class="tip">Підказка: використай кілька розгалужень і змінну для підрахунку балів.</div>
+      </div>
+    </div>
+  </article>
+</section>
+
+<section id="variant-3">
+  <article class="variant">
+    <div class="variant-head">
+      <h3>Варіант 3. Розгалуження в іграх</h3>
+      <p>Завдання цього варіанта спрямовані на застосування розгалужень у простих ігрових алгоритмах.</p>
+    </div>
+    <div class="levels">
+      <div class="level">
+        <div class="tag">Початковий рівень</div>
+        <h4>Знайди приз</h4>
+        <p>Створи гру, у якій герой шукає предмет на сцені.</p>
+        <ul>
+          <li>Герой рухається клавішами.</li>
+          <li>Якщо герой торкається призу, з’являється напис «Ти знайшов скарб!»</li>
+          <li>Інакше гра триває.</li>
+          <li>Можна додати звук перемоги.</li>
+        </ul>
+        <div class="tip">Підказка: перевірка дотику — це умова, від якої залежить дія програми.</div>
+      </div>
+      <div class="level">
+        <div class="tag">Середній рівень</div>
+        <h4>Безпечний перехід</h4>
+        <p>Створи гру, у якій герой переходить дорогу і повинен уникати автомобілів.</p>
+        <ul>
+          <li>Герой рухається знизу вгору.</li>
+          <li>Якщо герой торкається автомобіля, він повертається на старт.</li>
+          <li>Якщо герой доходить до верхньої частини сцени, з’являється повідомлення «Ти перейшов дорогу!»</li>
+          <li>Передбач дві різні реакції програми на дві різні умови.</li>
+        </ul>
+        <div class="tip">Підказка: в одному проєкті можна використати кілька блоків <strong>якщо</strong>.</div>
+      </div>
+      <div class="level">
+        <div class="tag">Достатній рівень</div>
+        <h4>Уникни перешкод і набери бали</h4>
+        <p>Створи гру, де герой збирає корисні предмети та уникає небезпечних.</p>
+        <ul>
+          <li>Якщо герой торкається зірки, до рахунку додається 1.</li>
+          <li>Якщо герой торкається небезпечного предмета, віднімається 1 життя або гра завершується.</li>
+          <li>Створи змінні «Рахунок» і «Життя».</li>
+          <li>Коли життя закінчуються, програма повинна показати «Гру завершено».</li>
+        </ul>
+        <div class="tip">Підказка: це завдання вимагає кількох умов і різних результатів для кожної з них.</div>
+      </div>
+    </div>
+  </article>
+</section>
+
+<section id="rules">
+  <div class="rules">
+    <h2>Вимоги до готового проєкту</h2>
+    <ul>
+      <li>Проєкт має запускатися зеленою кнопкою.</li>
+      <li>У кожному завданні обов’язково повинно бути використане хоча б одне розгалуження: <strong>якщо</strong> або <strong>якщо ... інакше</strong>.</li>
+      <li>Алгоритм повинен мати зрозумілу реакцію на різні умови.</li>
+      <li>Проєкт має бути перевірений на помилки.</li>
+      <li>Оформлення сцени та спрайтів має відповідати змісту завдання.</li>
+    </ul>
+  </div>
+</section>
+
+<div class="footer-note">
+  Лендінг містить базовий браузерний захист від копіювання: вимкнено виділення тексту, контекстне меню, копіювання, вирізання, вставлення та перетягування. Для GitHub Pages файл можна зберегти як <strong>index.html</strong>.
+</div>
+
+  </div>  <script>
+    document.addEventListener('keydown', function(e) {
+      const blocked = (e.ctrlKey || e.metaKey) && ['c', 'x', 's', 'u', 'a', 'p'].includes(String(e.key).toLowerCase());
+      if (blocked || e.key === 'F12') {
+        e.preventDefault();
+      }
+    });
+
+    ['copy', 'cut', 'paste', 'contextmenu', 'selectstart', 'dragstart'].forEach(function(evt) {
+      document.addEventListener(evt, function(e) {
+        e.preventDefault();
+      });
+    });
+  </script></body>
+</html>
