@@ -2,7 +2,7 @@
 Vercel Python Serverless Function: /api/chat
 
 GET  -> JSON з підказкою
-POST -> приймає JSON: { "message": "...", "code": "...", "lesson": "...", "task": "..." } і повертає { ok: true, reply: "..." }
+POST -> приймає JSON: { "message": "...", "code"?: "...", "lesson"?: "...", "task"?: "...", "provider"?: "gemini|openai|auto" } і повертає { ok: true, reply: "..." }
 
 Це навчальний “тютор-агент”:
 - Підказує, що виправити в коді та як мислити
@@ -86,6 +86,52 @@ def _build_reply(message: str) -> str:
     )
 
 
+def _fallback_tutor(message: str, code: str | None, lesson: str | None, task: str | None) -> str:
+    """
+    Fallback-тьютор без LLM: дає підказки і ніколи не повертає готову програму.
+    """
+    msg = (message or "").strip()
+    code_text = (code or "").strip()
+    hay = (msg + "\n" + code_text).lower()
+
+    hints: list[str] = []
+
+    if code_text:
+        # типові помилки для 7–9 класу
+        if ("if " in hay or "for " in hay or "while " in hay or "def " in hay) and ":" not in code_text:
+            hints.append("Схоже, десь пропущена двокрапка `:` після if/for/while/def.")
+        if "\t" in code_text:
+            hints.append("Краще робити відступи пробілами (4 пробіли), а не табуляціями.")
+
+    if "input" in hay:
+        hints.append("Пам’ятай: `input()` повертає `str`. Для чисел використовуй `int(input(...))` або `float(input(...))`.")
+    if "area" in hay or "пло" in hay:
+        hints.append("Для площі: `area = a * b`. Перевір, що `a` і `b` — числа, а не рядки.")
+    if "my_score" in hay or "my score" in hay or "case" in hay:
+        hints.append("Python чутливий до регістру: `my_score` і `My_Score` — різні імена.")
+    if "print" not in hay and (("task1" in hay) or ("task2" in hay) or ("task3" in hay)):
+        hints.append("Не забудь `print(...)`, якщо завдання просить вивести результат.")
+
+    if not hints:
+        hints.append("Опиши, що саме не працює (помилка або неправильний результат) — і я підкажу, що перевірити.")
+
+    context = []
+    if lesson:
+        context.append(str(lesson))
+    if task:
+        context.append(str(task))
+    ctx_line = f"Контекст: {', '.join(context)}\n\n" if context else ""
+
+    bullets = "\n".join([f"- {h}" for h in hints[:4]])
+    return (
+        ctx_line
+        + "Зараз працюю у режимі підказок.\n\n"
+        + "Що поправити (ймовірно):\n"
+        + bullets
+        + "\n\nНаступний крок: надішли 1) умову задачі, 2) твій код, 3) що виводить і що має вивести — і я вкажу конкретне місце, яке треба змінити."
+    )
+
+
 _SYSTEM_PROMPT = """Ти — навчальний тьютор з Python для учнів 7–9 класів.
 
 ВАЖЛИВІ ПРАВИЛА (їх не можна порушувати):
@@ -135,11 +181,79 @@ def _sanitize_reply(text: str) -> str:
     return text
 
 
+def _call_gemini_tutor(message: str, code: str | None, lesson: str | None, task: str | None) -> str:
+    """
+    Gemini через Google Generative Language API.
+    Env: GEMINI_API_KEY або GOOGLE_API_KEY
+    Env optional: GEMINI_MODEL (default: gemini-1.5-flash)
+    """
+    api_key = os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY")
+    if not api_key:
+        return _fallback_tutor(message, code, lesson, task)
+
+    model = os.environ.get("GEMINI_MODEL", "gemini-1.5-flash")
+
+    code_part = ""
+    if code:
+        code_clean = str(code)
+        if len(code_clean) > 2000:
+            code_clean = code_clean[:2000] + "\n... (обрізано) ..."
+        code_part = f"\n\nКОД УЧНЯ (фрагмент):\n{code_clean}"
+
+    meta = []
+    if lesson:
+        meta.append(f"урок={lesson}")
+    if task:
+        meta.append(f"завдання={task}")
+    meta_part = f"Контекст: {', '.join(meta)}\n" if meta else ""
+
+    user_text = (
+        meta_part
+        + "Запит учня:\n"
+        + message
+        + code_part
+        + "\n\nПам'ятай: не можна давати готову програму. Дай підказку, що поправити, і наступні кроки."
+    )
+
+    payload = {
+        "systemInstruction": {"parts": [{"text": _SYSTEM_PROMPT}]},
+        "contents": [{"role": "user", "parts": [{"text": user_text}]}],
+        "generationConfig": {"temperature": 0.3, "maxOutputTokens": 600},
+    }
+
+    url = f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent?key={api_key}"
+    req = urllib.request.Request(
+        url,
+        data=json.dumps(payload).encode("utf-8"),
+        headers={"Content-Type": "application/json"},
+        method="POST",
+    )
+
+    try:
+        with urllib.request.urlopen(req, timeout=20) as resp:
+            data = json.loads(resp.read().decode("utf-8"))
+            candidates = data.get("candidates") or []
+            if not candidates:
+                return _sanitize_reply(_fallback_tutor(message, code, lesson, task))
+            parts = (candidates[0].get("content") or {}).get("parts") or []
+            text = ""
+            if parts and isinstance(parts, list):
+                text = str(parts[0].get("text", "")).strip()
+            return _sanitize_reply(text) if text else _sanitize_reply(_fallback_tutor(message, code, lesson, task))
+    except urllib.error.HTTPError as e:
+        # quota/rate errors -> fallback hints
+        if e.code in (402, 403, 429):
+            return _sanitize_reply(_fallback_tutor(message, code, lesson, task))
+        return _sanitize_reply(_fallback_tutor(message, code, lesson, task))
+    except Exception:
+        return _sanitize_reply(_fallback_tutor(message, code, lesson, task))
+
+
 def _call_openai_tutor(message: str, code: str | None, lesson: str | None, task: str | None) -> str:
     api_key = os.environ.get("OPENAI_API_KEY")
     if not api_key:
         # fallback to simple rules if key missing
-        return _build_reply(message)
+        return _fallback_tutor(message, code, lesson, task)
 
     code_part = ""
     if code:
@@ -197,16 +311,44 @@ def _call_openai_tutor(message: str, code: str | None, lesson: str | None, task:
             err_body = e.read().decode("utf-8")
         except Exception:
             err_body = ""
+        # If quota is exceeded -> fallback hints
+        try:
+            parsed = json.loads(err_body) if err_body else {}
+        except Exception:
+            parsed = {}
+        err_type = ((parsed.get("error") or {}).get("type")) or ((parsed.get("error") or {}).get("code"))
+        if err_type == "insufficient_quota":
+            return _sanitize_reply(_fallback_tutor(message, code, lesson, task))
         return _sanitize_reply(
             "Не вдалося отримати відповідь тьютора (помилка API).\n"
             "Спробуй сформулювати питання коротше або надіслати менший фрагмент коду.\n"
             + (f"\nДеталі: {err_body}" if err_body else "")
         )
     except Exception:
-        return _sanitize_reply(
-            "Не вдалося отримати відповідь тьютора (мережева помилка).\n"
-            "Спробуй ще раз через кілька секунд."
-        )
+        return _sanitize_reply(_fallback_tutor(message, code, lesson, task))
+
+
+def _pick_provider(raw: object) -> str:
+    p = str(raw or "").strip().lower()
+    if p in ("gemini", "openai", "auto"):
+        return p
+    return "auto"
+
+
+def _call_tutor(provider: str, message: str, code: str | None, lesson: str | None, task: str | None) -> str:
+    if provider == "gemini":
+        return _call_gemini_tutor(message, code, lesson, task)
+    if provider == "openai":
+        return _call_openai_tutor(message, code, lesson, task)
+
+    # auto: gemini -> openai -> fallback
+    gemini_key = os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY")
+    openai_key = os.environ.get("OPENAI_API_KEY")
+    if gemini_key:
+        return _call_gemini_tutor(message, code, lesson, task)
+    if openai_key:
+        return _call_openai_tutor(message, code, lesson, task)
+    return _fallback_tutor(message, code, lesson, task)
 
 
 class handler(BaseHTTPRequestHandler):
@@ -221,8 +363,9 @@ class handler(BaseHTTPRequestHandler):
             200,
             {
                 "ok": True,
-                "usage": "POST { message, code?, lesson?, task? } to /api/chat",
+                "usage": "POST { message, code?, lesson?, task?, provider?: gemini|openai|auto } to /api/chat",
                 "policy": "Tutor hints only; never returns full program.",
+                "providers": ["gemini", "openai", "auto"],
             },
         )
 
@@ -245,7 +388,8 @@ class handler(BaseHTTPRequestHandler):
         code = body.get("code")
         lesson = body.get("lesson")
         task = body.get("task")
+        provider = _pick_provider(body.get("provider"))
 
-        reply = _call_openai_tutor(message=message, code=code, lesson=lesson, task=task)
+        reply = _call_tutor(provider=provider, message=message, code=code, lesson=lesson, task=task)
         return _json_response(self, 200, {"ok": True, "reply": reply})
 

@@ -272,6 +272,23 @@
       </div>
 
       <form class="space-y-3" onsubmit="sendLessonChat(event)">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+          <label class="text-xs font-black uppercase tracking-widest text-slate-500">
+            Провайдер
+            <select
+              id="chatProvider"
+              class="mt-2 w-full p-3 border-2 border-slate-100 rounded-2xl outline-none focus:ring-2 focus:ring-[#e2f0d9]/40 focus:border-[#e2f0d9] text-sm"
+            >
+              <option value="auto" selected>auto</option>
+              <option value="gemini">gemini</option>
+              <option value="openai">openai</option>
+            </select>
+          </label>
+          <div class="text-xs text-slate-500 leading-relaxed mt-1 md:mt-6">
+            Якщо один провайдер недоступний (квота), можна переключитись або залишити <b>auto</b>.
+          </div>
+        </div>
+
         <textarea
           id="chatMessage"
           class="w-full h-24 p-4 border-2 border-slate-100 rounded-2xl outline-none focus:ring-2 focus:ring-[#e2f0d9]/40 focus:border-[#e2f0d9] font-mono text-sm"
@@ -346,11 +363,13 @@
           window.location.hostname === "itschoolhub.site"
             ? "https://ithub-brown.vercel.app/api/chat"
             : "/api/chat";
+        const provider = document.getElementById("chatProvider")?.value || "auto";
         const resp = await fetch(apiUrl, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             message,
+            provider,
             lesson: "python/lesson2",
             task: "practice-chat",
             code: (() => {
