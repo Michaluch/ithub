@@ -342,11 +342,27 @@
       if (btn) btn.disabled = true;
 
       try {
-        const apiUrl = "https://ithub-brown.vercel.app/api/chat";
+        const apiUrl =
+          window.location.hostname === "itschoolhub.site"
+            ? "https://ithub-brown.vercel.app/api/chat"
+            : "/api/chat";
         const resp = await fetch(apiUrl, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ message }),
+          body: JSON.stringify({
+            message,
+            lesson: "python/lesson2",
+            task: "practice-chat",
+            code: (() => {
+              const t1 = document.getElementById("task1")?.value?.trim() || "";
+              const t2 = document.getElementById("task2")?.value?.trim() || "";
+              // Надсилаємо короткий контекст коду, якщо він є
+              const parts = [];
+              if (t1) parts.push("TASK1:\n" + t1);
+              if (t2) parts.push("TASK2:\n" + t2);
+              return parts.length ? parts.join("\n\n") : "";
+            })(),
+          }),
         });
 
         const data = await resp.json().catch(() => ({}));
