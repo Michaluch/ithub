@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Урок 7: Черепашкова графіка (Turtle) | IT School Hub</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+
+  <link rel="stylesheet" href="../../css/styles.css">
+  <script src="../../js/main.js" defer></script>
+</head>
+
+<body class="bg-slate-50 text-gray-900 font-sans leading-relaxed">
+
+  <nav class="nav-sticky">
+    <div class="container mx-auto flex justify-between items-center">
+      <a href="../../index.html" class="hover:opacity-80 transition-opacity">
+        <h1 class="text-2xl font-bold text-gray-700">
+          <span class="logo-box">IT</span> School Hub
+        </h1>
+      </a>
+
+      <div class="flex items-center gap-4">
+        <a class="hidden md:block text-sm font-medium text-gray-500 hover:text-black transition-colors" href="../index.html">
+          ← Програма курсу
+        </a>
+        <span class="bg-[#e2f0d9] px-5 py-1.5 rounded-full text-sm font-black uppercase tracking-wider text-[#1f2937] shadow-sm">
+          Урок 7
+        </span>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container mx-auto max-w-4xl px-6 py-12 bg-white mt-8 shadow-xl rounded-[2.5rem] border border-gray-100">
+
+    <header class="mb-10">
+      <h1 class="text-4xl md:text-5xl font-extrabold mb-4 tracking-tight">Черепашкова графіка (Turtle)</h1>
+      <p class="text-gray-600 text-lg leading-relaxed">
+        Малюємо фігури за допомогою коду: рух, повороти, колір, цикли та маленькі “арт-проєкти”.
+      </p>
+      <div class="h-2 w-24 bg-brand rounded-full mt-4"></div>
+    </header>
+
+    <!-- 1 -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-4 text-gray-900 flex items-center gap-2">
+        <span class="logo-box">1</span> Що таке Turtle?
+      </h2>
+      <p class="text-gray-700 leading-relaxed mb-6">
+        <b>Turtle</b> — це модуль Python, який дозволяє “керувати черепашкою” на екрані.
+        Черепашка має позицію, напрямок і ручку (pen). Коли вона рухається — лишає лінію.
+      </p>
+      <div class="p-6 rounded-3xl bg-[#e2f0d9]/30 border-l-8 border-[#b7d7a8]">
+        <p class="font-bold mb-2">Чому це круто?</p>
+        <p class="text-gray-700 text-sm leading-relaxed">
+          Turtle — ідеальний спосіб “побачити” алгоритми. Цикли, функції та математика стають малюнками.
+        </p>
+      </div>
+    </section>
+
+    <!-- 2 -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-4 text-gray-900 flex items-center gap-2">
+        <span class="logo-box">2</span> Перший запуск
+      </h2>
+      <p class="text-gray-700 leading-relaxed mb-6">
+        Створи файл <code>turtle_demo.py</code> і запусти його. На екрані відкриється вікно, де черепашка намалює лінію.
+      </p>
+
+      <div class="rounded-2xl overflow-hidden shadow-2xl bg-[#282c34] mb-6">
+        <div class="bg-[#21252b] px-4 py-3 flex items-center gap-2">
+          <div class="w-3 h-3 rounded-full bg-[#ff5f56]"></div>
+          <div class="w-3 h-3 rounded-full bg-[#ffbd2e]"></div>
+          <div class="w-3 h-3 rounded-full bg-[#27c93f]"></div>
+          <span class="text-gray-400 text-[10px] ml-4 font-mono uppercase tracking-widest">turtle_demo.py</span>
+        </div>
+        <pre class="m-0"><code class="language-python">import turtle
+
+t = turtle.Turtle()
+
+t.forward(120)   # вперед на 120 “кроків”
+t.left(90)       # поворот ліворуч на 90°
+t.forward(80)
+
+turtle.done()</code></pre>
+      </div>
+
+      <div class="p-6 rounded-3xl bg-amber-50 border-l-8 border-amber-400 italic text-gray-700">
+        Якщо вікно Turtle відкривається і одразу закривається — ти забув <code>turtle.done()</code>.
+      </div>
+    </section>
+
+    <!-- 3 -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-4 text-gray-900 flex items-center gap-2">
+        <span class="logo-box">3</span> Рух і повороти: базові команди
+      </h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="p-6 rounded-2xl border border-slate-100 bg-slate-50">
+          <h3 class="font-bold text-gray-900 mb-2">Рух</h3>
+          <ul class="list-disc pl-6 text-sm text-gray-700 space-y-2">
+            <li><code>forward(n)</code> — вперед</li>
+            <li><code>backward(n)</code> — назад</li>
+            <li><code>goto(x, y)</code> — перейти в координати</li>
+          </ul>
+        </div>
+        <div class="p-6 rounded-2xl border border-slate-100 bg-slate-50">
+          <h3 class="font-bold text-gray-900 mb-2">Повороти</h3>
+          <ul class="list-disc pl-6 text-sm text-gray-700 space-y-2">
+            <li><code>left(angle)</code> — ліворуч</li>
+            <li><code>right(angle)</code> — праворуч</li>
+            <li><code>setheading(angle)</code> — напрямок (0 — вправо)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="p-6 rounded-3xl bg-slate-900 text-white shadow-2xl mt-8">
+        <p class="font-bold mb-2 text-brand uppercase text-xs tracking-widest">Про координати</p>
+        <p class="text-slate-300 text-sm leading-relaxed">
+          Центр екрана — це (0, 0). Вправо — <code>x</code> росте, вгору — <code>y</code> росте.
+        </p>
+      </div>
+    </section>
+
+    <!-- 4 -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-4 text-gray-900 flex items-center gap-2">
+        <span class="logo-box">4</span> Ручка: колір, товщина, “підняти/опустити”
+      </h2>
+      <p class="text-gray-700 leading-relaxed mb-6">
+        Черепашка може малювати або просто рухатися без лінії.
+      </p>
+
+      <div class="rounded-2xl overflow-hidden shadow-2xl bg-[#282c34] mb-6">
+        <div class="bg-[#21252b] px-4 py-3 flex items-center gap-2">
+          <div class="w-3 h-3 rounded-full bg-[#ff5f56]"></div>
+          <div class="w-3 h-3 rounded-full bg-[#ffbd2e]"></div>
+          <div class="w-3 h-3 rounded-full bg-[#27c93f]"></div>
+          <span class="text-gray-400 text-[10px] ml-4 font-mono uppercase tracking-widest">pen.py</span>
+        </div>
+        <pre class="m-0"><code class="language-python">import turtle
+
+t = turtle.Turtle()
+t.pensize(5)
+t.pencolor("blue")
+t.speed(8)        # 1..10 або 0 (найшвидше)
+
+t.forward(120)
+t.penup()         # підняти ручку (не малює)
+t.forward(40)
+t.pendown()       # опустити ручку (малює)
+t.pencolor("red")
+t.forward(120)
+
+turtle.done()</code></pre>
+      </div>
+    </section>
+
+    <!-- 5 -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-4 text-gray-900 flex items-center gap-2">
+        <span class="logo-box">5</span> Фігури через цикли: квадрат і багатокутник
+      </h2>
+      <p class="text-gray-700 leading-relaxed mb-6">
+        Найкрасивіше в Turtle — це те, що <b>цикли</b> одразу дають “магію”: замість 4 однакових команд — один цикл.
+      </p>
+
+      <div class="rounded-2xl overflow-hidden shadow-2xl bg-[#282c34] mb-6">
+        <div class="bg-[#21252b] px-4 py-3 flex items-center gap-2">
+          <div class="w-3 h-3 rounded-full bg-[#ff5f56]"></div>
+          <div class="w-3 h-3 rounded-full bg-[#ffbd2e]"></div>
+          <div class="w-3 h-3 rounded-full bg-[#27c93f]"></div>
+          <span class="text-gray-400 text-[10px] ml-4 font-mono uppercase tracking-widest">shapes.py</span>
+        </div>
+        <pre class="m-0"><code class="language-python">import turtle
+
+t = turtle.Turtle()
+t.speed(0)
+
+# квадрат
+for _ in range(4):
+    t.forward(120)
+    t.left(90)
+
+t.penup()
+t.goto(-180, -50)
+t.pendown()
+
+# правильний шестикутник (6 сторін)
+sides = 6
+for _ in range(sides):
+    t.forward(80)
+    t.left(360 / sides)
+
+turtle.done()</code></pre>
+      </div>
+
+      <div class="p-6 rounded-3xl bg-[#e2f0d9]/30 border-l-8 border-[#e2f0d9] italic text-gray-700">
+        Формула повороту: для правильного n-кутника кут повороту = \(360 / n\).
+      </div>
+    </section>
+
+    <!-- 6 -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-4 text-gray-900 flex items-center gap-2">
+        <span class="logo-box">6</span> Заповнення фігур (fill)
+      </h2>
+      <p class="text-gray-700 leading-relaxed mb-6">
+        Turtle може не тільки малювати контур, а й <b>заповнювати</b> фігуру кольором.
+      </p>
+
+      <div class="rounded-2xl overflow-hidden shadow-2xl bg-[#282c34] mb-6">
+        <div class="bg-[#21252b] px-4 py-3 flex items-center gap-2">
+          <div class="w-3 h-3 rounded-full bg-[#ff5f56]"></div>
+          <div class="w-3 h-3 rounded-full bg-[#ffbd2e]"></div>
+          <div class="w-3 h-3 rounded-full bg-[#27c93f]"></div>
+          <span class="text-gray-400 text-[10px] ml-4 font-mono uppercase tracking-widest">fill.py</span>
+        </div>
+        <pre class="m-0"><code class="language-python">import turtle
+
+t = turtle.Turtle()
+t.speed(0)
+t.pencolor("black")
+t.fillcolor("#e2f0d9")
+
+t.begin_fill()
+for _ in range(4):
+    t.forward(120)
+    t.left(90)
+t.end_fill()
+
+turtle.done()</code></pre>
+      </div>
+    </section>
+
+    <!-- 7 -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-4 text-gray-900 flex items-center gap-2">
+        <span class="logo-box">7</span> Малюнки-алгоритми: спіраль і “квітка”
+      </h2>
+      <p class="text-gray-700 leading-relaxed mb-6">
+        Якщо змінювати довжину кроку або кут у циклі — виходять спіралі та орнаменти.
+      </p>
+
+      <div class="rounded-2xl overflow-hidden shadow-2xl bg-[#282c34] mb-6">
+        <div class="bg-[#21252b] px-4 py-3 flex items-center gap-2">
+          <div class="w-3 h-3 rounded-full bg-[#ff5f56]"></div>
+          <div class="w-3 h-3 rounded-full bg-[#ffbd2e]"></div>
+          <div class="w-3 h-3 rounded-full bg-[#27c93f]"></div>
+          <span class="text-gray-400 text-[10px] ml-4 font-mono uppercase tracking-widest">spiral.py</span>
+        </div>
+        <pre class="m-0"><code class="language-python">import turtle
+
+t = turtle.Turtle()
+t.speed(0)
+t.pencolor("purple")
+
+step = 5
+for _ in range(60):
+    t.forward(step)
+    t.left(20)
+    step += 2
+
+turtle.done()</code></pre>
+      </div>
+
+      <div class="rounded-2xl overflow-hidden shadow-2xl bg-[#282c34] mb-6">
+        <div class="bg-[#21252b] px-4 py-3 flex items-center gap-2">
+          <div class="w-3 h-3 rounded-full bg-[#ff5f56]"></div>
+          <div class="w-3 h-3 rounded-full bg-[#ffbd2e]"></div>
+          <div class="w-3 h-3 rounded-full bg-[#27c93f]"></div>
+          <span class="text-gray-400 text-[10px] ml-4 font-mono uppercase tracking-widest">flower.py</span>
+        </div>
+        <pre class="m-0"><code class="language-python">import turtle
+
+t = turtle.Turtle()
+t.speed(0)
+t.pencolor("hotpink")
+
+for _ in range(36):
+    for _ in range(4):
+        t.forward(80)
+        t.left(90)
+    t.left(10)
+
+turtle.done()</code></pre>
+      </div>
+    </section>
+
+    <section class="mb-12 p-8 bg-slate-900 text-white rounded-[2.5rem] shadow-2xl relative overflow-hidden">
+      <h2 class="text-2xl font-extrabold mb-4 text-[#e2f0d9]">Висновок</h2>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Turtle — це “графіка через алгоритми”. Ти керуєш рухом, поворотами та ручкою, а цикли перетворюють правила на красиві фігури.
+        У практиці ти зробиш власні малюнки й навчишся поєднувати цикли та функції.
+      </p>
+      <div class="flex flex-wrap gap-3">
+        <span class="px-4 py-2 bg-slate-800 rounded-full text-xs font-mono">forward</span>
+        <span class="px-4 py-2 bg-slate-800 rounded-full text-xs font-mono">left/right</span>
+        <span class="px-4 py-2 bg-slate-800 rounded-full text-xs font-mono">penup/pendown</span>
+        <span class="px-4 py-2 bg-slate-800 rounded-full text-xs font-mono">for</span>
+        <span class="px-4 py-2 bg-slate-800 rounded-full text-xs font-mono">fill</span>
+      </div>
+    </section>
+
+    <footer class="mt-16 pt-8 border-t flex justify-between gap-4">
+      <a class="text-gray-400 hover:text-black font-medium transition-colors" href="../lesson6/theory.html">
+        ← Минулий урок
+      </a>
+      <a class="btn-action px-12 py-4" href="./practice.html">
+        До практики ➔
+      </a>
+    </footer>
+
+  </main>
+
+  <script>hljs.highlightAll();</script>
+</body>
+</html>
+
