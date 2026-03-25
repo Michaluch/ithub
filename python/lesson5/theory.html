@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Урок 5: Цикли (while + for) | IT School Hub</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+
+  <link rel="stylesheet" href="../../css/styles.css">
+  <script src="../../js/main.js" defer></script>
+</head>
+
+<body class="bg-slate-50 text-gray-900 font-sans leading-relaxed">
+
+  <nav class="nav-sticky">
+    <div class="container mx-auto flex justify-between items-center">
+      <a href="../../index.html" class="hover:opacity-80 transition-opacity">
+        <h1 class="text-2xl font-bold text-gray-700">
+          <span class="logo-box">IT</span> School Hub
+        </h1>
+      </a>
+
+      <div class="flex items-center gap-4">
+        <a class="hidden md:block text-sm font-medium text-gray-500 hover:text-black transition-colors" href="../index.html">
+          ← Програма курсу
+        </a>
+        <span class="bg-[#e2f0d9] px-5 py-1.5 rounded-full text-sm font-black uppercase tracking-wider text-[#1f2937] shadow-sm">
+          Урок 5
+        </span>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container mx-auto max-w-4xl px-6 py-12 bg-white mt-8 shadow-xl rounded-[2.5rem] border border-gray-100">
+
+    <header class="mb-10">
+      <h1 class="text-4xl md:text-5xl font-extrabold mb-4 tracking-tight">Цикли: while + for</h1>
+      <p class="text-gray-600 text-lg leading-relaxed">
+        Як змусити програму повторювати дії, рахувати, перебирати списки та зупинятися в потрібний момент.
+      </p>
+      <div class="h-2 w-24 bg-brand rounded-full mt-4"></div>
+    </header>
+
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-4 text-gray-900 flex items-center gap-2">
+        <span class="logo-box">1</span> Навіщо потрібні цикли?
+      </h2>
+      <p class="text-gray-700 leading-relaxed mb-6">
+        Уяви, що треба надрукувати <b>"Привіт!"</b> 10 разів. Можна написати 10 рядків <code>print()</code>…
+        але це не програмування. Цикл дозволяє повторювати дію стільки разів, скільки потрібно.
+      </p>
+
+      <div class="p-6 rounded-3xl bg-[#e2f0d9]/30 border-l-8 border-[#b7d7a8]">
+        <p class="font-bold mb-2">Запам’ятай</p>
+        <p class="text-gray-700 text-sm leading-relaxed">
+          Цикл — це “повторюй, доки …”. Головне — щоб у нього була <b>умова зупинки</b>.
+        </p>
+      </div>
+    </section>
+
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-4 text-gray-900 flex items-center gap-2">
+        <span class="logo-box">2</span> Цикл while (поки умова істинна)
+      </h2>
+
+      <p class="text-gray-700 leading-relaxed mb-6">
+        <b>while</b> працює так: поки умова <code>True</code> — виконуємо блок коду. Як тільки умова стане <code>False</code> — виходимо з циклу.
+      </p>
+
+      <div class="rounded-2xl overflow-hidden shadow-2xl bg-[#282c34] mb-6">
+        <div class="bg-[#21252b] px-4 py-3 flex items-center gap-2">
+          <div class="w-3 h-3 rounded-full bg-[#ff5f56]"></div>
+          <div class="w-3 h-3 rounded-full bg-[#ffbd2e]"></div>
+          <div class="w-3 h-3 rounded-full bg-[#27c93f]"></div>
+          <span class="text-gray-400 text-[10px] ml-4 font-mono uppercase tracking-widest">countdown.py</span>
+        </div>
+        <pre class="m-0"><code class="language-python">count = 5
+
+while count > 0:
+    print("Залишилось:", count)
+    count = count - 1
+
+print("Старт!")</code></pre>
+      </div>
+
+      <div class="p-6 rounded-3xl bg-red-50 border-l-8 border-red-400 my-6">
+        <p class="font-bold text-red-800 mb-2">Пастка: нескінченний цикл</p>
+        <p class="text-gray-800">
+          Якщо ти забув змінити змінну, яка впливає на умову (наприклад, <code>count</code>), цикл може ніколи не закінчитися.
+        </p>
+      </div>
+
+      <div class="rounded-2xl overflow-hidden shadow-2xl bg-[#282c34] mb-6">
+        <div class="bg-[#21252b] px-4 py-3 flex items-center gap-2">
+          <div class="w-3 h-3 rounded-full bg-[#ff5f56]"></div>
+          <div class="w-3 h-3 rounded-full bg-[#ffbd2e]"></div>
+          <div class="w-3 h-3 rounded-full bg-[#27c93f]"></div>
+          <span class="text-gray-400 text-[10px] ml-4 font-mono uppercase tracking-widest">danger.py</span>
+        </div>
+        <pre class="m-0"><code class="language-python">x = 1
+while x == 1:
+    print("Ой...")  # x не змінюється → цикл без кінця</code></pre>
+      </div>
+    </section>
+
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-4 text-gray-900 flex items-center gap-2">
+        <span class="logo-box">3</span> Цикл for (перебір)
+      </h2>
+
+      <p class="text-gray-700 leading-relaxed mb-6">
+        <b>for</b> зручний, коли ти знаєш, скільки разів повторювати дію, або хочеш пройтись по елементах колекції (наприклад, списку).
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="p-6 rounded-2xl border border-slate-100 bg-slate-50">
+          <p class="text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">range()</p>
+          <p class="text-sm text-gray-700 mb-4">
+            <code>range(n)</code> дає числа від <code>0</code> до <code>n-1</code>.
+          </p>
+          <pre class="bg-white p-4 rounded-xl border border-slate-100 font-mono text-sm overflow-auto"><code>for i in range(5):
+    print(i)
+# 0 1 2 3 4</code></pre>
+        </div>
+        <div class="p-6 rounded-2xl border border-slate-100 bg-slate-50">
+          <p class="text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">перебір списку</p>
+          <p class="text-sm text-gray-700 mb-4">
+            for може перебирати елементи напряму.
+          </p>
+          <pre class="bg-white p-4 rounded-xl border border-slate-100 font-mono text-sm overflow-auto"><code>fruits = ["яблуко", "банан", "груша"]
+for f in fruits:
+    print("🍎", f)</code></pre>
+        </div>
+      </div>
+
+      <div class="p-6 rounded-3xl bg-amber-50 border-l-8 border-amber-400 italic text-gray-700">
+        Якщо потрібен і <b>індекс</b>, і <b>елемент</b> — використовуй <code>enumerate()</code>.
+        Напр.: <code>for i, val in enumerate(items):</code>
+      </div>
+    </section>
+
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-4 text-gray-900 flex items-center gap-2">
+        <span class="logo-box">4</span> break і continue
+      </h2>
+      <p class="text-gray-700 leading-relaxed mb-6">
+        Іноді треба <b>перервати</b> цикл або <b>пропустити</b> один крок.
+      </p>
+
+      <div class="rounded-2xl overflow-hidden shadow-2xl bg-[#282c34] mb-6">
+        <div class="bg-[#21252b] px-4 py-3 flex items-center gap-2">
+          <div class="w-3 h-3 rounded-full bg-[#ff5f56]"></div>
+          <div class="w-3 h-3 rounded-full bg-[#ffbd2e]"></div>
+          <div class="w-3 h-3 rounded-full bg-[#27c93f]"></div>
+          <span class="text-gray-400 text-[10px] ml-4 font-mono uppercase tracking-widest">break_continue.py</span>
+        </div>
+        <pre class="m-0"><code class="language-python"># break — вихід з циклу
+for n in range(1, 11):
+    if n == 6:
+        break
+    print(n)  # 1 2 3 4 5
+
+# continue — пропустити крок
+for n in range(1, 6):
+    if n == 3:
+        continue
+    print(n)  # 1 2 4 5</code></pre>
+      </div>
+    </section>
+
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-4 text-gray-900 flex items-center gap-2">
+        <span class="logo-box">5</span> Вкладені цикли (простими словами)
+      </h2>
+      <p class="text-gray-700 leading-relaxed mb-6">
+        <b>Вкладений цикл</b> — це цикл всередині іншого циклу. Так роблять, коли треба працювати з таблицями/матрицями або малювати “візерунки”.
+      </p>
+
+      <div class="rounded-2xl overflow-hidden shadow-2xl bg-[#282c34] mb-6">
+        <div class="bg-[#21252b] px-4 py-3 flex items-center gap-2">
+          <div class="w-3 h-3 rounded-full bg-[#ff5f56]"></div>
+          <div class="w-3 h-3 rounded-full bg-[#ffbd2e]"></div>
+          <div class="w-3 h-3 rounded-full bg-[#27c93f]"></div>
+          <span class="text-gray-400 text-[10px] ml-4 font-mono uppercase tracking-widest">grid.py</span>
+        </div>
+        <pre class="m-0"><code class="language-python"># Друк “сітки” 3x4 зі зірочок
+rows = 3
+cols = 4
+
+for r in range(rows):
+    line = ""
+    for c in range(cols):
+        line = line + "*"
+    print(line)</code></pre>
+      </div>
+
+      <div class="p-6 rounded-3xl bg-[#e2f0d9]/30 border-l-8 border-[#e2f0d9] italic text-gray-700">
+        Не лякайся вкладених циклів: уяви, що зовнішній цикл — це “рядки”, а внутрішній — “стовпчики”.
+      </div>
+    </section>
+
+    <section class="mb-12 p-8 bg-slate-900 text-white rounded-[2.5rem] shadow-2xl relative overflow-hidden">
+      <h2 class="text-2xl font-extrabold mb-4 text-[#e2f0d9]">Висновок</h2>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        while — коли повторюємо “поки умова істинна”. for — коли перебираємо або рахуємо через range().
+        break/continue допомагають керувати циклом, а вкладені цикли — це база для таблиць і алгоритмів.
+      </p>
+      <div class="flex flex-wrap gap-3">
+        <span class="px-4 py-2 bg-slate-800 rounded-full text-xs font-mono">while</span>
+        <span class="px-4 py-2 bg-slate-800 rounded-full text-xs font-mono">for</span>
+        <span class="px-4 py-2 bg-slate-800 rounded-full text-xs font-mono">range</span>
+        <span class="px-4 py-2 bg-slate-800 rounded-full text-xs font-mono">break</span>
+        <span class="px-4 py-2 bg-slate-800 rounded-full text-xs font-mono">continue</span>
+      </div>
+    </section>
+
+    <footer class="mt-16 pt-8 border-t flex justify-between gap-4">
+      <a class="text-gray-400 hover:text-black font-medium transition-colors" href="../lesson4/theory.html">
+        ← Минулий урок
+      </a>
+      <a class="btn-action px-12 py-4" href="./practice.html">
+        До практики ➔
+      </a>
+    </footer>
+
+  </main>
+
+  <script>hljs.highlightAll();</script>
+</body>
+</html>
+
