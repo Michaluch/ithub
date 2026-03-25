@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="uk">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -22,15 +23,12 @@
         </h1>
       </a>
       <div class="flex items-center gap-4">
-        <a
-          href="../index.html"
-          class="hidden md:block text-sm font-medium text-gray-500 hover:text-black transition-colors"
-        >
+        <a href="../index.html"
+          class="hidden md:block text-sm font-medium text-gray-500 hover:text-black transition-colors">
           ← Повернутися до курсу
         </a>
         <span
-          class="bg-[#e2f0d9] px-5 py-1.5 rounded-full text-sm font-black uppercase tracking-wider text-[#1f2937] shadow-sm"
-        >
+          class="bg-[#e2f0d9] px-5 py-1.5 rounded-full text-sm font-black uppercase tracking-wider text-[#1f2937] shadow-sm">
           Практика №2
         </span>
       </div>
@@ -38,9 +36,7 @@
   </nav>
 
   <!-- Same “article card” wrapper as theory.html -->
-  <main
-    class="container mx-auto max-w-4xl px-6 py-12 bg-white mt-8 shadow-xl rounded-[2.5rem] border border-gray-100"
-  >
+  <main class="container mx-auto max-w-4xl px-6 py-12 bg-white mt-8 shadow-xl rounded-[2.5rem] border border-gray-100">
     <header class="mb-12 text-center md:text-left">
       <h1 class="text-4xl md:text-5xl font-extrabold mb-4 text-gray-900 tracking-tight">
         Завдання: "Керування даними"
@@ -69,23 +65,16 @@
         </p>
 
         <div class="rounded-2xl overflow-hidden bg-[#282c34] mb-4">
-          <div
-            class="bg-[#21252b] px-4 py-2 text-[10px] text-gray-500 font-mono tracking-widest uppercase"
-          >
+          <div class="bg-[#21252b] px-4 py-2 text-[10px] text-gray-500 font-mono tracking-widest uppercase">
             python_editor.py
           </div>
-          <textarea
-            id="task1"
+          <textarea id="task1"
             class="w-full h-40 p-6 bg-transparent text-[#98c379] font-mono text-sm outline-none focus:ring-2 focus:ring-[#e2f0d9]/50 transition-all resize-none"
-            placeholder="# Напиши код тут..."
-          ></textarea>
+            placeholder="# Напиши код тут..."></textarea>
         </div>
 
-        <button
-          type="button"
-          onclick="checkTask1()"
-          class="btn-action w-full md:w-auto px-10 py-4 shadow-lg shadow-gray-200"
-        >
+        <button type="button" onclick="checkTask1()"
+          class="btn-action w-full md:w-auto px-10 py-4 shadow-lg shadow-gray-200">
           Перевірити код ➔
         </button>
         <div id="feedback1" class="mt-4 p-4 rounded-xl text-sm font-medium hidden"></div>
@@ -106,23 +95,16 @@
         </p>
 
         <div class="rounded-2xl overflow-hidden bg-[#282c34] mb-4">
-          <div
-            class="bg-[#21252b] px-4 py-2 text-[10px] text-gray-500 font-mono tracking-widest uppercase"
-          >
+          <div class="bg-[#21252b] px-4 py-2 text-[10px] text-gray-500 font-mono tracking-widest uppercase">
             area_calculator.py
           </div>
-          <textarea
-            id="task2"
+          <textarea id="task2"
             class="w-full h-32 p-6 bg-transparent text-[#61afef] font-mono text-sm outline-none focus:ring-2 focus:ring-[#e2f0d9]/50 transition-all resize-none"
-            placeholder="a = ..."
-          ></textarea>
+            placeholder="a = ..."></textarea>
         </div>
 
-        <button
-          type="button"
-          onclick="checkTask2()"
-          class="btn-action w-full md:w-auto px-10 py-4 shadow-lg shadow-gray-200"
-        >
+        <button type="button" onclick="checkTask2()"
+          class="btn-action w-full md:w-auto px-10 py-4 shadow-lg shadow-gray-200">
           Перевірити результат
         </button>
         <div id="feedback2" class="mt-4 p-4 rounded-xl text-sm font-medium hidden"></div>
@@ -140,19 +122,15 @@
         <p class="text-gray-600 mb-4">Виправ помилку в коді, враховуючи регістр літер:</p>
 
         <div
-          class="bg-slate-50 p-6 rounded-2xl border border-dashed border-gray-200 font-mono text-sm mb-6 leading-loose"
-        >
+          class="bg-slate-50 p-6 rounded-2xl border border-dashed border-gray-200 font-mono text-sm mb-6 leading-loose">
           my_score = 100 <br />
           print(<span class="bg-red-100 text-red-600 px-1 rounded">My_Score</span>)
         </div>
 
         <div class="flex flex-col md:flex-row gap-4">
-          <input
-            type="text"
-            id="task3"
+          <input type="text" id="task3"
             class="flex-grow p-4 border-2 border-gray-100 rounded-xl outline-none transition-all focus:border-[#e2f0d9] focus:ring-2 focus:ring-[#e2f0d9]/40"
-            placeholder="Напиши правильну назву змінної..."
-          />
+            placeholder="Напиши правильну назву змінної..." />
           <button type="button" onclick="checkTask3()" class="btn-action px-10 py-4">
             Відповісти
           </button>
@@ -201,9 +179,7 @@
       </section>
 
       <!-- Submission note -->
-      <section
-        class="mt-10 text-center p-10 bg-[#e2f0d9]/20 rounded-[2.5rem] border-2 border-dashed border-[#e2f0d9]"
-      >
+      <section class="mt-10 text-center p-10 bg-[#e2f0d9]/20 rounded-[2.5rem] border-2 border-dashed border-[#e2f0d9]">
         <p class="text-gray-600 max-w-lg mx-auto leading-relaxed">
           Коли виконаєш всі завдання, зроби скріншот результатів браузерних тестів та кодів з VS Code і надішли
           вчителю в Classroom.
@@ -215,10 +191,8 @@
       <a href="../lesson2/theory.html" class="text-gray-400 hover:text-black transition-colors font-medium">
         ← Повернутися до теорії
       </a>
-      <a
-        href="../lesson3/theory.html"
-        class="btn-action px-12 py-4 shadow-brand/20 shadow-lg bg-[#0f172a] text-white rounded-xl font-bold hover:bg-black transition-all"
-      >
+      <a href="../lesson3/theory.html"
+        class="btn-action px-12 py-4 shadow-brand/20 shadow-lg bg-[#0f172a] text-white rounded-xl font-bold hover:bg-black transition-all">
         До наступного уроку ➔
       </a>
     </footer>
@@ -229,33 +203,22 @@
   </footer>
 
   <!-- Chat widget (sends to Vercel /api/chat) -->
-  <button
-    type="button"
-    id="chatToggleBtn"
+  <button type="button" id="chatToggleBtn"
     class="fixed bottom-6 right-6 z-50 bg-slate-900 text-white px-5 py-4 rounded-2xl shadow-2xl hover:bg-black transition-all font-bold"
-    onclick="toggleLessonChat()"
-    aria-controls="lessonChat"
-    aria-expanded="false"
-  >
+    onclick="toggleLessonChat()" aria-controls="lessonChat" aria-expanded="false">
     Чат ➔
   </button>
 
-  <section
-    id="lessonChat"
+  <section id="lessonChat"
     class="fixed bottom-24 right-6 z-50 w-[22rem] max-w-[calc(100vw-3rem)] bg-white border border-slate-200 rounded-[2rem] shadow-2xl overflow-hidden hidden"
-    role="dialog"
-    aria-label="Чат допомоги"
-  >
+    role="dialog" aria-label="Чат допомоги">
     <header class="p-5 bg-slate-900 text-white flex items-center justify-between gap-3">
       <div>
         <div class="text-xs uppercase tracking-widest text-slate-300 font-black">IT School Hub</div>
         <div class="text-lg font-extrabold">Чат-помічник</div>
       </div>
-      <button
-        type="button"
-        class="px-3 py-2 rounded-xl bg-white/10 hover:bg-white/20 transition"
-        onclick="toggleLessonChat(false)"
-      >
+      <button type="button" class="px-3 py-2 rounded-xl bg-white/10 hover:bg-white/20 transition"
+        onclick="toggleLessonChat(false)">
         ✕
       </button>
     </header>
@@ -275,33 +238,22 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
           <label class="text-xs font-black uppercase tracking-widest text-slate-500">
             Провайдер
-            <select
-              id="chatProvider"
-              class="mt-2 w-full p-3 border-2 border-slate-100 rounded-2xl outline-none focus:ring-2 focus:ring-[#e2f0d9]/40 focus:border-[#e2f0d9] text-sm"
-            >
+            <select id="chatProvider"
+              class="mt-2 w-full p-3 border-2 border-slate-100 rounded-2xl outline-none focus:ring-2 focus:ring-[#e2f0d9]/40 focus:border-[#e2f0d9] text-sm">
               <option value="auto" selected>auto</option>
               <option value="gemini">gemini</option>
               <option value="openai">openai</option>
             </select>
           </label>
-          <div class="text-xs text-slate-500 leading-relaxed mt-1 md:mt-6">
-            Якщо один провайдер недоступний (квота), можна переключитись або залишити <b>auto</b>.
-          </div>
         </div>
 
-        <textarea
-          id="chatMessage"
+        <textarea id="chatMessage"
           class="w-full h-24 p-4 border-2 border-slate-100 rounded-2xl outline-none focus:ring-2 focus:ring-[#e2f0d9]/40 focus:border-[#e2f0d9] font-mono text-sm"
-          placeholder="Наприклад: чому input() повертає str?"
-          required
-        ></textarea>
+          placeholder="Наприклад: чому input() повертає str?" required></textarea>
 
         <div class="flex items-center gap-3">
-          <button
-            id="chatSendBtn"
-            type="submit"
-            class="btn-action px-10 py-4 bg-[#0f172a] text-white hover:bg-black transition-all"
-          >
+          <button id="chatSendBtn" type="submit"
+            class="btn-action px-10 py-4 bg-[#0f172a] text-white hover:bg-black transition-all">
             Надіслати ➔
           </button>
           <div id="chatStatus" class="text-xs text-slate-500"></div>
@@ -346,24 +298,38 @@
     async function sendLessonChat(event) {
       event.preventDefault();
       const textarea = document.getElementById("chatMessage");
-      const status = document.getElementById("chatStatus");
+      const log = document.getElementById("chatLog");
       const btn = document.getElementById("chatSendBtn");
 
       const message = (textarea?.value || "").trim();
-      if (!message) return;
+      if (!message || btn.disabled) return; // Захист від подвійного кліку
 
+      // 1. Додаємо повідомлення користувача
       appendChatBubble(message, "user");
       textarea.value = "";
+      btn.disabled = true;
 
-      if (status) status.textContent = "Відправляю…";
-      if (btn) btn.disabled = true;
+      // 2. Створюємо індикатор друку
+      const typingBubble = document.createElement("div");
+      typingBubble.id = "ai-typing";
+      typingBubble.className = "p-4 rounded-2xl bg-slate-50 border border-slate-100 w-16";
+      typingBubble.innerHTML = `
+    <div class="typing-indicator">
+      <div class="typing-dot"></div>
+      <div class="typing-dot"></div>
+      <div class="typing-dot"></div>
+    </div>
+  `;
+      log.appendChild(typingBubble);
+      log.scrollTop = log.scrollHeight;
 
       try {
-        const apiUrl =
-          window.location.hostname === "itschoolhub.site"
-            ? "https://ithub-brown.vercel.app/api/chat"
-            : "/api/chat";
+        const apiUrl = window.location.hostname === "itschoolhub.site"
+          ? "https://ithub-brown.vercel.app/api/chat"
+          : "/api/chat";
+
         const provider = document.getElementById("chatProvider")?.value || "auto";
+
         const resp = await fetch(apiUrl, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -372,32 +338,43 @@
             provider,
             lesson: "python/lesson2",
             task: "practice-chat",
-            code: (() => {
-              const t1 = document.getElementById("task1")?.value?.trim() || "";
-              const t2 = document.getElementById("task2")?.value?.trim() || "";
-              // Надсилаємо короткий контекст коду, якщо він є
-              const parts = [];
-              if (t1) parts.push("TASK1:\n" + t1);
-              if (t2) parts.push("TASK2:\n" + t2);
-              return parts.length ? parts.join("\n\n") : "";
-            })(),
+            code: gatherCode() // Винесемо збір коду в окрему функцію для чистоти
           }),
         });
 
+        // Видаляємо індикатор перед тим, як показати відповідь
+        typingBubble.remove();
+
         const data = await resp.json().catch(() => ({}));
-        if (!resp.ok || !data || data.ok === false) {
-          const err = (data && (data.error || data.message)) || "Помилка запиту";
-          appendChatBubble("Помилка: " + err, "error");
+        if (!resp.ok || data.ok === false) {
+          const mainErr = (data && (data.error || data.message)) || "Ой, щось пішло не так. Спробуй ще раз!";
+          const details = data?.meta?.error ? `\n\nДеталі провайдера: ${data.meta.error}` : "";
+          appendChatBubble(`${mainErr}${details}`, "error");
         } else {
-          appendChatBubble(data.reply || "(порожня відповідь)", "bot");
+          appendChatBubble(data.reply || "Хм, я задумався. Спробуй перепитати.", "bot");
         }
       } catch (e) {
-        appendChatBubble("Помилка мережі. Перевір, що Vercel API доступний.", "error");
+        typingBubble.remove();
+        appendChatBubble("Помилка мережі. Перевір зв'язок.", "error");
       } finally {
-        if (status) status.textContent = "";
-        if (btn) btn.disabled = false;
+        btn.disabled = false;
       }
+    }
+
+    // Допоміжна функція для збору коду (щоб основна функція була читабельною)
+    function gatherCode() {
+      const parts = [];
+      const t1 = document.getElementById("task1")?.value?.trim();
+      const t2 = document.getElementById("task2")?.value?.trim();
+      const t3 = document.getElementById("task3")?.value?.trim();
+
+      if (t1) parts.push(`TASK1 (Profile):\n${t1}`);
+      if (t2) parts.push(`TASK2 (Area):\n${t2}`);
+      if (t3) parts.push(`TASK3 (Case):\n${t3}`);
+
+      return parts.join("\n\n");
     }
   </script>
 </body>
+
 </html>

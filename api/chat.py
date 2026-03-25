@@ -181,7 +181,18 @@ def _sanitize_reply(text: str) -> str:
     return text
 
 
-def _call_gemini_tutor(message: str, code: str | None, lesson: str | None, task: str | None) -> str:
+def _is_truthy(val: object) -> bool:
+    return str(val or "").strip().lower() in ("1", "true", "yes", "y", "on")
+
+
+def _truncate(s: str, limit: int) -> str:
+    if s is None:
+        return ""
+    s = str(s)
+    return s if len(s) <= limit else (s[:limit] + "…")
+
+
+def _call_gemini_tutor(message: str, code: str | None, lesson: str | None, task: str | None) -> tuple[str, bool, str | None]:
     """
     Gemini через Google Generative Language API.
     Env: GEMINI_API_KEY або GOOGLE_API_KEY
@@ -189,7 +200,7 @@ def _call_gemini_tutor(message: str, code: str | None, lesson: str | None, task:
     """
     api_key = os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY")
     if not api_key:
-        return _fallback_tutor(message, code, lesson, task)
+        return ("", False, "missing_gemini_api_key")
 
     model = os.environ.get("GEMINI_MODEL", "gemini-1.5-flash")
 
@@ -234,26 +245,37 @@ def _call_gemini_tutor(message: str, code: str | None, lesson: str | None, task:
             data = json.loads(resp.read().decode("utf-8"))
             candidates = data.get("candidates") or []
             if not candidates:
-                return _sanitize_reply(_fallback_tutor(message, code, lesson, task))
+                return ("", False, "no_candidates")
             parts = (candidates[0].get("content") or {}).get("parts") or []
             text = ""
             if parts and isinstance(parts, list):
                 text = str(parts[0].get("text", "")).strip()
-            return _sanitize_reply(text) if text else _sanitize_reply(_fallback_tutor(message, code, lesson, task))
+            if not text:
+                return ("", False, "empty_text")
+            return (_sanitize_reply(text), True, None)
     except urllib.error.HTTPError as e:
-        # quota/rate errors -> fallback hints
-        if e.code in (402, 403, 429):
-            return _sanitize_reply(_fallback_tutor(message, code, lesson, task))
-        return _sanitize_reply(_fallback_tutor(message, code, lesson, task))
+        try:
+            err_body = e.read().decode("utf-8")
+        except Exception:
+            err_body = ""
+        # quota/rate/auth errors -> fallback hints
+        if e.code in (401, 402, 403, 429):
+            return ("", False, f"gemini_http_{e.code}: {_truncate(err_body, 2000)}")
+        # Often: 400 bad request (payload/systemInstruction/model), 404 model not found, etc.
+        # We still return an error code/snippet for debugging.
+        err_short = f"gemini_http_{e.code}"
+        if err_body:
+            err_short = err_short + ": " + _truncate(err_body, 2000)
+        return ("", False, err_short)
     except Exception:
-        return _sanitize_reply(_fallback_tutor(message, code, lesson, task))
+        return ("", False, "gemini_network_error")
 
 
-def _call_openai_tutor(message: str, code: str | None, lesson: str | None, task: str | None) -> str:
+def _call_openai_tutor(message: str, code: str | None, lesson: str | None, task: str | None) -> tuple[str, bool, str | None]:
     api_key = os.environ.get("OPENAI_API_KEY")
     if not api_key:
         # fallback to simple rules if key missing
-        return _fallback_tutor(message, code, lesson, task)
+        return ("", False, "missing_openai_api_key")
 
     code_part = ""
     if code:
@@ -305,7 +327,10 @@ def _call_openai_tutor(message: str, code: str | None, lesson: str | None, task:
                 .get("message", {})
                 .get("content", "")
             )
-            return _sanitize_reply(str(content).strip())
+            text = _sanitize_reply(str(content).strip())
+            if not text:
+                return ("", False, "openai_empty_text")
+            return (text, True, None)
     except urllib.error.HTTPError as e:
         try:
             err_body = e.read().decode("utf-8")
@@ -318,14 +343,17 @@ def _call_openai_tutor(message: str, code: str | None, lesson: str | None, task:
             parsed = {}
         err_type = ((parsed.get("error") or {}).get("type")) or ((parsed.get("error") or {}).get("code"))
         if err_type == "insufficient_quota":
-            return _sanitize_reply(_fallback_tutor(message, code, lesson, task))
-        return _sanitize_reply(
+            return ("", False, "openai_insufficient_quota")
+        err_short = f"openai_http_{e.code}"
+        if err_body:
+            err_short = err_short + ": " + _truncate(err_body, 2000)
+        return (_sanitize_reply(
             "Не вдалося отримати відповідь тьютора (помилка API).\n"
             "Спробуй сформулювати питання коротше або надіслати менший фрагмент коду.\n"
             + (f"\nДеталі: {err_body}" if err_body else "")
-        )
+        ), False, err_short)
     except Exception:
-        return _sanitize_reply(_fallback_tutor(message, code, lesson, task))
+        return ("", False, "openai_network_error")
 
 
 def _pick_provider(raw: object) -> str:
@@ -335,20 +363,29 @@ def _pick_provider(raw: object) -> str:
     return "auto"
 
 
-def _call_tutor(provider: str, message: str, code: str | None, lesson: str | None, task: str | None) -> str:
+def _call_tutor(provider: str, message: str, code: str | None, lesson: str | None, task: str | None) -> tuple[str, str, str | None]:
+    """
+    Returns: (reply, provider_used, error_code_or_snippet)
+    provider_used: gemini | openai | fallback
+    """
     if provider == "gemini":
-        return _call_gemini_tutor(message, code, lesson, task)
+        reply, used, err = _call_gemini_tutor(message, code, lesson, task)
+        return (reply, "gemini" if used else "gemini", err)
     if provider == "openai":
-        return _call_openai_tutor(message, code, lesson, task)
+        reply, used, err = _call_openai_tutor(message, code, lesson, task)
+        return (reply, "openai" if used else "openai", err)
 
-    # auto: gemini -> openai -> fallback
-    gemini_key = os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY")
-    openai_key = os.environ.get("OPENAI_API_KEY")
-    if gemini_key:
-        return _call_gemini_tutor(message, code, lesson, task)
-    if openai_key:
-        return _call_openai_tutor(message, code, lesson, task)
-    return _fallback_tutor(message, code, lesson, task)
+    # auto: try gemini then openai then fallback
+    reply_g, used_g, err_g = _call_gemini_tutor(message, code, lesson, task)
+    if used_g:
+        return (reply_g, "gemini", None)
+
+    reply_o, used_o, err_o = _call_openai_tutor(message, code, lesson, task)
+    if used_o:
+        return (reply_o, "openai", None)
+
+    # both failed -> return an error (fallback disabled for debugging)
+    return ("", "auto", err_g or err_o or "unknown_error")
 
 
 class handler(BaseHTTPRequestHandler):
@@ -389,7 +426,14 @@ class handler(BaseHTTPRequestHandler):
         lesson = body.get("lesson")
         task = body.get("task")
         provider = _pick_provider(body.get("provider"))
+        debug = _is_truthy(body.get("debug")) or _is_truthy(os.environ.get("CHAT_DEBUG"))
 
-        reply = _call_tutor(provider=provider, message=message, code=code, lesson=lesson, task=task)
-        return _json_response(self, 200, {"ok": True, "reply": reply})
+        reply, provider_used, err = _call_tutor(provider=provider, message=message, code=code, lesson=lesson, task=task)
+        meta = {"providerRequested": provider, "providerUsed": provider_used}
+        if err:
+            # For debugging: surface provider error (without secrets). You can also send debug=true from client.
+            meta["error"] = err
+            return _json_response(self, 502, {"ok": False, "error": "Tutor provider failed", "meta": meta})
+
+        return _json_response(self, 200, {"ok": True, "reply": reply, "meta": meta})
 
