@@ -227,5 +227,142 @@
   <footer class="text-center py-10 text-gray-400 text-xs">
     <p>© 2026 IT School Hub | Твій шлях до коду</p>
   </footer>
+
+  <!-- Chat widget (sends to Vercel /api/chat) -->
+  <button
+    type="button"
+    id="chatToggleBtn"
+    class="fixed bottom-6 right-6 z-50 bg-slate-900 text-white px-5 py-4 rounded-2xl shadow-2xl hover:bg-black transition-all font-bold"
+    onclick="toggleLessonChat()"
+    aria-controls="lessonChat"
+    aria-expanded="false"
+  >
+    Чат ➔
+  </button>
+
+  <section
+    id="lessonChat"
+    class="fixed bottom-24 right-6 z-50 w-[22rem] max-w-[calc(100vw-3rem)] bg-white border border-slate-200 rounded-[2rem] shadow-2xl overflow-hidden hidden"
+    role="dialog"
+    aria-label="Чат допомоги"
+  >
+    <header class="p-5 bg-slate-900 text-white flex items-center justify-between gap-3">
+      <div>
+        <div class="text-xs uppercase tracking-widest text-slate-300 font-black">IT School Hub</div>
+        <div class="text-lg font-extrabold">Чат-помічник</div>
+      </div>
+      <button
+        type="button"
+        class="px-3 py-2 rounded-xl bg-white/10 hover:bg-white/20 transition"
+        onclick="toggleLessonChat(false)"
+      >
+        ✕
+      </button>
+    </header>
+
+    <div class="p-5 space-y-4">
+      <div class="text-sm text-slate-600">
+        Напиши запитання по уроку. Це демо-чат: відповідь генерується на сервері Vercel через <code>/api/chat</code>.
+      </div>
+
+      <div id="chatLog" class="space-y-3 max-h-64 overflow-auto pr-1">
+        <div class="p-4 rounded-2xl bg-slate-50 border border-slate-100 text-sm text-slate-700">
+          Привіт! Я можу підказати про змінні, типи, <code>input()</code>, <code>if</code>, цикли та списки.
+        </div>
+      </div>
+
+      <form class="space-y-3" onsubmit="sendLessonChat(event)">
+        <textarea
+          id="chatMessage"
+          class="w-full h-24 p-4 border-2 border-slate-100 rounded-2xl outline-none focus:ring-2 focus:ring-[#e2f0d9]/40 focus:border-[#e2f0d9] font-mono text-sm"
+          placeholder="Наприклад: чому input() повертає str?"
+          required
+        ></textarea>
+
+        <div class="flex items-center gap-3">
+          <button
+            id="chatSendBtn"
+            type="submit"
+            class="btn-action px-10 py-4 bg-[#0f172a] text-white hover:bg-black transition-all"
+          >
+            Надіслати ➔
+          </button>
+          <div id="chatStatus" class="text-xs text-slate-500"></div>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <script>
+    function toggleLessonChat(force) {
+      const chat = document.getElementById("lessonChat");
+      const btn = document.getElementById("chatToggleBtn");
+      const shouldOpen = typeof force === "boolean" ? force : chat.classList.contains("hidden");
+
+      chat.classList.toggle("hidden", !shouldOpen);
+      btn.setAttribute("aria-expanded", String(shouldOpen));
+
+      if (shouldOpen) {
+        const input = document.getElementById("chatMessage");
+        if (input) input.focus();
+      }
+    }
+
+    function appendChatBubble(text, kind) {
+      const log = document.getElementById("chatLog");
+      if (!log) return;
+
+      const el = document.createElement("div");
+      const base = "p-4 rounded-2xl text-sm whitespace-pre-wrap";
+      if (kind === "user") {
+        el.className = base + " bg-[#e2f0d9]/40 border border-[#e2f0d9] text-slate-900";
+      } else if (kind === "error") {
+        el.className = base + " bg-red-50 border border-red-200 text-red-800";
+      } else {
+        el.className = base + " bg-slate-50 border border-slate-100 text-slate-700";
+      }
+      el.textContent = text;
+      log.appendChild(el);
+      log.scrollTop = log.scrollHeight;
+    }
+
+    async function sendLessonChat(event) {
+      event.preventDefault();
+      const textarea = document.getElementById("chatMessage");
+      const status = document.getElementById("chatStatus");
+      const btn = document.getElementById("chatSendBtn");
+
+      const message = (textarea?.value || "").trim();
+      if (!message) return;
+
+      appendChatBubble(message, "user");
+      textarea.value = "";
+
+      if (status) status.textContent = "Відправляю…";
+      if (btn) btn.disabled = true;
+
+      try {
+        const apiUrl = "https://ithub-brown.vercel.app/api/chat";
+        const resp = await fetch(apiUrl, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ message }),
+        });
+
+        const data = await resp.json().catch(() => ({}));
+        if (!resp.ok || !data || data.ok === false) {
+          const err = (data && (data.error || data.message)) || "Помилка запиту";
+          appendChatBubble("Помилка: " + err, "error");
+        } else {
+          appendChatBubble(data.reply || "(порожня відповідь)", "bot");
+        }
+      } catch (e) {
+        appendChatBubble("Помилка мережі. Перевір, що Vercel API доступний.", "error");
+      } finally {
+        if (status) status.textContent = "";
+        if (btn) btn.disabled = false;
+      }
+    }
+  </script>
 </body>
 </html>
