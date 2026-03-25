@@ -203,15 +203,26 @@
   </footer>
 
   <!-- Chat widget (sends to Vercel /api/chat) -->
-  <button type="button" id="chatToggleBtn"
-    class="fixed bottom-6 right-6 z-50 bg-slate-900 text-white px-5 py-4 rounded-2xl shadow-2xl hover:bg-black transition-all font-bold"
-    onclick="toggleLessonChat()" aria-controls="lessonChat" aria-expanded="false">
-    Чат ➔
+  <button
+    type="button"
+    id="chatToggleBtn"
+    disabled
+    class="fixed bottom-6 right-6 z-50 bg-slate-200 text-slate-500 px-5 py-4 rounded-2xl shadow-2xl font-bold cursor-not-allowed"
+    aria-controls="lessonChat"
+    aria-expanded="false"
+    aria-disabled="true"
+    title="Чат тимчасово недоступний"
+  >
+    Чат (скоро)
   </button>
 
-  <section id="lessonChat"
+  <section
+    id="lessonChat"
     class="fixed bottom-24 right-6 z-50 w-[22rem] max-w-[calc(100vw-3rem)] bg-white border border-slate-200 rounded-[2rem] shadow-2xl overflow-hidden hidden"
-    role="dialog" aria-label="Чат допомоги">
+    role="dialog"
+    aria-label="Чат допомоги"
+    aria-hidden="true"
+  >
     <header class="p-5 bg-slate-900 text-white flex items-center justify-between gap-3">
       <div>
         <div class="text-xs uppercase tracking-widest text-slate-300 font-black">IT School Hub</div>

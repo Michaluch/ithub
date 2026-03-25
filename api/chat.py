@@ -202,7 +202,7 @@ def _call_gemini_tutor(message: str, code: str | None, lesson: str | None, task:
     if not api_key:
         return ("", False, "missing_gemini_api_key")
 
-    model = os.environ.get("GEMINI_MODEL", "gemini-1.5-flash")
+    model = os.environ.get("GEMINI_MODEL", "gemini-2.5-flash")
 
     code_part = ""
     if code:
