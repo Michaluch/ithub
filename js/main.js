@@ -38,10 +38,14 @@ function initTutorChatWidget() {
     btn.setAttribute("aria-expanded", "false");
     btn.textContent = "Чат ➔";
 
+    const overlay = document.createElement("div");
+    overlay.id = "chatSidebarOverlay";
+    overlay.className = "fixed inset-0 z-40 bg-black/30 hidden";
+
     const panel = document.createElement("section");
     panel.id = "lessonChat";
     panel.className =
-        "fixed bottom-24 right-6 z-50 w-[22rem] max-w-[calc(100vw-3rem)] bg-white border border-slate-200 rounded-[2rem] shadow-2xl overflow-hidden hidden";
+        "fixed top-0 right-0 z-50 h-screen w-[22rem] md:w-[26rem] max-w-[calc(100vw-2rem)] bg-white border-l border-slate-200 shadow-2xl overflow-hidden transform translate-x-full transition-transform duration-200";
     panel.setAttribute("role", "dialog");
     panel.setAttribute("aria-label", "Чат допомоги");
 
@@ -51,51 +55,63 @@ function initTutorChatWidget() {
           <div class="text-xs uppercase tracking-widest text-slate-300 font-black">IT School Hub</div>
           <div class="text-lg font-extrabold">Чат-помічник</div>
         </div>
-        <button type="button" id="chatCloseBtn" class="px-3 py-2 rounded-xl bg-white/10 hover:bg-white/20 transition">✕</button>
+        <div class="flex items-center gap-2">
+          <button type="button" id="chatControlsToggleBtn" class="px-3 py-2 rounded-xl bg-white/10 hover:bg-white/20 transition text-xs font-black uppercase tracking-widest">
+            Згорнути
+          </button>
+          <button type="button" id="chatCloseBtn" class="px-3 py-2 rounded-xl bg-white/10 hover:bg-white/20 transition">✕</button>
+        </div>
       </header>
-      <div class="p-5 space-y-4">
+      <div class="p-5 flex flex-col gap-4 h-[calc(100vh-76px)]">
         <div class="text-sm text-slate-600">
           Напиши запитання по практиці. Я підкажу, що поправити, але не напишу готову програму.
         </div>
 
-        <div id="chatLog" class="space-y-3 max-h-64 overflow-auto pr-1">
+        <div id="chatLog" class="space-y-3 flex-1 min-h-0 overflow-auto pr-1">
           <div class="p-4 rounded-2xl bg-slate-50 border border-slate-100 text-sm text-slate-700">
             Привіт! Опиши, що має робити код і що виходить зараз — я підкажу, куди дивитися.
           </div>
         </div>
 
         <form id="chatForm" class="space-y-3">
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-            <label class="text-xs font-black uppercase tracking-widest text-slate-500">
-              Провайдер
-              <select id="chatProvider"
-                class="mt-2 w-full p-3 border-2 border-slate-100 rounded-2xl outline-none focus:ring-2 focus:ring-[#e2f0d9]/40 focus:border-[#e2f0d9] text-sm">
-                <option value="auto" selected>auto</option>
-                <option value="gemini">gemini</option>
-                <option value="openai">openai</option>
-              </select>
-            </label>
-            <div class="text-xs text-slate-500 leading-relaxed mt-1 md:mt-6">
-              Якщо один провайдер недоступний — обери інший або залиш <b>auto</b>.
+          <div id="chatControls" class="space-y-3">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+              <label class="text-xs font-black uppercase tracking-widest text-slate-500">
+                Провайдер
+                <select id="chatProvider"
+                  class="mt-2 w-full p-3 border-2 border-slate-100 rounded-2xl outline-none focus:ring-2 focus:ring-[#e2f0d9]/40 focus:border-[#e2f0d9] text-sm">
+                  <option value="auto" selected>auto</option>
+                  <option value="gemini">gemini</option>
+                  <option value="openai">openai</option>
+                </select>
+              </label>
+              <div class="text-xs text-slate-500 leading-relaxed mt-1 md:mt-6">
+                Якщо один провайдер недоступний — обери інший або залиш <b>auto</b>.
+              </div>
+            </div>
+
+            <textarea id="chatMessage"
+              class="w-full h-24 p-4 border-2 border-slate-100 rounded-2xl outline-none focus:ring-2 focus:ring-[#e2f0d9]/40 focus:border-[#e2f0d9] font-mono text-sm"
+              placeholder="Наприклад: чому в мене помилка TypeError?" required></textarea>
+
+            <div class="flex items-center gap-3">
+              <button id="chatSendBtn" type="submit"
+                class="btn-action px-10 py-4 bg-[#0f172a] text-white hover:bg-black transition-all">
+                Надіслати ➔
+              </button>
+              <div id="chatStatus" class="text-xs text-slate-500"></div>
             </div>
           </div>
-
-          <textarea id="chatMessage"
-            class="w-full h-24 p-4 border-2 border-slate-100 rounded-2xl outline-none focus:ring-2 focus:ring-[#e2f0d9]/40 focus:border-[#e2f0d9] font-mono text-sm"
-            placeholder="Наприклад: чому в мене помилка TypeError?" required></textarea>
-
-          <div class="flex items-center gap-3">
-            <button id="chatSendBtn" type="submit"
-              class="btn-action px-10 py-4 bg-[#0f172a] text-white hover:bg-black transition-all">
-              Надіслати ➔
-            </button>
-            <div id="chatStatus" class="text-xs text-slate-500"></div>
-          </div>
+          <button type="button" id="chatControlsExpandBtn"
+            class="hidden w-full p-4 rounded-2xl border-2 border-dashed border-slate-200 text-slate-600 text-sm font-bold hover:border-[#e2f0d9] transition-all">
+            Форма згорнута — розгорнути
+          </button>
         </form>
       </div>
     `;
 
     document.body.appendChild(btn);
+    document.body.appendChild(overlay);
     document.body.appendChild(panel);
 
     const chatLog = panel.querySelector("#chatLog");
@@ -104,11 +120,31 @@ function initTutorChatWidget() {
     const chatProvider = panel.querySelector("#chatProvider");
     const chatSendBtn = panel.querySelector("#chatSendBtn");
     const chatCloseBtn = panel.querySelector("#chatCloseBtn");
+    const chatControls = panel.querySelector("#chatControls");
+    const chatControlsToggleBtn = panel.querySelector("#chatControlsToggleBtn");
+    const chatControlsExpandBtn = panel.querySelector("#chatControlsExpandBtn");
 
     function setOpen(open) {
-        panel.classList.toggle("hidden", !open);
+        overlay.classList.toggle("hidden", !open);
+        panel.classList.toggle("translate-x-full", !open);
         btn.setAttribute("aria-expanded", String(open));
         if (open && chatMessage) chatMessage.focus();
+    }
+
+    function setControlsCollapsed(collapsed) {
+        if (!chatControls || !chatControlsToggleBtn || !chatControlsExpandBtn) return;
+        chatControls.classList.toggle("hidden", collapsed);
+        chatControlsExpandBtn.classList.toggle("hidden", !collapsed);
+        chatControlsToggleBtn.textContent = collapsed ? "Розгорнути" : "Згорнути";
+        if (chatMessage) {
+            chatMessage.required = !collapsed;
+        }
+        if (chatSendBtn) {
+            chatSendBtn.disabled = collapsed;
+        }
+        if (!collapsed && chatMessage) {
+            chatMessage.focus();
+        }
     }
 
     function appendBubble(text, kind) {
@@ -146,8 +182,14 @@ function initTutorChatWidget() {
         return joined.length > 2000 ? joined.slice(0, 2000) + "\n... (обрізано) ..." : joined;
     }
 
-    btn.addEventListener("click", () => setOpen(panel.classList.contains("hidden")));
+    btn.addEventListener("click", () => setOpen(panel.classList.contains("translate-x-full")));
+    overlay.addEventListener("click", () => setOpen(false));
     if (chatCloseBtn) chatCloseBtn.addEventListener("click", () => setOpen(false));
+    if (chatControlsToggleBtn) chatControlsToggleBtn.addEventListener("click", () => {
+        const collapsed = !chatControls.classList.contains("hidden");
+        setControlsCollapsed(collapsed);
+    });
+    if (chatControlsExpandBtn) chatControlsExpandBtn.addEventListener("click", () => setControlsCollapsed(false));
 
     if (chatForm) {
         chatForm.addEventListener("submit", async (e) => {
