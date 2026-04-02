@@ -370,10 +370,14 @@ def _call_tutor(provider: str, message: str, code: str | None, lesson: str | Non
     """
     if provider == "gemini":
         reply, used, err = _call_gemini_tutor(message, code, lesson, task)
-        return (reply, "gemini" if used else "gemini", err)
+        if used:
+            return (reply, "gemini", None)
+        return (_fallback_tutor(message, code, lesson, task), "fallback", err)
     if provider == "openai":
         reply, used, err = _call_openai_tutor(message, code, lesson, task)
-        return (reply, "openai" if used else "openai", err)
+        if used:
+            return (reply, "openai", None)
+        return (_fallback_tutor(message, code, lesson, task), "fallback", err)
 
     # auto: try gemini then openai then fallback
     reply_g, used_g, err_g = _call_gemini_tutor(message, code, lesson, task)
@@ -384,8 +388,8 @@ def _call_tutor(provider: str, message: str, code: str | None, lesson: str | Non
     if used_o:
         return (reply_o, "openai", None)
 
-    # both failed -> return an error (fallback disabled for debugging)
-    return ("", "auto", err_g or err_o or "unknown_error")
+    # both failed -> fallback
+    return (_fallback_tutor(message, code, lesson, task), "fallback", err_g or err_o or "unknown_error")
 
 
 class handler(BaseHTTPRequestHandler):
@@ -430,10 +434,8 @@ class handler(BaseHTTPRequestHandler):
 
         reply, provider_used, err = _call_tutor(provider=provider, message=message, code=code, lesson=lesson, task=task)
         meta = {"providerRequested": provider, "providerUsed": provider_used}
-        if err:
-            # For debugging: surface provider error (without secrets). You can also send debug=true from client.
+        if debug and err:
             meta["error"] = err
-            return _json_response(self, 502, {"ok": False, "error": "Tutor provider failed", "meta": meta})
 
         return _json_response(self, 200, {"ok": True, "reply": reply, "meta": meta})
 
