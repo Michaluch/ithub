@@ -158,7 +158,39 @@ function initTutorChatWidget() {
         } else {
             el.className = base + " bg-slate-50 border border-slate-100 text-slate-700";
         }
-        el.textContent = text;
+
+        const full = String(text ?? "");
+        const shouldCollapse = kind !== "user" && full.length > 1200;
+        const preview = shouldCollapse ? (full.slice(0, 800) + "\n\n…(скорочено) …") : full;
+
+        if (!shouldCollapse) {
+            el.textContent = full;
+        } else {
+            const textEl = document.createElement("div");
+            textEl.textContent = preview;
+
+            const btnWrap = document.createElement("div");
+            btnWrap.className = "mt-3";
+
+            const toggleBtn = document.createElement("button");
+            toggleBtn.type = "button";
+            toggleBtn.className =
+                "px-4 py-2 rounded-xl border border-slate-200 bg-white/60 text-slate-700 text-xs font-black uppercase tracking-widest hover:border-[#e2f0d9] transition-all";
+            toggleBtn.textContent = "Показати повністю";
+
+            let expanded = false;
+            toggleBtn.addEventListener("click", () => {
+                expanded = !expanded;
+                textEl.textContent = expanded ? full : preview;
+                toggleBtn.textContent = expanded ? "Згорнути" : "Показати повністю";
+                chatLog.scrollTop = chatLog.scrollHeight;
+            });
+
+            btnWrap.appendChild(toggleBtn);
+            el.appendChild(textEl);
+            el.appendChild(btnWrap);
+        }
+
         chatLog.appendChild(el);
         chatLog.scrollTop = chatLog.scrollHeight;
     }

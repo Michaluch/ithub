@@ -164,8 +164,8 @@ def _sanitize_reply(text: str) -> str:
 
     # limit giant outputs
     lines = text.splitlines()
-    if len(lines) > 120:
-        text = "\n".join(lines[:120]) + "\n\n(Відповідь скорочено.)"
+    if len(lines) > 220:
+        text = "\n".join(lines[:220]) + "\n\n(Відповідь скорочено.)"
 
     def _trim_fence(match: re.Match) -> str:
         fence = match.group(0)
