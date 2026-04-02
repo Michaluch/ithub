@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Tutor chat widget for Python practice pages
     try {
-        initTutorChatWidget();
+        // initTutorChatWidget();
     } catch (_) {
         // fail silently
     }

@@ -411,6 +411,9 @@ class handler(BaseHTTPRequestHandler):
         )
 
     def do_POST(self):
+        return _json_response(self, 403, {"ok": False, "error": "Chat is currently inactive."})
+
+    def _real_do_POST(self):
         try:
             length = int(self.headers.get("content-length", "0"))
         except ValueError:
