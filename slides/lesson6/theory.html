@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Урок 6: Дизайн та теми | IT School Hub</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="stylesheet" href="../../css/styles.css">
+    <script src="../../js/main.js" defer></script>
+</head>
+<body class="font-sans">
+
+    <nav class="nav-sticky">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="../../index.html" class="hover:opacity-80 transition-opacity">
+                <h1 class="text-2xl font-bold text-gray-700">
+                    <span class="logo-box">IT</span> School Hub
+                </h1>
+            </a>
+            <div class="flex items-center gap-4">
+                <a href="../index.html" class="hidden md:block text-sm font-medium text-gray-500 hover:text-black transition-colors">
+                    ← Повернутися до курсу
+                </a>
+                <span class="bg-[#e2f0d9] px-5 py-1.5 rounded-full text-sm font-black uppercase tracking-wider text-[#1f2937] shadow-sm">Урок 6</span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto max-w-4xl px-6 py-12 bg-white mt-8 shadow-xl rounded-[2rem] border border-gray-100">
+        
+        <header class="mb-12">
+            <h1 class="text-4xl md:text-5xl font-extrabold mb-4 text-gray-900 tracking-tight">Дизайн та теми</h1>
+            <div class="h-2 w-24 bg-orange-400 rounded-full"></div>
+        </header>
+
+        <section class="mb-10">
+            <h2 class="text-2xl font-bold mb-4 text-gray-900">Стиль вашої роботи</h2>
+            <p class="text-lg mb-6 text-gray-700 leading-relaxed">
+                Щоб презентація виглядала професійно, всі слайди мають бути витримані в одному стилі. Для цього існують **теми**.
+            </p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-8">
+                <div class="p-6 rounded-3xl bg-slate-50 border border-gray-100 relative overflow-hidden">
+                    <div class="absolute -right-4 -bottom-4 text-6xl opacity-10">🎨</div>
+                    <h4 class="font-bold mb-3">Що таке тема?</h4>
+                    <p class="text-sm text-gray-600 leading-relaxed">Це набір готових кольорів, шрифтів та фонів, які автоматично застосовуються до всієї презентації.</p>
+                </div>
+                <div class="p-6 rounded-3xl bg-slate-50 border border-gray-100 relative overflow-hidden">
+                    <div class="absolute -right-4 -bottom-4 text-6xl opacity-10">🪄</div>
+                    <h4 class="font-bold mb-3">Де знайти?</h4>
+                    <p class="text-sm text-gray-600 leading-relaxed">Вкладка <strong>"Конструктор"</strong> (Design) у PowerPoint або кнопка <strong>"Тема"</strong> у Google Slides.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-10">
+            <h2 class="text-2xl font-bold mb-4 text-gray-900">Поради з дизайну</h2>
+            <div class="space-y-6">
+                <div class="flex gap-4 items-start">
+                    <div class="w-12 h-12 bg-orange-100 rounded-full flex-shrink-0 flex items-center justify-center font-bold text-orange-600">1</div>
+                    <div>
+                        <h4 class="font-bold">Кольорова гама</h4>
+                        <p class="text-sm text-gray-600">Не використовуйте більше 3-4 кольорів на всю презентацію. Кольори мають гармоніювати між собою.</p>
+                    </div>
+                </div>
+                <div class="flex gap-4 items-start">
+                    <div class="w-12 h-12 bg-orange-100 rounded-full flex-shrink-0 flex items-center justify-center font-bold text-orange-600">2</div>
+                    <div>
+                        <h4 class="font-bold">Фон та текст</h4>
+                        <p class="text-sm text-gray-600">Завжди дбайте про контраст. Темний фон — світлий текст. Світлий фон — темний текст.</p>
+                    </div>
+                </div>
+                <div class="flex gap-4 items-start">
+                    <div class="w-12 h-12 bg-orange-100 rounded-full flex-shrink-0 flex items-center justify-center font-bold text-orange-600">3</div>
+                    <div>
+                        <h4 class="font-bold">Порожній простір</h4>
+                        <p class="text-sm text-gray-600">Не "забивайте" кожен міліметр слайда. Повітря навколо об'єктів допомагає зосередитися на головному.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-10 p-8 rounded-[2rem] bg-orange-50 border border-orange-100">
+            <h2 class="text-2xl font-bold mb-4 text-orange-900 italic">Секретний інструмент</h2>
+            <p class="text-orange-800 leading-relaxed mb-4">
+                У нових версіях PowerPoint є функція <strong>"Дизайнер"</strong> (Design Ideas). Вона сама пропонує круті варіанти оформлення слайда на основі вашого тексту та картинок. Просто натисніть кнопку — і вуаля!
+            </p>
+        </section>
+
+        <footer class="mt-16 pt-8 border-t border-gray-100 flex flex-col md:flex-row justify-between items-center gap-6">
+            <a href="../lesson5/practice.html" class="text-gray-400 hover:text-black transition-colors font-medium">
+                ← Попередній урок
+            </a>
+            <a href="./practice.html" class="btn-action px-12 py-4 bg-slate-900 text-white rounded-xl font-bold hover:bg-black transition-all">
+                До практики ➔
+            </a>
+        </footer>
+
+    </main>
+
+    <footer class="text-center py-10 text-gray-400 text-xs">
+        <p>© 2026 IT School Hub | Твій шлях до успіху</p>
+    </footer>
+
+</body>
+</html>

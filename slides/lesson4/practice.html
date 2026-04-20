@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Практика: Текст та шрифти | IT School Hub</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="stylesheet" href="../../css/styles.css">
+    <script src="../../js/main.js" defer></script>
+</head>
+<body class="font-sans">
+
+    <nav class="nav-sticky">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="../../index.html" class="hover:opacity-80 transition-opacity">
+                <h1 class="text-2xl font-bold text-gray-700">
+                    <span class="logo-box">IT</span> School Hub
+                </h1>
+            </a>
+            <div class="flex items-center gap-4">
+                <a href="../index.html" class="hidden md:block text-sm font-medium text-gray-500 hover:text-black transition-colors">
+                    ← Повернутися до курсу
+                </a>
+                <span class="bg-[#e2f0d9] px-5 py-1.5 rounded-full text-sm font-black uppercase tracking-wider text-[#1f2937] shadow-sm">Практика 4</span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto max-w-4xl px-6 py-12 bg-white mt-8 shadow-xl rounded-[2.5rem] border border-gray-100">
+        
+        <header class="mb-12">
+            <h1 class="text-4xl md:text-5xl font-extrabold mb-4 text-gray-900 tracking-tight text-center md:text-left">Завдання: "Магія тексту"</h1>
+            <div class="h-2 w-24 bg-orange-400 rounded-full mx-auto md:mx-0"></div>
+        </header>
+
+        <div class="space-y-10">
+            <!-- Task 1 -->
+            <section class="bg-white p-8 rounded-[2.5rem] shadow-xl border border-gray-100 transition-all hover:border-orange-200">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-10 h-10 bg-slate-800 text-white rounded-xl flex items-center justify-center font-bold">1</div>
+                    <h2 class="font-bold text-xl text-gray-900">Правило 7х7</h2>
+                </div>
+                
+                <p class="text-gray-600 mb-6 leading-relaxed">Скільки максимум рядків тексту рекомендується розміщувати на одному слайді за золотим правилом презентацій?</p>
+
+                <div class="flex flex-col md:flex-row gap-4">
+                    <input type="number" id="ans4" class="flex-grow p-4 border-2 border-gray-100 rounded-xl outline-none transition-all focus:border-orange-400 focus:ring-2 focus:ring-orange-100" placeholder="Введіть число...">
+                    <button onclick="checkSlides4_1()" class="btn-action px-10 py-4 bg-slate-900 text-white rounded-xl font-bold hover:bg-black transition-all">
+                        Перевірити
+                    </button>
+                </div>
+
+                <div id="feedback1" class="mt-4 p-4 rounded-xl text-sm font-medium hidden"></div>
+            </section>
+
+            <!-- Task 2 (Practical activity) -->
+            <section class="bg-slate-50 p-8 rounded-[2.5rem] border border-dashed border-gray-200">
+                <h2 class="text-2xl font-bold mb-4 text-gray-900">Редагування тексту</h2>
+                <p class="text-gray-600 mb-6 leading-relaxed">
+                    Відкрий свою презентацію з минулого уроку та зроби наступне:
+                </p>
+                <ul class="space-y-4">
+                    <li class="flex items-start gap-4">
+                        <div class="w-6 h-6 bg-orange-400 text-white rounded-full flex items-center justify-center text-xs flex-shrink-0 mt-1">1</div>
+                        <p class="text-sm">Виділи заголовок на першому слайді та зроби його <strong>Жирним (B)</strong>.</p>
+                    </li>
+                    <li class="flex items-start gap-4">
+                        <div class="w-6 h-6 bg-orange-400 text-white rounded-full flex items-center justify-center text-xs flex-shrink-0 mt-1">2</div>
+                        <p class="text-sm">Зміни колір заголовка на свій улюблений (але щоб його було добре видно!).</p>
+                    </li>
+                    <li class="flex items-start gap-4">
+                        <div class="w-6 h-6 bg-orange-400 text-white rounded-full flex items-center justify-center text-xs flex-shrink-0 mt-1">3</div>
+                        <p class="text-sm">Перевір розмір шрифту: він має бути не менше <strong>30</strong> для заголовка та <strong>24</strong> для основного тексту.</p>
+                    </li>
+                </ul>
+            </section>
+        </div>
+
+        <footer class="mt-16 pt-8 border-t border-gray-100 flex flex-col md:flex-row justify-between items-center gap-6">
+            <a href="./theory.html" class="text-gray-400 hover:text-black transition-colors font-medium">
+                ← Повернутися до теорії
+            </a>
+            <a href="../lesson5/theory.html" class="btn-action px-12 py-4 bg-slate-900 text-white rounded-xl font-bold hover:bg-black transition-all">
+                До наступного уроку ➔
+            </a>
+        </footer>
+
+    </main>
+
+    <footer class="text-center py-10 text-gray-400 text-xs">
+        <p>© 2026 IT School Hub | Твій шлях до успіху</p>
+    </footer>
+
+</body>
+</html>

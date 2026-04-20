@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Урок 11: Алгоритми сортування | IT School Hub</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+
+  <link rel="stylesheet" href="../../css/styles.css">
+  <script src="../../js/main.js" defer></script>
+</head>
+
+<body class="bg-slate-50 text-gray-900 font-sans leading-relaxed">
+
+  <nav class="nav-sticky">
+    <div class="container mx-auto flex justify-between items-center">
+      <a href="../../index.html" class="hover:opacity-80 transition-opacity">
+        <h1 class="text-2xl font-bold text-gray-700">
+          <span class="logo-box">IT</span> School Hub
+        </h1>
+      </a>
+
+      <div class="flex items-center gap-4">
+        <a class="hidden md:block text-sm font-medium text-gray-500 hover:text-black transition-colors" href="../index.html">
+          ← Програма курсу
+        </a>
+        <span class="bg-[#e2f0d9] px-5 py-1.5 rounded-full text-sm font-black uppercase tracking-wider text-[#1f2937] shadow-sm">
+          Урок 11
+        </span>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container mx-auto max-w-4xl px-6 py-12 bg-white mt-8 shadow-xl rounded-[2.5rem] border border-gray-100">
+
+    <header class="mb-10">
+      <h1 class="text-4xl md:text-5xl font-extrabold mb-4 tracking-tight">Алгоритми сортування</h1>
+      <p class="text-gray-600 text-lg leading-relaxed">
+        Як впорядкувати дані: від простого "методу бульбашки" до потужних вбудованих інструментів Python.
+      </p>
+      <div class="h-2 w-24 bg-brand rounded-full mt-4"></div>
+    </header>
+
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-4 text-gray-900 flex items-center gap-2">
+        <span class="logo-box">1</span> Навіщо сортувати дані?
+      </h2>
+      <p class="text-gray-700 leading-relaxed mb-6">
+        Ми вже знаємо, що <b>бінарний пошук</b> працює лише у відсортованих списках. Але сортування потрібне всюди: 
+        від списку контактів у телефоні до рейтингу гравців у грі або сортування товарів за ціною в інтернет-магазині.
+      </p>
+      <div class="p-6 rounded-3xl bg-[#e2f0d9]/30 border-l-8 border-[#b7d7a8]">
+        <p class="font-bold mb-2">Ключова думка</p>
+        <p class="text-gray-700 text-sm leading-relaxed">
+          Сортування — це процес перестановки елементів у певному порядку (за зростанням або спаданням).
+        </p>
+      </div>
+    </section>
+
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-4 text-gray-900 flex items-center gap-2">
+        <span class="logo-box">2</span> Сортування бульбашкою (Bubble Sort)
+      </h2>
+      <p class="text-gray-700 leading-relaxed mb-6">
+        Це один із найпростіших алгоритмів. Ідея така: ми порівнюємо сусідні елементи, і якщо вони стоять у неправильному порядку — міняємо їх місцями. 
+        Найбільші елементи поступово "спливають" у кінець списку, як бульбашки повітря у воді.
+      </p>
+
+      <div class="rounded-2xl overflow-hidden shadow-2xl bg-[#282c34] mb-6">
+        <div class="bg-[#21252b] px-4 py-3 flex items-center gap-2">
+          <div class="w-3 h-3 rounded-full bg-[#ff5f56]"></div>
+          <div class="w-3 h-3 rounded-full bg-[#ffbd2e]"></div>
+          <div class="w-3 h-3 rounded-full bg-[#27c93f]"></div>
+          <span class="text-gray-400 text-[10px] ml-4 font-mono uppercase tracking-widest">bubble_sort.py</span>
+        </div>
+        <pre class="m-0"><code class="language-python">def bubble_sort(nums):
+    n = len(nums)
+    for i in range(n):
+        for j in range(0, n - i - 1):
+            if nums[j] > nums[j + 1]:
+                # Міняємо місцями
+                nums[j], nums[j + 1] = nums[j + 1], nums[j]
+
+numbers = [64, 34, 25, 12, 22, 11, 90]
+bubble_sort(numbers)
+print(numbers)  # [11, 12, 22, 25, 34, 64, 90]</code></pre>
+      </div>
+
+      <div class="p-6 rounded-3xl bg-amber-50 border-l-8 border-amber-400 italic text-gray-700">
+        Складність: у найгіршому випадку <b>O(n²)</b>. Це повільний алгоритм для великих даних, але корисний для навчання.
+      </div>
+    </section>
+
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-4 text-gray-900 flex items-center gap-2">
+        <span class="logo-box">3</span> Вбудовані методи Python
+      </h2>
+      <p class="text-gray-700 leading-relaxed mb-6">
+        Python має неймовірно швидкий алгоритм сортування (Timsort). Вам не потрібно писати його вручну, достатньо знати дві функції:
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="p-6 border-2 border-slate-100 rounded-2xl bg-white shadow-sm hover:shadow-md transition-shadow">
+          <h3 class="font-bold text-gray-900 mb-2 flex items-center gap-2">
+            <span class="text-brand">●</span> Метод <code>.sort()</code>
+          </h3>
+          <p class="text-sm text-gray-600 mb-4">
+            Змінює <b>оригінальний</b> список.
+          </p>
+          <pre class="bg-slate-50 p-4 rounded-xl border border-slate-100 font-mono text-xs overflow-auto"><code>nums = [5, 2, 8]
+nums.sort()
+print(nums)  # [2, 5, 8]</code></pre>
+        </div>
+
+        <div class="p-6 border-2 border-slate-100 rounded-2xl bg-white shadow-sm hover:shadow-md transition-shadow">
+          <h3 class="font-bold text-gray-900 mb-2 flex items-center gap-2">
+            <span class="text-brand">●</span> Функція <code>sorted()</code>
+          </h3>
+          <p class="text-sm text-gray-600 mb-4">
+            Створює <b>новий</b> відсортований список.
+          </p>
+          <pre class="bg-slate-50 p-4 rounded-xl border border-slate-100 font-mono text-xs overflow-auto"><code>nums = [5, 2, 8]
+new_nums = sorted(nums)
+print(nums)      # [5, 2, 8]
+print(new_nums)  # [2, 5, 8]</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-4 text-gray-900 flex items-center gap-2">
+        <span class="logo-box">4</span> Сортування у зворотному порядку
+      </h2>
+      <p class="text-gray-700 leading-relaxed mb-6">
+        Щоб відсортувати список від більшого до меншого, використовуйте параметр <code>reverse=True</code>:
+      </p>
+
+      <div class="rounded-2xl overflow-hidden shadow-2xl bg-[#282c34] mb-6">
+        <div class="bg-[#21252b] px-4 py-3 flex items-center gap-2">
+          <div class="w-3 h-3 rounded-full bg-[#ff5f56]"></div>
+          <div class="w-3 h-3 rounded-full bg-[#ffbd2e]"></div>
+          <div class="w-3 h-3 rounded-full bg-[#27c93f]"></div>
+          <span class="text-gray-400 text-[10px] ml-4 font-mono uppercase tracking-widest">reverse_sort.py</span>
+        </div>
+        <pre class="m-0"><code class="language-python">nums = [10, 50, 20, 40]
+nums.sort(reverse=True)
+print(nums)  # [50, 40, 20, 10]
+
+# Або з функцією sorted
+res = sorted(nums, reverse=True)</code></pre>
+      </div>
+    </section>
+
+    <section class="mb-12 p-8 bg-slate-900 text-white rounded-[2.5rem] shadow-2xl">
+      <h2 class="text-2xl font-extrabold mb-4 text-[#e2f0d9]">Висновок</h2>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Сортування робить дані зручними для людей та швидкими для пошукових алгоритмів. Хоча ми вивчили Bubble Sort для розуміння логіки, 
+        у реальних проектах завжди використовуйте вбудовані <code>.sort()</code> або <code>sorted()</code>.
+      </p>
+      <div class="flex flex-wrap gap-3">
+        <span class="px-4 py-2 bg-slate-800 rounded-full text-xs font-mono">bubble sort</span>
+        <span class="px-4 py-2 bg-slate-800 rounded-full text-xs font-mono">sorted()</span>
+        <span class="px-4 py-2 bg-slate-800 rounded-full text-xs font-mono">.sort()</span>
+        <span class="px-4 py-2 bg-slate-800 rounded-full text-xs font-mono">reverse=True</span>
+        <span class="px-4 py-2 bg-slate-800 rounded-full text-xs font-mono">O(n²)</span>
+      </div>
+    </section>
+
+    <footer class="mt-16 pt-8 border-t flex justify-between gap-4">
+      <a class="text-gray-400 hover:text-black font-medium transition-colors" href="../lesson10/theory.html">
+        ← Минулий урок
+      </a>
+      <a class="btn-action px-12 py-4" href="./practice.html">
+        До практики ➔
+      </a>
+    </footer>
+
+  </main>
+
+  <script>hljs.highlightAll();</script>
+</body>
+</html>

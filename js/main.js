@@ -382,9 +382,68 @@ function check3_2(ans) {
 
 function check3_3() {
     const val = document.getElementById('ans3').value.trim().toLowerCase();
-    if(val === 'str()' || val === 'str') {
+    if (val === 'str()' || val === 'str') {
         showFeedback('feedback3', true, "✅ Точно! Функція str() ідеально підходить для перетворення результатів у текст.");
     } else {
         showFeedback('feedback3', false, "❌ Не зовсім. Подумай, яка функція робить 'string'?");
     }
-}
+    }
+
+    /** ПЕРЕВІРКА ЗАВДАНЬ КУРСУ ПРЕЗЕНТАЦІЙ **/
+
+    function checkSlides1_1(answer) {
+    if (answer === 'visual') {
+        showFeedback('feedback1', true, "✅ Правильно! Презентація — це насамперед візуальна підтримка вашої розповіді.");
+    } else {
+        showFeedback('feedback1', false, "❌ Не зовсім. Подумай, що головне в картинках та слайдах?");
+    }
+    }
+
+    function checkSlides1_2(answer) {
+    if (answer === 'google') {
+        showFeedback('feedback2', true, "✅ Вірно! Google Slides працює в браузері та ідеально підходить для спільної роботи.");
+    } else {
+        showFeedback('feedback2', false, "❌ Ні, ця програма зазвичай потребує встановлення. Спробуй ще раз.");
+    }
+    }
+
+    function checkSlides2_1(answer) {
+    if (answer === 'ribbon' || answer === 'toolbar') {
+        showFeedback('feedback1', true, "✅ Так! Це основна панель, де зібрані всі інструменти.");
+    } else {
+        showFeedback('feedback1', false, "❌ Спробуй ще раз. Підказка: вона зверху і схожа на стрічку.");
+    }
+    }
+
+    function checkSlides3_1(answer) {
+        if (answer === 'ctrl-m' || answer === 'enter') {
+            showFeedback('feedback1', true, "✅ Правильно! Це швидкі способи додати новий слайд.");
+        } else {
+            showFeedback('feedback1', false, "❌ Не зовсім. Спробуй згадати гарячі клавіші.");
+        }
+    }
+
+    function checkSlides4_1() {
+        const val = document.getElementById('ans4').value.trim();
+        if (val === '7') {
+            showFeedback('feedback1', true, "✅ Вірно! Правило 7х7 допомагає не перевантажувати слайд текстом.");
+        } else {
+            showFeedback('feedback1', false, "❌ Подумай ще. Яке число у назві правила 'X на X'?");
+        }
+    }
+
+    function checkSlides5_1(answer) {
+        if (answer === 'insert') {
+            showFeedback('feedback1', true, "✅ Точно! Меню 'Вставка' (Insert) — головне для додавання об'єктів.");
+        } else {
+            showFeedback('feedback1', false, "❌ Шукай меню, назва якого означає 'додати щось всередину'.");
+        }
+    }
+
+    function checkSlides8_1(answer) {
+        if (answer === 'transition') {
+            showFeedback('feedback1', true, "✅ Вірно! Переходи (Transitions) — це ефекти зміни самих слайдів.");
+        } else {
+            showFeedback('feedback1', false, "❌ Анімація — це для об'єктів на слайді. А для зміни слайдів?");
+        }
+    }

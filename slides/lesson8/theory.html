@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Урок 8: Анімація та переходи | IT School Hub</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="stylesheet" href="../../css/styles.css">
+    <script src="../../js/main.js" defer></script>
+</head>
+<body class="font-sans">
+
+    <nav class="nav-sticky">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="../../index.html" class="hover:opacity-80 transition-opacity">
+                <h1 class="text-2xl font-bold text-gray-700">
+                    <span class="logo-box">IT</span> School Hub
+                </h1>
+            </a>
+            <div class="flex items-center gap-4">
+                <a href="../index.html" class="hidden md:block text-sm font-medium text-gray-500 hover:text-black transition-colors">
+                    ← Повернутися до курсу
+                </a>
+                <span class="bg-[#e2f0d9] px-5 py-1.5 rounded-full text-sm font-black uppercase tracking-wider text-[#1f2937] shadow-sm">Урок 8</span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto max-w-4xl px-6 py-12 bg-white mt-8 shadow-xl rounded-[2rem] border border-gray-100">
+        
+        <header class="mb-12">
+            <h1 class="text-4xl md:text-5xl font-extrabold mb-4 text-gray-900 tracking-tight">Анімація та переходи</h1>
+            <div class="h-2 w-24 bg-orange-400 rounded-full"></div>
+        </header>
+
+        <section class="mb-10 text-gray-700 leading-relaxed">
+            <h2 class="text-2xl font-bold mb-4 text-gray-900">Додаємо магії!</h2>
+            <p class="text-lg mb-6">
+                Щоб презентація не була схожа на нудний підручник, ми додаємо ефекти руху. Є два головних типи ефектів:
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="p-6 bg-slate-50 rounded-3xl border border-slate-100">
+                    <h4 class="font-bold text-lg mb-2 text-slate-800 flex items-center gap-2">🖼️ Анімація</h4>
+                    <p class="text-sm">Це ефекти для <strong>об'єктів</strong> (тексту, картинок). Наприклад, заголовок вилітає знизу, а картинка плавно з'являється.</p>
+                </div>
+                <div class="p-6 bg-slate-50 rounded-3xl border border-slate-100">
+                    <h4 class="font-bold text-lg mb-2 text-slate-800 flex items-center gap-2">🎞️ Переходи</h4>
+                    <p class="text-sm">Це ефекти <strong>зміни самих слайдів</strong>. Наприклад, один слайд "розчиняється" або "перегортається" як сторінка книги.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-10">
+            <h2 class="text-2xl font-bold mb-4 text-gray-900">Як додати ефекти?</h2>
+            <div class="space-y-4">
+                <div class="flex gap-4 p-4 border border-gray-100 rounded-2xl shadow-sm">
+                    <div class="bg-orange-100 p-2 rounded-lg font-bold text-orange-600">Переходи:</div>
+                    <p class="text-sm">Вкладка <strong>"Переходи"</strong> (Transitions) ➔ Оберіть ефект (наприклад, "Випадкові лінії" або "Трансформація").</p>
+                </div>
+                <div class="flex gap-4 p-4 border border-gray-100 rounded-2xl shadow-sm">
+                    <div class="bg-orange-100 p-2 rounded-lg font-bold text-orange-600">Анімація:</div>
+                    <p class="text-sm">Оберіть об'єкт ➔ Вкладка <strong>"Анімація"</strong> (Animations) ➔ "Вхід" ➔ Оберіть ефект (наприклад, "Виліт").</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-10 p-8 rounded-[2rem] bg-slate-900 text-white shadow-2xl relative overflow-hidden">
+            <div class="absolute top-0 right-0 p-10 opacity-10 text-9xl">⚠️</div>
+            <h2 class="text-2xl font-bold mb-4 text-brand italic">Застереження!</h2>
+            <p class="text-slate-300 leading-relaxed mb-4">
+                Анімація має допомагати, а не заважати. Якщо кожен рядок буде вилітати з сальто протягом хвилини — слухачі просто втомляться.
+            </p>
+            <ul class="text-sm space-y-2 text-slate-200">
+                <li class="flex items-center gap-2">✅ Використовуйте просту анімацію ("Виліт", "Виникнення").</li>
+                <li class="flex items-center gap-2">✅ Обирайте 1-2 типи переходів на всю презентацію.</li>
+                <li class="flex items-center gap-2">❌ Не робіть анімацію занадто довгою.</li>
+            </ul>
+        </section>
+
+        <footer class="mt-16 pt-8 border-t border-gray-100 flex flex-col md:flex-row justify-between items-center gap-6">
+            <a href="../lesson7/practice.html" class="text-gray-400 hover:text-black transition-colors font-medium">
+                ← Попередній урок
+            </a>
+            <a href="./practice.html" class="btn-action px-12 py-4 bg-slate-900 text-white rounded-xl font-bold hover:bg-black transition-all">
+                До практики ➔
+            </a>
+        </footer>
+
+    </main>
+
+    <footer class="text-center py-10 text-gray-400 text-xs">
+        <p>© 2026 IT School Hub | Твій шлях до успіху</p>
+    </footer>
+
+</body>
+</html>

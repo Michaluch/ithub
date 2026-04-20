@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Урок 3: Робота зі слайдами | IT School Hub</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="stylesheet" href="../../css/styles.css">
+    <script src="../../js/main.js" defer></script>
+</head>
+<body class="font-sans">
+
+    <nav class="nav-sticky">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="../../index.html" class="hover:opacity-80 transition-opacity">
+                <h1 class="text-2xl font-bold text-gray-700">
+                    <span class="logo-box">IT</span> School Hub
+                </h1>
+            </a>
+            <div class="flex items-center gap-4">
+                <a href="../index.html" class="hidden md:block text-sm font-medium text-gray-500 hover:text-black transition-colors">
+                    ← Повернутися до курсу
+                </a>
+                <span class="bg-[#e2f0d9] px-5 py-1.5 rounded-full text-sm font-black uppercase tracking-wider text-[#1f2937] shadow-sm">Урок 3</span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto max-w-4xl px-6 py-12 bg-white mt-8 shadow-xl rounded-[2rem] border border-gray-100">
+        
+        <header class="mb-12">
+            <h1 class="text-4xl md:text-5xl font-extrabold mb-4 text-gray-900 tracking-tight">Робота зі слайдами</h1>
+            <div class="h-2 w-24 bg-orange-400 rounded-full"></div>
+        </header>
+
+        <section class="mb-10">
+            <h2 class="text-2xl font-bold mb-4 text-gray-900">Фундамент вашої презентації</h2>
+            <p class="text-lg mb-6 text-gray-700 leading-relaxed">
+                Слайд — це як окрема сторінка в зошиті, але для екрана. Важливо вміти правильно їх створювати та обирати правильний "макет".
+            </p>
+            
+            <div class="bg-orange-50 p-6 rounded-3xl border border-orange-100 mb-8">
+                <h3 class="font-bold text-lg mb-3 flex items-center gap-2">✨ Як додати новий слайд?</h3>
+                <ul class="space-y-3">
+                    <li class="flex items-center gap-3">
+                        <span class="bg-white p-2 rounded-lg shadow-sm border border-orange-200 text-xs font-bold">Спосіб 1</span>
+                        <span>Кнопка <strong>"Створити слайд"</strong> на Стрічці.</span>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <span class="bg-white p-2 rounded-lg shadow-sm border border-orange-200 text-xs font-bold">Спосіб 2</span>
+                        <span>Права кнопка миші у списку слайдів ➔ "Новий слайд".</span>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <span class="bg-white p-2 rounded-lg shadow-sm border border-orange-200 text-xs font-bold">Спосіб 3</span>
+                        <span>Гарячі клавіші <strong>Ctrl + M</strong> (M — від слова Magic... або New Slide).</span>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="mb-10">
+            <h2 class="text-2xl font-bold mb-4 text-gray-900">Макети слайдів (Layouts)</h2>
+            <p class="mb-6 text-gray-700">Макет — це готова "розмітка" слайда. Програма підказує вам, куди краще вставити текст, а куди картинку.</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="p-4 border-2 border-slate-100 rounded-2xl hover:border-orange-300 transition-all">
+                    <div class="aspect-video bg-slate-50 rounded-lg mb-3 border-2 border-dashed border-slate-300 flex flex-col items-center justify-center p-2">
+                        <div class="h-2 w-10 bg-slate-300 rounded mb-1"></div>
+                        <div class="h-1 w-12 bg-slate-200 rounded"></div>
+                    </div>
+                    <h4 class="font-bold text-sm text-center">Титульний слайд</h4>
+                    <p class="text-[10px] text-gray-500 text-center mt-1">Тут пишемо назву презентації та хто її зробив.</p>
+                </div>
+                <div class="p-4 border-2 border-slate-100 rounded-2xl hover:border-orange-300 transition-all">
+                    <div class="aspect-video bg-slate-50 rounded-lg mb-3 border-2 border-dashed border-slate-300 p-2">
+                        <div class="h-2 w-8 bg-slate-300 rounded mb-2"></div>
+                        <div class="h-1 w-full bg-slate-200 rounded mb-1"></div>
+                        <div class="h-1 w-full bg-slate-200 rounded mb-1"></div>
+                        <div class="h-1 w-2/3 bg-slate-200 rounded"></div>
+                    </div>
+                    <h4 class="font-bold text-sm text-center">Заголовок і об'єкт</h4>
+                    <p class="text-[10px] text-gray-500 text-center mt-1">Найпопулярніший макет для основної інформації.</p>
+                </div>
+                <div class="p-4 border-2 border-slate-100 rounded-2xl hover:border-orange-300 transition-all">
+                    <div class="aspect-video bg-slate-50 rounded-lg mb-3 border-2 border-dashed border-slate-300 flex gap-2 p-2">
+                        <div class="flex-grow flex flex-col gap-1">
+                            <div class="h-1 w-full bg-slate-200 rounded"></div>
+                            <div class="h-1 w-full bg-slate-200 rounded"></div>
+                        </div>
+                        <div class="flex-grow flex flex-col gap-1">
+                            <div class="h-1 w-full bg-slate-200 rounded"></div>
+                            <div class="h-1 w-full bg-slate-200 rounded"></div>
+                        </div>
+                    </div>
+                    <h4 class="font-bold text-sm text-center">Порівняння</h4>
+                    <p class="text-[10px] text-gray-500 text-center mt-1">Зручно, коли треба порівняти дві речі.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-10 p-8 rounded-[2rem] bg-slate-900 text-white shadow-2xl">
+            <h2 class="text-2xl font-bold mb-4 text-brand">Порада від профі</h2>
+            <p class="text-slate-300 leading-relaxed mb-4">
+                Не бійтеся видаляти зайві слайди. Краще мати 5 змістовних слайдів, ніж 10 порожніх або нудних. 
+            </p>
+            <div class="bg-white/10 p-4 rounded-xl border border-white/20 text-sm">
+                💡 Щоб змінити макет вже створеного слайда, натисніть на нього правою кнопкою миші ➔ <strong>"Макет"</strong>.
+            </div>
+        </section>
+
+        <footer class="mt-16 pt-8 border-t border-gray-100 flex flex-col md:flex-row justify-between items-center gap-6">
+            <a href="../lesson2/theory.html" class="text-gray-400 hover:text-black transition-colors font-medium">
+                ← Попередній урок
+            </a>
+            <a href="./practice.html" class="btn-action px-12 py-4 bg-slate-900 text-white rounded-xl font-bold hover:bg-black transition-all">
+                До практики ➔
+            </a>
+        </footer>
+
+    </main>
+
+    <footer class="text-center py-10 text-gray-400 text-xs">
+        <p>© 2026 IT School Hub | Твій шлях до успіху</p>
+    </footer>
+
+</body>
+</html>

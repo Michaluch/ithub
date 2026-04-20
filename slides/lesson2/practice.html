@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Практика: Огляд інтерфейсу | IT School Hub</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="stylesheet" href="../../css/styles.css">
+    <script src="../../js/main.js" defer></script>
+</head>
+<body class="font-sans">
+
+    <nav class="nav-sticky">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="../../index.html" class="hover:opacity-80 transition-opacity">
+                <h1 class="text-2xl font-bold text-gray-700">
+                    <span class="logo-box">IT</span> School Hub
+                </h1>
+            </a>
+            <div class="flex items-center gap-4">
+                <a href="../index.html" class="hidden md:block text-sm font-medium text-gray-500 hover:text-black transition-colors">
+                    ← Повернутися до курсу
+                </a>
+                <span class="bg-[#e2f0d9] px-5 py-1.5 rounded-full text-sm font-black uppercase tracking-wider text-[#1f2937] shadow-sm">Практика 2</span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto max-w-4xl px-6 py-12 bg-white mt-8 shadow-xl rounded-[2.5rem] border border-gray-100">
+        
+        <header class="mb-12">
+            <h1 class="text-4xl md:text-5xl font-extrabold mb-4 text-gray-900 tracking-tight text-center md:text-left">Завдання: "Знавці інтерфейсу"</h1>
+            <div class="h-2 w-24 bg-orange-400 rounded-full mx-auto md:mx-0"></div>
+        </header>
+
+        <div class="space-y-10">
+            <!-- Task 1 -->
+            <section class="bg-white p-8 rounded-[2.5rem] shadow-xl border border-gray-100 transition-all hover:border-orange-200">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-10 h-10 bg-slate-800 text-white rounded-xl flex items-center justify-center font-bold">1</div>
+                    <h2 class="font-bold text-xl text-gray-900">Головна панель</h2>
+                </div>
+                
+                <p class="text-gray-600 mb-6 leading-relaxed">Як називається верхня частина вікна PowerPoint, де зібрані всі кнопки для редагування?</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <button onclick="checkSlides2_1('ribbon')" class="p-4 text-left border-2 border-gray-100 rounded-2xl hover:border-orange-400 hover:bg-orange-50 transition-all font-medium">
+                        А) Стрічка (Ribbon)
+                    </button>
+                    <button onclick="checkSlides2_1('footer')" class="p-4 text-left border-2 border-gray-100 rounded-2xl hover:border-orange-400 hover:bg-orange-50 transition-all font-medium">
+                        Б) Підвал (Footer)
+                    </button>
+                </div>
+
+                <div id="feedback1" class="mt-4 p-4 rounded-xl text-sm font-medium hidden"></div>
+            </section>
+
+            <!-- Task 2 (Practical activity) -->
+            <section class="bg-slate-900 text-white p-8 rounded-[2.5rem] shadow-2xl relative overflow-hidden">
+                <div class="absolute top-0 right-0 p-8 opacity-10 text-6xl">🔍</div>
+                <h2 class="text-2xl font-bold mb-4 text-brand italic">Дослідницьке завдання</h2>
+                <p class="text-slate-300 mb-6 leading-relaxed">
+                    Відкрий <strong>Google Slides</strong> або <strong>PowerPoint</strong> на своєму комп'ютері та спробуй знайти:
+                </p>
+                <ul class="space-y-3 text-sm text-slate-200">
+                    <li class="flex items-center gap-3">
+                        <span class="w-2 h-2 bg-brand rounded-full"></span>
+                        Кнопку "Новий слайд"
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <span class="w-2 h-2 bg-brand rounded-full"></span>
+                        Меню "Вставка"
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <span class="w-2 h-2 bg-brand rounded-full"></span>
+                        Кнопку для початку показу презентації
+                    </li>
+                </ul>
+                <p class="mt-6 text-xs text-slate-400 italic">* Якщо знайшов усе — ти готовий рухатися далі!</p>
+            </section>
+        </div>
+
+        <footer class="mt-16 pt-8 border-t border-gray-100 flex flex-col md:flex-row justify-between items-center gap-6">
+            <a href="./theory.html" class="text-gray-400 hover:text-black transition-colors font-medium">
+                ← Повернутися до теорії
+            </a>
+            <a href="../lesson3/theory.html" class="btn-action px-12 py-4 bg-slate-900 text-white rounded-xl font-bold hover:bg-black transition-all">
+                До наступного уроку ➔
+            </a>
+        </footer>
+
+    </main>
+
+    <footer class="text-center py-10 text-gray-400 text-xs">
+        <p>© 2026 IT School Hub | Твій шлях до успіху</p>
+    </footer>
+
+</body>
+</html>
