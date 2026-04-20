@@ -126,10 +126,40 @@
         <div id="fb11_3" class="mt-4 p-4 rounded-xl text-sm font-medium hidden"></div>
       </section>
 
-      <!-- 4: complexity bubble -->
+      <!-- 4: bubble vs stone -->
       <section class="bg-white p-10 rounded-[2.5rem] shadow-xl border border-gray-100">
         <h2 class="text-2xl font-bold mb-4 text-gray-900 flex items-center gap-2">
-          <span class="logo-box">4</span> Швидкість
+          <span class="logo-box">4</span> Різниця методів
+        </h2>
+
+        <p class="text-slate-600 mb-6">
+          У якому з алгоритмів елементи "стрибають" одразу на своє місце, роблячи лише <b>одну заміну</b> за прохід зовнішнього циклу?
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <button
+            type="button"
+            onclick="showFeedback('fb11_diff', false, '❌ Ні. Бульбашка робить багато дрібних кроків (замін) з сусідами.')"
+            class="bg-white border-2 border-slate-100 p-4 rounded-2xl hover:border-[#e2f0d9] transition-all text-left"
+          >
+            Метод Бульбашки
+          </button>
+          <button
+            type="button"
+            onclick="showFeedback('fb11_diff', true, '✅ Вірно! Це метод Камінця (Selection Sort). Він шукає крайній елемент і ставить його на місце одним рухом.')"
+            class="bg-white border-2 border-slate-100 p-4 rounded-2xl hover:border-[#e2f0d9] transition-all text-left"
+          >
+            Метод Камінця
+          </button>
+        </div>
+
+        <div id="fb11_diff" class="mt-4 p-4 rounded-xl text-sm font-medium hidden"></div>
+      </section>
+
+      <!-- 5: complexity bubble -->
+      <section class="bg-white p-10 rounded-[2.5rem] shadow-xl border border-gray-100">
+        <h2 class="text-2xl font-bold mb-4 text-gray-900 flex items-center gap-2">
+          <span class="logo-box">5</span> Швидкість
         </h2>
 
         <p class="text-slate-600 mb-6">
