@@ -350,9 +350,9 @@
   <script>
     function check5_3() {
       const code = document.getElementById('ans5_3').value;
-      const c = code.replace(/\\s+/g, '').toLowerCase();
+      const c = code.replace(/\s+/g, '').toLowerCase();
       const hasTotal = c.includes('total=0');
-      const hasLoop = c.includes('for') && (c.includes('range(1,11)') || c.includes('range(1,10+1)'));
+      const hasLoop = c.includes('for') && (c.includes('range(1,11)') || c.includes('range(1,10+1)') || c.includes('range(11)'));
       const adds = c.includes('total+=') || c.includes('total=total+');
       const ok = hasTotal && hasLoop && adds;
       showFeedback(
@@ -364,9 +364,10 @@
 
     function check5_5() {
       const code = document.getElementById('ans5_5').value;
-      const c = code.replace(/\\s+/g, '').toLowerCase();
-      const hasOuter = c.includes('forr') && c.includes('range(3)');
-      const hasInner = c.includes('forc') && c.includes('range(3)');
+      const c = code.replace(/\s+/g, '').toLowerCase();
+      const loops = (c.match(/for\w+inrange\(3\)/g) || []).length;
+      const hasOuter = loops >= 1;
+      const hasInner = loops >= 2;
       const hasPrint = c.includes('print(');
       const hasStar = c.includes('"*"') || c.includes("'*'");
       const ok = hasOuter && hasInner && hasPrint && hasStar;

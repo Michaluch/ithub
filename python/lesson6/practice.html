@@ -363,10 +363,10 @@
   <script>
     function check6_1() {
       const code = document.getElementById('ans6_1').value;
-      const c = code.replace(/\\s+/g, '').toLowerCase();
+      const c = code.replace(/\s+/g, '').toLowerCase();
       const ok =
         c.includes('defgreet(name):') &&
-        (c.includes('print("привіт,"+name') || c.includes("print('привіт,'+name") || c.includes('print("привіт,",name') || c.includes("print('привіт,',name") || c.includes('print("привіт,' ) || c.includes("print('привіт,"));
+        /print\(f?["']привіт,/.test(c);
 
       showFeedback(
         'fb6_1',
@@ -377,7 +377,7 @@
 
     function check6_2() {
       const code = document.getElementById('ans6_2').value;
-      const c = code.replace(/\\s+/g, '').toLowerCase();
+      const c = code.replace(/\s+/g, '').toLowerCase();
       const ok =
         c.includes('defadd(a,b):') &&
         (c.includes('returna+b') || c.includes('return(a+b)'));

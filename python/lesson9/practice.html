@@ -221,7 +221,7 @@
   <script>
     function check9_5() {
       const code = document.getElementById('ans9_5').value;
-      const c = code.replace(/\\s+/g, '').toLowerCase();
+      const c = code.replace(/\s+/g, '').toLowerCase();
       const hasSplit = c.includes('.split(');
       const hasJoin = c.includes('"-".join(') || c.includes("'-'.join(");
       const ok = hasSplit && hasJoin;

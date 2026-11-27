@@ -294,8 +294,10 @@ function displayFeedback(elementId, isSuccess, text) {
  * Перевірка коду (regex або строкове порівняння)
  */
 function validateExercise(inputId, feedbackId, correctPattern) {
-    const userInput = document.getElementById(inputId).value.trim();
-    const isValid = userInput.includes(correctPattern); 
+    // Пропуски не впливають на перевірку: "emoji = 1" і "emoji=1" — однаково правильні
+    const strip = (t) => t.replace(/\s+/g, '');
+    const userInput = strip(document.getElementById(inputId).value);
+    const isValid = userInput.includes(strip(correctPattern));
     
     if (isValid) {
         displayFeedback(feedbackId, true, "✅ Чудово! Завдання виконано вірно.");
