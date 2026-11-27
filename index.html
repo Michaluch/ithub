@@ -8,9 +8,11 @@
     <script src="https://cdn.tailwindcss.com"></script>
     
     <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="./css/styles-2026.css">
+    <script src="./js/theme.js"></script>
     <script src="./js/main.js" defer></script>
 </head>
-<body class="font-sans text-gray-800">
+<body class="font-sans text-gray-800 page-home">
 
     <nav class="nav-sticky">
         <div class="container mx-auto flex justify-between items-center">
@@ -19,8 +21,15 @@
                     <span class="logo-box">IT</span> School Hub
                 </h1>
             </a>
-            <div class="hidden md:block text-sm font-medium text-gray-500">
-                Твій шлях від 0 до Junior Developer
+            <div class="flex items-center gap-4">
+                <div class="hidden md:block text-sm font-medium text-gray-500">
+                    Твій шлях від 0 до Junior Developer
+                </div>
+                <button type="button" class="design-toggle" data-design-toggle
+                        data-label-new="✨ Спробувати новий дизайн|✨ Новий дизайн"
+                        data-label-classic="↩ Класичний дизайн|↩ Класичний"
+                        aria-pressed="false"
+                        title="Новий дизайн у бета-версії. Вибір запам'ятовується для всіх сторінок."><span class="dt-long">✨ Спробувати новий дизайн</span><span class="dt-short">✨ Новий дизайн</span></button>
             </div>
         </div>
     </nav>

@@ -1,0 +1,416 @@
+/* ==========================================================================
+   IT School Hub — дизайн 2026 (бета)
+   Вмикається класом .theme-2026 на <html> (див. js/theme.js).
+   Без цього класу жодне правило файлу не діє — класичний дизайн лишається основним.
+   Лого (.logo-box) і фірмовий зелений #e2f0d9 не змінюються.
+   ========================================================================== */
+
+html.theme-2026 {
+    /* Токени */
+    --brand-color: #e2f0d9;          /* фірмовий зелений — як і раніше */
+    --brand-dark: #c5e0b4;
+    --brand-deep: #4d7c3a;           /* для тексту/обведень на світлому тлі */
+    --ink: #0e1512;
+    --ink-soft: #3b4540;
+    --muted: #6b766f;
+    --paper: #f6f7f2;
+    --surface: #ffffff;
+    --hairline: rgba(14, 21, 18, 0.08);
+    --hairline-strong: rgba(14, 21, 18, 0.14);
+    --radius-lg: 28px;
+    --radius-md: 20px;
+    --radius-sm: 14px;
+    --shadow-soft: 0 1px 1px rgba(14, 21, 18, 0.03), 0 8px 24px -12px rgba(14, 21, 18, 0.12);
+    --shadow-lift: 0 2px 4px rgba(14, 21, 18, 0.04), 0 24px 48px -20px rgba(14, 21, 18, 0.22);
+    --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+    --font-display: "Unbounded", "Onest", system-ui, sans-serif;
+    --font-body: "Onest", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --font-mono: "JetBrains Mono", ui-monospace, "Cascadia Code", Consolas, monospace;
+
+    color-scheme: light;
+    scroll-behavior: smooth;
+    accent-color: var(--brand-deep);
+}
+
+/* ---------- Тло: «папір» із зерном і м'якими плямами фірмового зеленого ---------- */
+html.theme-2026 body {
+    font-family: var(--font-body);
+    color: var(--ink);
+    background-color: var(--paper);
+    background-image:
+        radial-gradient(60rem 40rem at 110% -10%, rgba(226, 240, 217, 0.9), transparent 60%),
+        radial-gradient(50rem 36rem at -15% 30%, rgba(226, 240, 217, 0.55), transparent 60%);
+    background-attachment: fixed;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+html.theme-2026 body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.05;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+html.theme-2026 body > * { position: relative; z-index: 1; }
+html.theme-2026 body > .nav-sticky { position: sticky; z-index: 50; }
+
+html.theme-2026 ::selection { background: var(--brand-dark); color: var(--ink); }
+
+/* ---------- Типографіка ---------- */
+html.theme-2026 h1,
+html.theme-2026 h2,
+html.theme-2026 h3 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    text-wrap: balance;
+}
+
+html.theme-2026 h4,
+html.theme-2026 h5 { font-family: var(--font-body); letter-spacing: -0.01em; }
+
+html.theme-2026 p,
+html.theme-2026 li { text-wrap: pretty; }
+
+html.theme-2026 main header h1,
+html.theme-2026 main > header h2 {
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -0.035em;
+}
+
+html.theme-2026 main > header h2,
+html.theme-2026 main header h1.text-5xl {
+    font-size: clamp(2.25rem, 1.4rem + 3.6vw, 4.25rem);
+}
+
+html.theme-2026 .font-black,
+html.theme-2026 .font-extrabold { font-weight: 800; }
+
+html.theme-2026 code,
+html.theme-2026 kbd,
+html.theme-2026 pre,
+html.theme-2026 .font-mono,
+html.theme-2026 textarea { font-family: var(--font-mono); }
+
+html.theme-2026 :not(pre) > code {
+    font-size: 0.9em;
+    padding: 0.1em 0.4em;
+    border-radius: 6px;
+    background: rgba(226, 240, 217, 0.6);
+    border: 1px solid rgba(77, 124, 58, 0.15);
+}
+
+html.theme-2026 .bg-slate-900 :not(pre) > code,
+html.theme-2026 .bg-slate-800 :not(pre) > code,
+html.theme-2026 [class*="bg-[#282c34]"] :not(pre) > code {
+    background: rgba(226, 240, 217, 0.12);
+    border-color: rgba(226, 240, 217, 0.18);
+    color: inherit;
+}
+
+/* ---------- Навігація: плаваюча «скляна» панель ---------- */
+html.theme-2026 .nav-sticky {
+    top: 12px;
+    margin: 12px auto 0;
+    width: min(100% - 24px, 1200px);
+    padding: 0.7rem 1.25rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.72);
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.8) inset, 0 10px 30px -14px rgba(14, 21, 18, 0.25);
+    -webkit-backdrop-filter: saturate(1.6) blur(16px);
+    backdrop-filter: saturate(1.6) blur(16px);
+}
+
+/* Лого лишається як у класичному дизайні: той самий шрифт, розмір і бокс */
+html.theme-2026 .nav-sticky h1 {
+    font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+    font-size: 1.5rem;
+    line-height: 2rem;
+    letter-spacing: normal;
+    color: #374151;
+}
+html.theme-2026 .nav-sticky .container { padding: 0; gap: 0.75rem; }
+
+@media (max-width: 480px) {
+    html.theme-2026 .nav-sticky { padding: 0.55rem 0.6rem 0.55rem 0.9rem; }
+    html.theme-2026 .nav-sticky h1 { font-size: 1.25rem; }
+}
+
+/* ---------- Поверхні: картки, секції, головний контейнер ---------- */
+html.theme-2026 .card-base,
+html.theme-2026 main section.bg-white,
+html.theme-2026 main.bg-white,
+html.theme-2026 main .bg-white.shadow-xl,
+html.theme-2026 main .bg-white.shadow-2xl {
+    border-radius: var(--radius-lg);
+    background: var(--surface);
+    border: 1px solid var(--hairline);
+    box-shadow: var(--shadow-soft);
+}
+
+html.theme-2026 main.bg-white {
+    border-radius: 36px;
+    background: rgba(255, 255, 255, 0.86);
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+}
+
+html.theme-2026 [class*="rounded-[3rem]"],
+html.theme-2026 [class*="rounded-[2.5rem]"] { border-radius: var(--radius-lg); }
+html.theme-2026 [class*="rounded-[2rem]"],
+html.theme-2026 .rounded-3xl { border-radius: var(--radius-md); }
+
+html.theme-2026 .bg-slate-50 { background-color: #f8f9f5; }
+html.theme-2026 .border-slate-100,
+html.theme-2026 .border-gray-100 { border-color: var(--hairline); }
+
+/* Картки курсів і уроків */
+html.theme-2026 .card-main {
+    border: 1px solid var(--hairline);
+    transition: transform 0.45s var(--ease-out), box-shadow 0.45s var(--ease-out), border-color 0.3s;
+}
+
+html.theme-2026 .card-main:hover {
+    transform: translateY(-6px);
+    border-color: var(--brand-dark);
+    box-shadow: var(--shadow-lift), 0 0 0 4px rgba(226, 240, 217, 0.7);
+}
+
+html.theme-2026 .card-developing {
+    filter: none;
+    opacity: 1;
+    background: repeating-linear-gradient(-45deg, #fbfcf9 0 12px, #f4f6f0 12px 24px);
+    border: 1px dashed var(--hairline-strong);
+    box-shadow: none;
+}
+
+html.theme-2026 .card-developing h3,
+html.theme-2026 .card-developing p { color: var(--muted); }
+
+/* Іконки-плитки в картках: «тактильна» глибина */
+html.theme-2026 .card-base .w-14.h-14,
+html.theme-2026 .card-base .w-12.h-12 {
+    border-radius: 18px;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), inset 0 -2px 0 rgba(14, 21, 18, 0.06), 0 6px 14px -8px rgba(14, 21, 18, 0.3);
+}
+
+/* Класи бренду, які раніше не мали стилів */
+html.theme-2026 .bg-brand { background-color: var(--brand-color); }
+html.theme-2026 .text-brand { color: var(--brand-color); }
+html.theme-2026 [class*="bg-brand/20"] { background-color: rgba(226, 240, 217, 0.35); }
+html.theme-2026 [class*="border-brand/50"] { border-color: rgba(77, 124, 58, 0.35); }
+
+/* ---------- Темні блоки («Завдання для VS Code / IDLE») ---------- */
+html.theme-2026 main section.bg-slate-900 {
+    border-radius: var(--radius-lg);
+    background:
+        radial-gradient(40rem 20rem at 100% 0%, rgba(226, 240, 217, 0.14), transparent 60%),
+        #0e1512;
+    border: 1px solid rgba(226, 240, 217, 0.08);
+    box-shadow: var(--shadow-lift);
+}
+
+html.theme-2026 .bg-slate-800 {
+    background-color: rgba(255, 255, 255, 0.04);
+    border-color: rgba(226, 240, 217, 0.1);
+}
+
+html.theme-2026 .bg-slate-800:hover { border-color: rgba(226, 240, 217, 0.45); }
+
+/* ---------- Кнопки ---------- */
+html.theme-2026 .btn-action {
+    position: relative;
+    border-radius: 999px;
+    background: var(--ink);
+    color: #fff;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.12) inset, 0 10px 20px -10px rgba(14, 21, 18, 0.5);
+    transition: background-color 0.25s, color 0.25s, transform 0.2s var(--ease-out), box-shadow 0.25s;
+}
+
+html.theme-2026 .btn-action:hover {
+    background: var(--brand-color);
+    color: var(--ink);
+    box-shadow: 0 0 0 1px var(--brand-dark) inset, 0 12px 24px -12px rgba(77, 124, 58, 0.55);
+    transform: translateY(-1px);
+}
+
+html.theme-2026 .btn-action:active { transform: translateY(0) scale(0.98); }
+
+html.theme-2026 .btn-action.btn-disabled,
+html.theme-2026 .btn-action.btn-disabled:hover {
+    background: transparent;
+    color: var(--muted);
+    box-shadow: 0 0 0 1px var(--hairline-strong) inset;
+    transform: none;
+}
+
+/* Варіанти відповідей (кнопки-тести) */
+html.theme-2026 main button.border-2 {
+    border-width: 1px;
+    border-color: var(--hairline-strong);
+    border-radius: var(--radius-sm);
+    transition: border-color 0.2s, background-color 0.2s, transform 0.2s var(--ease-out);
+}
+
+html.theme-2026 main button.border-2:hover {
+    border-color: var(--brand-deep);
+    background-color: rgba(226, 240, 217, 0.35);
+    transform: translateY(-1px);
+}
+
+/* ---------- Поля введення ---------- */
+html.theme-2026 main input[type="text"],
+html.theme-2026 main input:not([type]),
+html.theme-2026 main input[type="number"] {
+    border: 1px solid var(--hairline-strong);
+    border-radius: var(--radius-sm);
+    background: #fbfcf9;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+html.theme-2026 main input:focus,
+html.theme-2026 main textarea:focus {
+    outline: none;
+    border-color: var(--brand-deep);
+    box-shadow: 0 0 0 4px rgba(226, 240, 217, 0.9);
+}
+
+html.theme-2026 [class*="bg-[#282c34]"] {
+    border-radius: var(--radius-md);
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.04) inset, var(--shadow-soft);
+}
+
+html.theme-2026 textarea { caret-color: var(--brand-color); }
+
+/* ---------- Бейджі, акценти, код ---------- */
+html.theme-2026 .badge {
+    border-radius: 999px;
+    padding: 0.3rem 0.7rem;
+    letter-spacing: 0.08em;
+    font-weight: 800;
+}
+
+html.theme-2026 .badge-available { background: var(--brand-color); color: #2f5a22; }
+
+html.theme-2026 .accent-block {
+    border-left: 4px solid var(--brand-deep);
+    background: linear-gradient(90deg, rgba(226, 240, 217, 0.55), rgba(226, 240, 217, 0.15));
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+
+html.theme-2026 pre code.hljs {
+    border-radius: var(--radius-md);
+    font-size: 1rem;
+}
+
+html.theme-2026 pre { border-radius: var(--radius-md); }
+
+/* Повідомлення перевірки (fb…) */
+html.theme-2026 [id^="fb"].bg-green-100,
+html.theme-2026 [id^="feedback"].bg-green-100 { background: var(--brand-color); color: #2f5a22; border: 1px solid var(--brand-dark); }
+html.theme-2026 [id^="fb"].bg-red-100,
+html.theme-2026 [id^="feedback"].bg-red-100 { border: 1px solid #fecaca; }
+
+/* ---------- Доступність: видимий фокус ---------- */
+html.theme-2026 a:focus-visible,
+html.theme-2026 button:focus-visible,
+html.theme-2026 [tabindex]:focus-visible {
+    outline: 3px solid var(--brand-deep);
+    outline-offset: 3px;
+    border-radius: 12px;
+}
+
+/* ---------- Футер ---------- */
+html.theme-2026 body > footer { color: var(--muted); }
+html.theme-2026 main footer.border-t { border-color: var(--hairline); }
+
+/* ---------- Головна: бенто-сітка курсів ---------- */
+@media (min-width: 1024px) {
+    html.theme-2026 .page-home main > .grid {
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+        gap: 1.25rem;
+    }
+
+    html.theme-2026 .page-home main > .grid > .card-main { grid-column: span 2; order: 1; }
+    html.theme-2026 .page-home main > .grid > .card-developing { grid-column: span 3; order: 2; }
+
+    html.theme-2026 .page-home main > .grid > .card-developing > .p-8 { padding-bottom: 1rem; }
+}
+
+html.theme-2026 .page-home main > header { margin-top: 4.5rem; }
+
+/* ---------- Перемикач дизайну ---------- */
+.design-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.45rem 1rem;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #1f2937;
+    background: #e2f0d9;
+    border: 1px solid #c5e0b4;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.design-toggle .dt-short { display: none; }
+
+@media (max-width: 480px) {
+    .design-toggle { font-size: 0.75rem; padding: 0.35rem 0.75rem; }
+    .design-toggle .dt-long { display: none; }
+    .design-toggle .dt-short { display: inline; }
+}
+
+.design-toggle { white-space: nowrap; }
+.page-home .nav-sticky h1 { white-space: nowrap; }
+
+.design-toggle:hover { transform: translateY(-1px); box-shadow: 0 6px 16px -8px rgba(77, 124, 58, 0.6); }
+.design-toggle:focus-visible { outline: 3px solid #4d7c3a; outline-offset: 3px; }
+
+html.theme-2026 .design-toggle { background: var(--ink); color: #fff; border-color: var(--ink); }
+html.theme-2026 .design-toggle:hover { background: var(--brand-color); color: var(--ink); border-color: var(--brand-dark); }
+
+/* ---------- Рух: поява під час прокручування (лише якщо браузер уміє і користувач не проти) ---------- */
+@media (prefers-reduced-motion: no-preference) {
+    @supports (animation-timeline: view()) {
+        html.theme-2026 .card-base,
+        html.theme-2026 main section.bg-white,
+        html.theme-2026 main section.bg-slate-900 {
+            animation: ithub-rise linear both;
+            animation-timeline: view();
+            animation-range: entry 0% entry 35%;
+        }
+    }
+}
+
+@media print {
+    html.theme-2026 * { animation: none !important; }
+    html.theme-2026 body::before { display: none; }
+    html.theme-2026 .nav-sticky { position: static; box-shadow: none; }
+}
+
+@keyframes ithub-rise {
+    /* translate/scale, а не transform — щоб не конфліктувати з ефектом наведення */
+    from { opacity: 0; translate: 0 24px; scale: 0.985; }
+    to   { opacity: 1; translate: none; scale: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html.theme-2026 *,
+    html.theme-2026 *::before,
+    html.theme-2026 *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
